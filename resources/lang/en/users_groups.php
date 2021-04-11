@@ -1,0 +1,26 @@
+<?php
+
+return array (
+  'Users_Group_name' => 'Users Group name',
+  'Class' => 'Class',
+  'Color' => 'Color',
+  'Select_All' => 'Select All',
+  'Deselect_All' => 'Deselect All',
+  'Submit' => 'Submit',
+  'User_Actions' => 'User Actions',
+  'Update' => 'Update',
+  'Users_Groups' => 'Users Groups',
+  'Index' => 'Index',
+  'Create_new_Users_Group' => 'Create new Users Group',
+  'Create_new_resource_from_here' => 'Create new resource from here',
+  'All_Users_Groups' => 'All Users Groups',
+  'Here_you_will_find_all_the_resources_to_make_actions_on_them' => 'Here you will find all_the resources to make actions on them',
+  'Id' => 'Id',
+  'Name' => 'Name',
+  'Permissions' => 'Permissions',
+  'Created_by' => 'Created by',
+  'Updated_by' => 'Updated by',
+  'Created_at' => 'Created at',
+  'Updated_at' => 'Updated at',
+  'Control' => 'Control',
+);

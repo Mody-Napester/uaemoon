@@ -1,0 +1,26 @@
+<?php
+
+return array (
+  'All_Users_Groups' => 'كل مجموعات المستخدمين',
+  'Class' => 'فئة',
+  'Color' => 'اللون',
+  'Control' => 'تحكم',
+  'Create_new_Users_Group' => 'إنشاء مجموعة مستخدمين جديدة',
+  'Create_new_resource_from_here' => 'إنشاء مورد جديد من هنا',
+  'Created_at' => 'أنشئت في',
+  'Created_by' => 'انشأ بواسطة',
+  'Deselect_All' => 'الغاء تحديد الكل',
+  'Here_you_will_find_all_the_resources_to_make_actions_on_them' => 'ستجد هنا جميع الموارد اللازمة لاتخاذ إجراءات بشأنها',
+  'Id' => 'المعرّف',
+  'Index' => 'فهرس',
+  'Name' => 'الاسم',
+  'Permissions' => 'أذونات',
+  'Select_All' => 'اختر الكل',
+  'Submit' => 'إرسال',
+  'Update' => 'تحديث',
+  'Updated_at' => 'تم التحديث في',
+  'Updated_by' => 'تم التحديث بواسطة',
+  'User_Actions' => 'إجراءات المستخدم',
+  'Users_Group_name' => 'اسم مجموعة المستخدمين',
+  'Users_Groups' => 'مجموعات المستخدمين',
+);
