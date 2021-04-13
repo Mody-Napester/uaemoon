@@ -17,12 +17,12 @@
             @endif
 
             <div class="p-20">
-                <form class="form-horizontal m-t-20" method="post" action="{{ route('register') }}">
+                <form class="form-horizontal" method="post" action="{{ route('register') }}">
                     @csrf
 
-                    <div class="form-group-custom">
-                        <input type="email" id="email" class="{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus/>
+                    <div class="form-group">
                         <label class="control-label" for="email">Email</label><i class="bar"></i>
+                        <input type="email" id="email" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus/>
 
                         @if ($errors->has('email'))
                             <strong style="color: red">{{ $errors->first('email') }}</strong>
@@ -32,9 +32,9 @@
                         @endif
                     </div>
 
-                    <div class="form-group-custom">
-                        <input id="name" type="text" class="{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required>
+                    <div class="form-group">
                         <label class="control-label" for="name">Username</label><i class="bar"></i>
+                        <input id="name" type="text" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required>
 
                         @if ($errors->has('name'))
                             <strong style="color: red">{{ $errors->first('name') }}</strong>
@@ -44,9 +44,9 @@
                         @endif
                     </div>
 
-                    <div class="form-group-custom">
-                        <input id="phone" type="text" class="{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}" required>
+                    <div class="form-group">
                         <label class="control-label" for="phone">Phone</label><i class="bar"></i>
+                        <input id="phone" type="text" class="form-control {{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}" required>
 
                         @if ($errors->has('phone'))
                             <strong style="color: red">{{ $errors->first('phone') }}</strong>
@@ -56,9 +56,9 @@
                         @endif
                     </div>
 
-                    <div class="form-group-custom">
-                        <input type="password" id="password" class="{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required/>
+                    <div class="form-group">
                         <label class="control-label" for="password">Password</label><i class="bar"></i>
+                        <input type="password" id="password" class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required/>
 
                         @if ($errors->has('password'))
                             <strong style="color: red">{{ $errors->first('password') }}</strong>
@@ -68,9 +68,9 @@
                         @endif
                     </div>
 
-                    <div class="form-group-custom">
-                        <input id="password-confirm" type="password" class="" name="password_confirmation" required/>
+                    <div class="form-group">
                         <label class="control-label" for="password-confirm">{{ __('Confirm Password') }}</label><i class="bar"></i>
+                        <input id="password-confirm" type="password" class="form-control" name=" password_confirmation" required/>
                     </div>
 
 {{--                    <div class="form-group">--}}
@@ -83,11 +83,9 @@
 {{--                    </div>--}}
 
                     <div class="form-group text-center m-t-20">
-                        <div class="col-12">
-                            <button class="btn btn-purple btn-block text-uppercase waves-effect waves-light" type="submit">
-                                Register
-                            </button>
-                        </div>
+                        <button class="btn btn-purple btn-block text-uppercase waves-effect waves-light" type="submit">
+                            Register
+                        </button>
                     </div>
 
 {{--                    <div class="form-group m-t-40 m-b-0">--}}
@@ -118,13 +116,13 @@
             </div>
         </div>
 
-{{--        <div class="row">--}}
-{{--            <div class="col-12 text-center">--}}
-{{--                <p class="text-white">--}}
-{{--                    Already have account?<a href="{{route('login')}}" class="text-white m-l-5"><b>Sign In</b></a>--}}
-{{--                </p>--}}
-{{--            </div>--}}
-{{--        </div>--}}
+        <div class="row">
+            <div class="col-12 text-center">
+                <p class="">
+                    Already have account?<a href="{{route('login')}}" class="m-l-5"><b>Sign In</b></a>
+                </p>
+            </div>
+        </div>
 
     </div>
 

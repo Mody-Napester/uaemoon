@@ -32,6 +32,9 @@ Route::group(['prefix'=>'dashboard', 'middleware' => 'auth'],function (){
     Route::resource('roles', 'RolesController');
     Route::resource('users', 'UsersController');
     Route::resource('lookup', 'LookupsController');
+    Route::resource('category', 'CategoryController');
+    Route::resource('page', 'PageController');
+    Route::resource('social', 'SocialController');
 
     // User update data
     Route::get('user/profile', 'UsersController@showUserProfile')->name('users.showUserProfile');

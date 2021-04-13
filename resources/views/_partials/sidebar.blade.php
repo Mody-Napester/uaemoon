@@ -45,11 +45,22 @@
 
                 @if(check_authority('use.resources'))
                     <li class="text-muted menu-title">{{ trans('sidebar.Resources') }}</li>
-{{--                    @if(check_authority('list.customers'))--}}
-{{--                        <li class="has_sub">--}}
-{{--                            <a href="{{ route('customer.index') }}" class="waves-effect fire-loader-anchor"><i class="ti-medall-alt"></i> <span> {{ trans('sidebar.Customers') }} </span></a>--}}
-{{--                        </li>--}}
-{{--                    @endif--}}
+                    @if(check_authority('list.category'))
+                        <li class="has_sub">
+                            <a href="{{ route('category.index') }}" class="waves-effect fire-loader-anchor"><i class="ti-clip"></i> <span> {{ trans('sidebar.Categories') }} </span></a>
+                        </li>
+                    @endif
+                    @if(check_authority('list.page'))
+                        <li class="has_sub">
+                            <a href="{{ route('page.index') }}" class="waves-effect fire-loader-anchor"><i class="ti-pencil-alt"></i> <span> {{ trans('sidebar.Pages') }} </span></a>
+                        </li>
+                    @endif
+                    @if(check_authority('list.social'))
+                        <li class="has_sub">
+                            <a href="{{ route('social.index') }}" class="waves-effect fire-loader-anchor"><i class="ti-medall-alt"></i> <span> {{ trans('sidebar.Socials') }} </span></a>
+                        </li>
+                    @endif
+
                 @endif
 
             </ul>

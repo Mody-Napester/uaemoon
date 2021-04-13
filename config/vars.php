@@ -5,7 +5,7 @@ return [
     'default_password' => 123456789,
     'uuid_version' => 1,
     'use_https' => false,
-    'authorized_users' => [1],
+    'authorized_users' => [1,2],
     'pagination' => 20,
     'langs' => [
         [
