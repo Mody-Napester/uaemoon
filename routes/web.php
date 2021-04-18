@@ -1,20 +1,14 @@
 <?php
 Route::group(
     ['middleware' => ['cors']
-    ],function (){
+    ], function () {
 
 });
 
 // Site Languages
 Route::get('language/{language}', 'LanguagesController@setLanguage')->name('language');
 
-Route::get('/', function () {
-    return redirect(route('dashboard.index'));
-});
-
 Auth::routes(['verify' => true]);
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +19,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 |
 */
 
-Route::group(['prefix'=>'dashboard', 'middleware' => 'auth'],function (){
+Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/', 'DashboardController@index')->name('dashboard.index');
     Route::resource('permission-groups', 'PermissionGroupsController');
     Route::resource('permissions', 'PermissionsController');
@@ -43,3 +37,15 @@ Route::group(['prefix'=>'dashboard', 'middleware' => 'auth'],function (){
     // Reset password
     Route::get('users/{user}/reset_password', 'UsersController@resetPassword')->name('users.reset_password');
 });
+
+/*
+|--------------------------------------------------------------------------
+| Front website routes
+|--------------------------------------------------------------------------
+|
+| Here is where front website routes exists.
+|
+*/
+foreach (File::allFiles(__DIR__ . '/front') as $route) {
+    require_once $route->getPathname();
+}

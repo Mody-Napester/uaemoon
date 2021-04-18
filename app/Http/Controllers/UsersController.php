@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Permission;
-use App\PermissionGroup;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
-use Validator;
 
 class UsersController extends Controller
 {
@@ -22,6 +19,7 @@ class UsersController extends Controller
      */
     public function __construct()
     {
+        $this->middleware('auth');
         $this->resource = new User();
     }
 

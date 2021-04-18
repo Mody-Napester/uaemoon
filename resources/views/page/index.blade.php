@@ -1,90 +1,93 @@
-@extends('@dashboard._layouts.master')
+@extends('_layouts.dashboard')
 
-@section('page_title') Page @endsection
+@section('title') {{ trans('page.pages') }} @endsection
 
-@section('page_contents')
-    <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
-        <div class="container">
-            <div class="page-header-content pt-4">
-                <div class="row align-items-center justify-content-between">
-                    <div class="col-auto mt-4">
-                        <h1 class="page-header-title">
-                            <div class="page-header-icon"><i data-feather="book"></i></div>
-                            Pages ({{ $resources->count() }})
-                        </h1>
-                        <div class="page-header-subtitle">All Application Required Data</div>
-                    </div>
-                    <div class="col-12 col-xl-auto mt-4">
-                        <a href="{{ route('page.create') }}" class="btn btn-sm btn-white">
-                            <i class="mr-2 text-primary" data-feather="plus"></i> Add New
-                        </a>
-                    </div>
-                </div>
+@section('content')
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="btn-group pull-right m-t-15">
+                @if(check_authority('add.lookups'))
+                    <a href="{{ route('page.create') }}" class="btn btn-default waves-effect waves-light"><i
+                            class="fa fa-plus"></i> {{ trans('page.add_new') }}</a>
+                @endif
             </div>
-        </div>
-    </header>
 
-    <!-- Main page content-->
-    <div class="container mt-n10">
-        <!-- Example DataTable for Dashboard Demo-->
-        <div class="card mb-4">
-            <div class="card-header">Personnel Management</div>
-            <div class="card-body">
-                <div class="datatable">
-                    <table class="table table-sm table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Slug</th>
-                            <th>Name</th>
-                            <th>Picture</th>
-                            <th>Cover</th>
-                            <th>Active</th>
-                            <th>Created by</th>
-                            <th>Updated by</th>
-                            <th>Created at</th>
-                            <th>Updated at</th>
-                            <th>Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($resources as $resource)
-                            <tr>
-                                <td>{{ $resource->id }}</td>
-                                <td>{{ $resource->slug }}</td>
-                                <td>{{ getFromJson($resource->name , lang()) }}</td>
-                                <td>
-                                    <div style="width:50px;height: 50px;overflow: hidden">
-                                        <img style="width:100%;" src="{{ url('assets_public/images/page/picture/'. $resource->picture) }}" alt="">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div style="width:50px;height: 50px;overflow: hidden">
-                                        <img style="width:100%;" src="{{ url('assets_public/images/page/cover/'. $resource->cover) }}" alt="">
-                                    </div>
-                                </td>
-                                <td>
-                                    @if($resource->is_active == 1)
-                                        <span class="badge badge-success badge-pill">Yes</span>
-                                    @else
-                                        <span class="badge badge-danger badge-pill">No</span>
-                                    @endif
-                                </td>
-                                <td>{{ ($cb = $resource->created_by_user)? $cb->name : '-' }}</td>
-                                <td>{{ ($ub = $resource->updated_by_user)? $ub->name : '-' }}</td>
-                                <td>{{ $resource->created_at }}</td>
-                                <td>{{ $resource->updated_at }}</td>
-                                <td>
-                                    <a href="{{ route('page.edit' , [$resource->uuid]) }}" class="btn btn-datatable text-warning btn-icon btn-transparent-dark mr-2"><i data-feather="edit"></i></a>
-                                    <a href="{{ route('page.destroy' , [$resource->uuid]) }}" class="btn btn-datatable text-danger btn-icon btn-transparent-dark confirm-delete"><i data-feather="trash-2"></i></a>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <h4 class="page-title">{{ trans('page.pages') }} ({{ $resources->count() }})</h4>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">{{ config('app.name') }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ trans('page.pages') }}</a></li>
+                <li class="breadcrumb-item active">{{ trans('page.list') }}</li>
+            </ol>
+
         </div>
     </div>
 
+    <!-- Main page content-->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card-box">
+                <div class="container-fluid">
+                    <h4 class="m-t-0 header-title">{{ trans('page.list_of_pages') }}</h4>
+                </div>
+
+                <table data-page-length='50' id="datatable-users-buttons"
+                       class="table table-responsive table-bordered table-sm" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Slug</th>
+                        <th>Name</th>
+                        <th>Picture</th>
+                        <th>Cover</th>
+                        <th>Active</th>
+                        <th>Created by</th>
+                        <th>Updated by</th>
+                        <th>Created at</th>
+                        <th>Updated at</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($resources as $resource)
+                        <tr>
+                            <td>{{ $resource->id }}</td>
+                            <td>{{ $resource->slug }}</td>
+                            <td>{{ getFromJson($resource->name , lang()) }}</td>
+                            <td>
+                                <div style="width:50px;height: 50px;overflow: hidden">
+                                    <img style="width:100%;"
+                                         src="{{ url('public/images/page/picture/'. $resource->picture) }}"
+                                         alt="">
+                                </div>
+                            </td>
+                            <td>
+                                <div style="width:50px;height: 50px;overflow: hidden">
+                                    <img style="width:100%;"
+                                         src="{{ url('public/images/page/cover/'. $resource->cover) }}" alt="">
+                                </div>
+                            </td>
+                            <td>
+                                @if($resource->is_active == 1)
+                                    <span class="badge badge-success badge-pill">Yes</span>
+                                @else
+                                    <span class="badge badge-danger badge-pill">No</span>
+                                @endif
+                            </td>
+                            <td>{{ ($cb = $resource->created_by_user)? $cb->name : '-' }}</td>
+                            <td>{{ ($ub = $resource->updated_by_user)? $ub->name : '-' }}</td>
+                            <td>{{ $resource->created_at }}</td>
+                            <td>{{ $resource->updated_at }}</td>
+                            <td>
+                                <a href="{{ route('page.edit' , [$resource->uuid]) }}"
+                                   class="badge badge-sm badge-success mr-2"><i class="fa fa-edit"></i></a>
+                                <a href="{{ route('page.destroy' , [$resource->uuid]) }}"
+                                   class="badge badge-sm badge-danger confirm-delete"><i class="fa fa-times"></i></a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 @endsection

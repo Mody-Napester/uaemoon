@@ -1,66 +1,65 @@
-@extends('@dashboard._layouts.master')
+@extends('_layouts.dashboard')
 
-@section('page_title') Social @endsection
+@section('title') {{ trans('social.socials') }} @endsection
 
-@section('page_contents')
-
-    <!-- Page Heading -->
-    <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
-        <div class="container">
-            <div class="page-header-content pt-4">
-                <div class="row align-items-center justify-content-between">
-                    <div class="col-auto mt-4">
-                        <h1 class="page-header-title">
-                            <div class="page-header-icon"><i data-feather="book"></i></div>
-                            Socials ({{ $resources->count() }})
-                        </h1>
-                        <div class="page-header-subtitle">All Application Required Data</div>
-                    </div>
-                    <div class="col-12 col-xl-auto mt-4">
-                        <a href="{{ route('social.create') }}" class="btn btn-sm btn-white">
-                            <i class="mr-2 text-primary" data-feather="plus"></i> Add New
-                        </a>
-                    </div>
-                </div>
+@section('content')
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="btn-group pull-right m-t-15">
+                @if(check_authority('add.lookups'))
+                    <a href="{{ route('social.create') }}" class="btn btn-default waves-effect waves-light"><i
+                            class="fa fa-plus"></i> {{ trans('social.add_new') }}</a>
+                @endif
             </div>
-        </div>
-    </header>
 
-    <!-- Main page content-->
-    <div class="container mt-n10">
-        <div class="card mb-4">
-            <div class="card-header">All Slider</div>
-            <div class="card-body">
-                <div class="datatable">
-                    <table class="table table-sm table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Provider</th>
-                            <th>Name</th>
-                            <th>Link</th>
-                            <th>Created at</th>
-                            <th>Controls</th>
-                        </tr>
-                    </thead>
+            <h4 class="page-title">{{ trans('social.socials') }} ({{ $resources->count() }})</h4>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">{{ config('app.name') }}</a></li>
+                <li class="breadcrumb-item"><a href="#">{{ trans('social.socials') }}</a></li>
+                <li class="breadcrumb-item active">{{ trans('social.list') }}</li>
+            </ol>
 
-                    <tbody>
-                        @foreach($resources as $resource)
-                            <tr>
-                                <td>{{ $resource->provider->name }}</td>
-                                <td>{{ $resource->name }}</td>
-                                <td>{{ $resource->link }}</td>
-                                <td>{{ $resource->created_at }}</td>
-                                <td>
-                                    <a href="{{ route('social.edit' , [$resource->id]) }}" class="btn btn-datatable text-warning btn-icon btn-transparent-dark mr-2"><i data-feather="edit"></i></a>
-                                    <a href="{{ route('social.destroy' , [$resource->id]) }}" class="btn btn-datatable text-danger btn-icon btn-transparent-dark confirm-delete"><i data-feather="trash-2"></i></a>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-                </div>
-            </div>
         </div>
     </div>
 
+    <!-- Main page content-->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card-box">
+                <div class="container-fluid">
+                    <h4 class="m-t-0 header-title">{{ trans('page.list_of_pages') }}</h4>
+                </div>
+
+                <table data-page-length='50' id="datatable-users-buttons"
+                       class="table table-responsive table-bordered table-sm" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th>Provider</th>
+                        <th>Name</th>
+                        <th>Link</th>
+                        <th>Created at</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    @foreach($resources as $resource)
+                        <tr>
+                            <td>{{ $resource->provider->name }}</td>
+                            <td>{{ $resource->name }}</td>
+                            <td>{{ $resource->link }}</td>
+                            <td>{{ $resource->created_at }}</td>
+                            <td>
+                                <a href="{{ route('social.edit' , [$resource->id]) }}"
+                                   class="badge badge-sm badge-success mr-2"><i class="fa fa-edit"></i></a>
+                                <a href="{{ route('social.destroy' , [$resource->id]) }}"
+                                   class="badge badge-sm badge-danger confirm-delete"><i class="fa fa-times"></i></a>
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 @endsection

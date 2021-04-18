@@ -1,15 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\DashboardControllers;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Support\Str;
-use App\Models\Page;
+use App\Page;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +30,7 @@ class PageController extends Controller
         }
 
         $data['resources'] = Page::paginate(config('vars.pagination'));
-        return view('@dashboard.page.index', $data);
+        return view('page.index', $data);
     }
 
     /**
@@ -37,7 +45,7 @@ class PageController extends Controller
             return redirect('/');
         }
 
-        return view('@dashboard.page.create');
+        return view('page.create');
     }
 
     /**
@@ -77,7 +85,7 @@ class PageController extends Controller
         }
 
         if($request->hasFile('picture')){
-            $upload = upload_file('image', $request->file('picture'), 'assets_public/images/page/picture');
+            $upload = upload_file('image', $request->file('picture'), 'public/images/page/picture');
             if ($upload['status'] == true){
                 $picture = $upload['filename'];
             }else{
@@ -89,7 +97,7 @@ class PageController extends Controller
         }
 
         if($request->hasFile('cover')){
-            $upload = upload_file('image', $request->file('cover'), 'assets_public/images/page/cover');
+            $upload = upload_file('image', $request->file('cover'), 'public/images/page/cover');
             if ($upload['status'] == true){
                 $cover = $upload['filename'];
             }else{
@@ -149,7 +157,7 @@ class PageController extends Controller
         }
 
         $data['resource'] = $page;
-        return view('@dashboard.page.edit', $data);
+        return view('page.edit', $data);
     }
 
     /**
@@ -199,7 +207,7 @@ class PageController extends Controller
         }
 
         if($request->hasFile('picture')){
-            $upload = upload_file('image', $request->file('picture'), 'assets_public/images/page/picture');
+            $upload = upload_file('image', $request->file('picture'), 'public/images/page/picture');
             if ($upload['status'] == true){
                 $picture = $upload['filename'];
             }else{
@@ -211,7 +219,7 @@ class PageController extends Controller
         }
 
         if($request->hasFile('cover')){
-            $upload = upload_file('image', $request->file('cover'), 'assets_public/images/page/cover');
+            $upload = upload_file('image', $request->file('cover'), 'public/images/page/cover');
             if ($upload['status'] == true){
                 $cover = $upload['filename'];
             }else{

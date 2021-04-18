@@ -10,7 +10,7 @@ function get_path($path){
     return base_path() . config('custom.public') . '/' . $path;
 }
 
-// Default language
+// check authority
 function check_authority($authority){
     return \App\User::hasAuthority($authority);
 }
@@ -104,13 +104,13 @@ function upload_file($type, $file, $path){
     if ($type == "image") {
         foreach($file_mimes as $file_mime){
             $ext = strtolower(str_replace('image/', '', $file_mime->name));
-            $validExtentions[] = $ext;
+            $validExtentions[] = getFromJson($ext, 'en');
         }
     }
     elseif ($type == "text") {
         foreach($file_mimes as $file_mime){
             $ext = strtolower(str_replace('text/', '', $file_mime->name));
-            $validExtentions[] = $ext;
+            $validExtentions[] = getFromJson($ext, 'en');
         }
     }
 

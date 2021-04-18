@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Page extends Model
 {
-    use HasFactory;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -33,6 +30,14 @@ class Page extends Model
     public function getRouteKeyName()
     {
         return 'uuid';
+    }
+
+    /*
+     * Scope Active
+     * */
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', 1);
     }
 
     /**

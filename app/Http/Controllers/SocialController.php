@@ -1,16 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\DashboardControllers;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Provider;
-use App\Models\User;
-use Illuminate\Support\Str;
-use App\Models\Social;
+use App\Social;
 use Illuminate\Http\Request;
 
 class SocialController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +29,7 @@ class SocialController extends Controller
         }
 
         $data['resources'] = Social::paginate(config('vars.pagination'));
-        return view('@dashboard.social.index', $data);
+        return view('social.index', $data);
     }
 
     /**
@@ -39,7 +45,7 @@ class SocialController extends Controller
         }
 
         $data['providers'] = Provider::all();
-        return view('@dashboard.social.create', $data);
+        return view('social.create', $data);
     }
 
     /**
@@ -110,7 +116,7 @@ class SocialController extends Controller
 
         $data['resource'] = $social;
         $data['providers'] = Provider::all();
-        return view('@dashboard.social.edit', $data);
+        return view('social.edit', $data);
     }
 
     /**

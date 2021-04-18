@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Social extends Model
 {
-    use HasFactory;
-
     /**
      * The attributes that are mass assignable.
      *
@@ -26,14 +23,6 @@ class Social extends Model
     protected $hidden = [
         '',
     ];
-
-    /**
-     *  Provider Relation
-     */
-    public function provider()
-    {
-        return $this->belongsTo(Provider::class);
-    }
 
     /**
      *  Setup model event hooks
@@ -63,18 +52,10 @@ class Social extends Model
     }
 
     /**
-     *  Created By Relation
+     *  Provider Relation
      */
-    public function created_by_user()
+    public function provider()
     {
-        return $this->belongsTo(User::class, 'created_by', 'id');
-    }
-
-    /**
-     *  Updated By Relation
-     */
-    public function updated_by_user()
-    {
-        return $this->belongsTo(User::class, 'updated_by', 'id');
+        return $this->belongsTo(Provider::class);
     }
 }

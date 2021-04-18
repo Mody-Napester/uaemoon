@@ -4,11 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Illuminate\Http\Request;
-use App\User;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -79,7 +84,7 @@ class CategoryController extends Controller
         }
 
         if($request->hasFile('picture')){
-            $upload = upload_file('image', $request->file('picture'), 'assets_public/images/category/picture');
+            $upload = upload_file('image', $request->file('picture'), 'public/images/category/picture');
             if ($upload['status'] == true){
                 $picture = $upload['filename'];
             }else{
@@ -91,7 +96,7 @@ class CategoryController extends Controller
         }
 
         if($request->hasFile('cover')){
-            $upload = upload_file('image', $request->file('cover'), 'assets_public/images/category/cover');
+            $upload = upload_file('image', $request->file('cover'), 'public/images/category/cover');
             if ($upload['status'] == true){
                 $cover = $upload['filename'];
             }else{
@@ -132,7 +137,7 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
     public function show(Category $category)
@@ -143,7 +148,7 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Category  $category
      * @return String
      */
     public function edit(Category $category)
@@ -162,7 +167,7 @@ class CategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Category  $category
+     * @param  \App\Category  $category
      * @return String
      */
     public function update(Request $request, Category $category)
@@ -175,7 +180,7 @@ class CategoryController extends Controller
         $data['resource'] = $category;
 
         // Return
-        if(!$data['resource']){
+        if(!$category){
             return redirect()->back()->with('message',[
                 'type'=>'danger',
                 'text'=>'Sorry! not exists.'
@@ -207,7 +212,7 @@ class CategoryController extends Controller
         }
 
         if($request->hasFile('picture')){
-            $upload = upload_file('image', $request->file('picture'), 'assets_public/images/category/picture');
+            $upload = upload_file('image', $request->file('picture'), 'public/images/category/picture');
             if ($upload['status'] == true){
                 $picture = $upload['filename'];
             }else{
@@ -219,7 +224,7 @@ class CategoryController extends Controller
         }
 
         if($request->hasFile('cover')){
-            $upload = upload_file('image', $request->file('cover'), 'assets_public/images/category/cover');
+            $upload = upload_file('image', $request->file('cover'), 'public/images/category/cover');
             if ($upload['status'] == true){
                 $cover = $upload['filename'];
             }else{
@@ -260,7 +265,7 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Category  $category
+     * @param  \App\Category  $category
      * @return String
      */
     public function destroy(Category $category)
