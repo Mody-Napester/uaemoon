@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Provider;
 use App\Social;
 use Illuminate\Http\Request;
 

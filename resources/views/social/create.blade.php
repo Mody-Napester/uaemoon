@@ -1,8 +1,8 @@
-@extends('@dashboard._layouts.master')
+@extends('_layouts.dashboard')
 
-@section('page_title') Social @endsection
+@section('title') Social @endsection
 
-@section('page_contents')
+@section('content')
 
     <!-- Page Heading -->
     <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
@@ -35,41 +35,41 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="form-col-form-label" for="provider_id">Provider</label>
-                                        <select class="form-control @error('provider_id') is-invalid @enderror" id="provider_id" name="provider_id">
+                                        <select class="form-control @if($errors->has('provider_id')) is-invalid @endif" id="provider_id" name="provider_id">
                                             @foreach($providers as $provider)
                                                 <option value="{{ $provider->id }}">{{ $provider->name }}</option>
                                             @endforeach
                                         </select>
 
-                                        @error('provider_id')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                        @if ($errors->has('provider_id'))
+                                            <div class="invalid-feedback">{{ $errors->first('provider_id') }}</div>
+                                        @endif
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-col-form-label" for="name">Name</label>
-                                        <input class="form-control @error('name') is-invalid @enderror "
+                                        <input class="form-control @if($errors->has('name')) is-invalid @endif "
                                                id="name" type="text" name="name"
                                                placeholder="Enter name .." value="{{ old('name') }}">
 
-                                        @error('name')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                        @if ($errors->has('name'))
+                                            <div class="invalid-feedback">{{ $errors->first('name') }}</div>
+                                        @endif
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-col-form-label" for="link">Link</label>
-                                        <input class="form-control @error('link') is-invalid @enderror "
+                                        <input class="form-control @if($errors->has('link')) is-invalid @endif "
                                                id="link" type="text" name="link"
                                                placeholder="Enter link .." value="{{ old('link') }}">
 
-                                        @error('link')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                        @enderror
+                                        @if ($errors->has('link'))
+                                            <div class="invalid-feedback">{{ $errors->first('link') }}</div>
+                                        @endif
                                     </div>
                                 </div>
 

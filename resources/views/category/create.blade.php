@@ -3,11 +3,8 @@
 @section('title') {{ trans('category.categories') }} @endsection
 
 @section('head')
-    <link rel="stylesheet" media="screen" href="{{ url('assets_dashboard/css/cartzilla.icons.css') }}">
-@endsection
-
-@section('scripts')
-    <script src="{{ url('assets_dashboard/vendor/ckeditor/ckeditor.js') }}"></script>
+    <link rel="stylesheet" media="screen" href="{{ url('assets/css/cartzilla.icons.css') }}">
+    <script src="{{ url('assets/plugins/ckeditor/ckeditor.js') }}"></script>
 @endsection
 
 @section('content')
@@ -96,7 +93,7 @@
                                     @endif
 
                                     <script>
-                                        {{--CKEDITOR.replace('details_{{ $lang }}');--}}
+                                        CKEDITOR.replace('details_{{ $lang }}');
                                     </script>
                                 </div>
                             </div>
@@ -158,7 +155,7 @@
 
 @endsection
 
-@section('footer_scripts')
+@section('scripts')
     <script !src="">
         $(document).ready(function () {
             $('.font_icons_btn').on('click', function () {
