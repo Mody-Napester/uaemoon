@@ -3,7 +3,7 @@
 @section('title') {{ trans('category.categories') }} @endsection
 
 @section('head')
-    <script src="{{ url('assets_dashboard/vendor/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ url('assets/plugins/ckeditor/ckeditor.js') }}"></script>
 @endsection
 
 @section('content')
@@ -81,11 +81,32 @@
                                         @endif
 
                                         <script>
-                                            {{--CKEDITOR.replace('details_{{ $lang }}');--}}
+                                            CKEDITOR.replace('details_{{ $lang }}');
                                         </script>
                                     </div>
                                 </div>
                             @endforeach
+
+                            <div class="form-group col-md-4">
+                                <label for="in_menu">{{ trans('page.in_menu') }}</label>
+                                <br>
+                                <input class="checkbox-inline" name="in_menu" id="in_menu"
+                                       type="checkbox" autocomplete="off" value="1"
+                                    {{$resource->in_menu ? 'checked' : ''}}>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="in_footer">{{ trans('page.in_footer') }}</label>
+                                <br>
+                                <input class="checkbox-inline" name="in_footer" id="in_footer"
+                                       type="checkbox" autocomplete="off" value="1"
+                                    {{$resource->in_footer ? 'checked' : ''}}>
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label>{{ trans('page.order') }}</label>
+                                <input type="number" value="{{$resource->order}}" name="order" class="form-control">
+                            </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">

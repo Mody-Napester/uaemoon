@@ -499,7 +499,7 @@
 
         @yield('scripts')
 
-        // Alerts
+        {{--Alerts--}}
         @if($errors->all())
             @foreach($errors->all() as $error)
                 addAlert('danger', '{{$error}}', 1);

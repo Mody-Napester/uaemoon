@@ -1,84 +1,72 @@
 @extends('_layouts.dashboard')
 
-@section('title') Social @endsection
+@section('title') {{ trans('social.socials') }} @endsection
 
 @section('content')
 
-    <!-- Page Heading -->
-    <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
-        <div class="container">
-            <div class="page-header-content pt-4">
-                <div class="row align-items-center justify-content-between">
-                    <div class="col-auto mt-4">
-                        <h1 class="page-header-title">
-                            <div class="page-header-icon"><i data-feather="book"></i></div>
-                            Add New Social
-                        </h1>
-                    </div>
-                </div>
-            </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h4 class="page-title">{{ trans('social.add_new_social') }}</h4>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">{{ config('app.name') }}</a></li>
+                <li class="breadcrumb-item"><a
+                        href="{{ route('social.index') }}">{{ trans('social.socials') }}</a></li>
+                <li class="breadcrumb-item active">{{ trans('social.create') }}</li>
+            </ol>
+
         </div>
-    </header>
+    </div>
 
     <!-- Main page content-->
-    <div class="container mt-n10">
-        <div class="row">
-            <div class="col-md-12">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card-box">
                 <form action="{{ route('social.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Create new social account</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="form-col-form-label" for="provider_id">Provider</label>
-                                        <select class="form-control @if($errors->has('provider_id')) is-invalid @endif" id="provider_id" name="provider_id">
-                                            @foreach($providers as $provider)
-                                                <option value="{{ $provider->id }}">{{ $provider->name }}</option>
-                                            @endforeach
-                                        </select>
+                    <div class="row">
 
-                                        @if ($errors->has('provider_id'))
-                                            <div class="invalid-feedback">{{ $errors->first('provider_id') }}</div>
-                                        @endif
-                                    </div>
-                                </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-col-form-label" for="provider_id">{{ trans('social.provider') }}</label>
+                                <select class="form-control @if($errors->has('provider_id')) is-invalid @endif"
+                                        id="provider_id" name="provider_id">
+                                    @foreach($providers as $provider)
+                                        <option value="{{ $provider->id }}">{{ $provider->name }}</option>
+                                    @endforeach
+                                </select>
 
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-col-form-label" for="name">Name</label>
-                                        <input class="form-control @if($errors->has('name')) is-invalid @endif "
-                                               id="name" type="text" name="name"
-                                               placeholder="Enter name .." value="{{ old('name') }}">
-
-                                        @if ($errors->has('name'))
-                                            <div class="invalid-feedback">{{ $errors->first('name') }}</div>
-                                        @endif
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-col-form-label" for="link">Link</label>
-                                        <input class="form-control @if($errors->has('link')) is-invalid @endif "
-                                               id="link" type="text" name="link"
-                                               placeholder="Enter link .." value="{{ old('link') }}">
-
-                                        @if ($errors->has('link'))
-                                            <div class="invalid-feedback">{{ $errors->first('link') }}</div>
-                                        @endif
-                                    </div>
-                                </div>
-
+                                @if ($errors->has('provider_id'))
+                                    <div class="invalid-feedback">{{ $errors->first('provider_id') }}</div>
+                                @endif
                             </div>
                         </div>
-                        <div class="card-footer">
-                            <button class="btn btn-success" type="submit"><i class="fa fa-fw fa-save"></i> Save</button>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-col-form-label" for="name">{{ trans('social.name') }}</label>
+                                <input class="form-control @if($errors->has('name')) is-invalid @endif "
+                                       id="name" type="text" name="name" value="{{ old('name') }}">
+
+                                @if ($errors->has('name'))
+                                    <div class="invalid-feedback">{{ $errors->first('name') }}</div>
+                                @endif
+                            </div>
                         </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-col-form-label" for="link">{{ trans('social.link') }}</label>
+                                <input class="form-control @if($errors->has('link')) is-invalid @endif "
+                                       id="link" type="text" name="link" value="{{ old('link') }}">
+
+                                @if ($errors->has('link'))
+                                    <div class="invalid-feedback">{{ $errors->first('link') }}</div>
+                                @endif
+                            </div>
+                        </div>
+
                     </div>
+                    <button class="btn btn-success" type="submit"><i class="fa fa-fw fa-save"></i> {{ trans('social.save') }}</button>
                 </form>
             </div>
         </div>

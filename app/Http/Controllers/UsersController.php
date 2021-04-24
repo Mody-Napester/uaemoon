@@ -151,15 +151,11 @@ class UsersController extends Controller
         $resource = User::getBy('uuid', $uuid);
 
         // Check validation
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $resource->id,
             'phone' => 'required|max:20',
         ]);
-
-        if ($validator->fails()){
-            return back()->withErrors($validator)->withInput();
-        }
 
         // Do Code
         $updatedResource = User::edit([
