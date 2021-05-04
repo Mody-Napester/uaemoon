@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="irstheme">
 
-    <title> Uaemoon App @yield('title')</title>
+    <title> Uaemoon @yield('title')</title>
 
     <link href="{{ url('assets/front/assets/css/themify-icons.css') }}" rel="stylesheet">
     <link href="{{ url('assets/front/assets/css/icomoon.css') }}" rel="stylesheet">
@@ -33,7 +33,7 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js') }}"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js') }}"></script>
     <![endif]-->
-@yield('header')
+    @yield('header')
 </head>
 
 <body>
@@ -68,8 +68,8 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html"><img
-                            src="{{ url('assets/front/assets/images/logo.png') }}" alt></a>
+                    <a class="navbar-brand" href="{{url('/')}}"><img
+                            src="{{ url('public/images/logo.png') }}" alt="Logo"></a>
                 </div>
                 <div class="header-left">
                     <div class="side-info-bars">
@@ -80,20 +80,33 @@
                     <div class="side-info-content">
                         <button class="btn side-info-close-btn"><i class="ti-close"></i></button>
                         <div class="logo">
-                            <img src="{{ url('assets/front/assets/images/slidbar-logo.png') }}" alt>
+                            <img src="{{ url('public/images/logo.png') }}" alt>
                         </div>
                         <div class="text">
-                            <p>Covered the whole of her lower arm towards the viewer gregor then turned to look out
-                                the window</p>
+                            <p>{{$settings['address_' . lang()]}}</p>
                             <ul class="info">
-                                <li>Contact us: ++8801682530219</li>
-                                <li>Mail us: eoard@gmail.com</li>
+                                <li>{{trans('website.contact_us')}}: {{$settings['mobile']}}</li>
+                                <li>{{trans('website.mail_us')}}: {{$settings['email']}}</li>
                             </ul>
                             <ul class="social-links">
-                                <li><a href="#"><i class="ti-facebook"></i></a></li>
-                                <li><a href="#"><i class="ti-twitter-alt"></i></a></li>
-                                <li><a href="#"><i class="ti-pinterest"></i></a></li>
-                                <li><a href="#"><i class="ti-vimeo-alt"></i></a></li>
+                                @php
+                                    $facebook = \App\Provider::getByName('facebook');
+                                    $twitter = \App\Provider::getByName('twitter');
+                                    $instagram = \App\Provider::getByName('instagram');
+                                    $pinterest = \App\Provider::getByName('pinterest');
+                                @endphp
+                                @if($facebook && isset($facebook->social[0]->link))
+                                    <li><a href="{{$facebook->social[0]->link}}"><i class="ti-facebook"></i></a></li>
+                                @endif
+                                @if($twitter && isset($twitter->social[0]->link))
+                                    <li><a href="{{$twitter->social[0]->link}}"><i class="ti-twitter-alt"></i></a></li>
+                                @endif
+                                @if($instagram && isset($instagram->social[0]->link))
+                                    <li><a href="{{$instagram->social[0]->link}}"><i class="ti-instagram"></i></a></li>
+                                @endif
+                                @if($pinterest && isset($pinterest->social[0]->link))
+                                    <li><a href="{{$pinterest->social[0]->link}}"><i class="ti-pinterest"></i></a></li>
+                                @endif
                             </ul>
                         </div>
                     </div>
@@ -240,9 +253,9 @@
     </header>
     <!-- end of header -->
 
-    @yield('content')
+@yield('content')
 
-    <!-- start site-footer -->
+<!-- start site-footer -->
     <footer class="site-footer">
         <div class="container-1410">
             <div class="row widget-area">

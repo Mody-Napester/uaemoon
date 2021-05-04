@@ -5,59 +5,25 @@
     <section class="hero-slider hero-style-1">
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
+                @foreach($slider as $val)
+                    <div class="swiper-slide">
                         <div class="slide-inner slide-bg-image"
-                         data-background="{{ url('assets/front/assets/images/slider/slide-1.jpg') }}">
-                        <div class="container-1410">
-                            <div data-swiper-parallax="400" class="slide-text">
-                                <p>Stylish shop</p>
+                             data-background="{{ asset('public/images/slider/' . $val->image) }}">
+                            <div class="container-1410">
+{{--                                <div data-swiper-parallax="400" class="slide-text">--}}
+{{--                                    <p>Stylish shop</p>--}}
+{{--                                </div>--}}
+{{--                                <div data-swiper-parallax="300" class="slide-title">--}}
+{{--                                    <h2>Great Lookbook 2021</h2>--}}
+{{--                                </div>--}}
+{{--                                <div class="clearfix"></div>--}}
+{{--                                <div data-swiper-parallax="500" class="slide-btns">--}}
+{{--                                    <a href="shop.html" class="theme-btn-s7">Shop Now</a>--}}
+{{--                                </div>--}}
                             </div>
-                            <div data-swiper-parallax="300" class="slide-title">
-                                <h2>Great Lookbook 2021</h2>
-                            </div>
-                            <div class="clearfix"></div>
-                            <div data-swiper-parallax="500" class="slide-btns">
-                                <a href="shop.html" class="theme-btn-s7">Shop Now</a>
-                            </div>
-                        </div>
-                    </div> <!-- end slide-inner -->
-                </div> <!-- end swiper-slide -->
-
-                <div class="swiper-slide">
-                    <div class="slide-inner slide-bg-image"
-                         data-background="{{ url('assets/front/assets/images/slider/slide-2.jpg') }}">
-                        <div class="container-1410">
-                            <div data-swiper-parallax="400" class="slide-text">
-                                <p>Trendy shop</p>
-                            </div>
-                            <div data-swiper-parallax="300" class="slide-title">
-                                <h2>Stylish Coat</h2>
-                            </div>
-                            <div class="clearfix"></div>
-                            <div data-swiper-parallax="500" class="slide-btns">
-                                <a href="shop.html" class="theme-btn-s4">Shop Now</a>
-                            </div>
-                        </div>
-                    </div> <!-- end slide-inner -->
-                </div><!-- end swiper-slide -->
-
-                <div class="swiper-slide">
-                    <div class="slide-inner slide-bg-image"
-                         data-background="{{ url('assets/front/assets/images/slider/slide-3.jpg') }}">
-                        <div class="container-1410">
-                            <div data-swiper-parallax="400" class="slide-text">
-                                <p>Stylish shop</p>
-                            </div>
-                            <div data-swiper-parallax="300" class="slide-title">
-                                <h2><span>Trendy</span> Collection</h2>
-                            </div>
-                            <div class="clearfix"></div>
-                            <div data-swiper-parallax="500" class="slide-btns">
-                                <a href="shop.html" class="theme-btn-s4">Shop Now</a>
-                            </div>
-                        </div>
-                    </div> <!-- end slide-inner -->
-                </div> <!-- end swiper-slide -->
+                        </div> <!-- end slide-inner -->
+                    </div> <!-- end swiper-slide -->
+                @endforeach
             </div>
             <!-- end swiper-wrapper -->
 

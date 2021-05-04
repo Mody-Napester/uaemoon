@@ -7,7 +7,12 @@
     <div class="wrapper-page">
         <div class="card-box">
             <div class="panel-heading">
-                <h4 class="text-center"> {{ trans('login.Login_to') }} <strong>{{ config('app.name') }}</strong></h4>
+{{--                <div class="text-center" style="position: absolute;top: -40%;left: -10%;">--}}
+{{--                    <img src="{{asset('public/images/logo.png')}}" width="500" height="400">--}}
+{{--                </div>--}}
+                <h4 class="text-center">
+                    {{ trans('login.Login_to') }} <strong>{{ config('app.name') }}</strong>
+                </h4>
             </div>
 
             <div class="p-20">
@@ -47,7 +52,7 @@
 
                     <div class="form-group text-center m-t-20">
                         <button class="btn btn-purple btn-block text-uppercase waves-effect waves-light" type="submit">
-                            {{ trans('login.Log_In') }}
+                            {{ trans('login.login') }}
                         </button>
                     </div>
 
@@ -85,7 +90,7 @@
         <div class="row">
             <div class="col-12 text-center">
                 <p class="">
-                    Don't have an account? <a href="{{ route('register') }}" class=" m-l-5"><b>Sign Up</b></a>
+{{--                    Don't have an account? <a href="{{ route('register') }}" class=" m-l-5"><b>Sign Up</b></a>--}}
                 </p>
             </div>
         </div>

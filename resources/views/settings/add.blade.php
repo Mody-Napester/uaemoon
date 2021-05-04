@@ -108,7 +108,7 @@
                         <label>Address [AR]</label>
                         <input type="text"
                                value="{{$settings['address_ar']}}"
-                               name="address_en"
+                               name="address_ar"
                                class="form-control">
                     </div>
 
@@ -116,7 +116,7 @@
                         <label>Address [EN]</label>
                         <input type="text"
                                value="{{$settings['address_en']}}"
-                               name="address_ar"
+                               name="address_en"
                                class="form-control">
                     </div>
                     <div class="form-group col-md-12">

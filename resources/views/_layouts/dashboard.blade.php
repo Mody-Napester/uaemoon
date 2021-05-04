@@ -93,7 +93,7 @@
                 <!-- LOGO -->
                 <div class="topbar-left">
                     <div class="text-center">
-                        <a href="{{ url('/') }}" class="logo">
+                        <a href="{{ url('/dashboard') }}" class="logo">
                             <i class="icon-magnet icon-c-logo"></i><span>{{ config('app.name') }}</span>
                         </a>
                         <!-- Image Logo here -->
@@ -151,14 +151,20 @@
                         {{--</div>--}}
                         {{--</li>--}}
 
-                        <li class="list-inline-item notification-list">
+                        <li class="list-inline-item notification-list" title="view website">
+                            <a class="nav-link waves-light waves-effect" target="_blank" href="{{url('/')}}">
+                                <i class="dripicons-anchor noti-icon"></i>
+                            </a>
+                        </li>
+
+                        <li class="list-inline-item notification-list" title="full screen">
                             <a class="nav-link waves-light waves-effect" href="#" id="btn-fullscreen">
                                 <i class="dripicons-expand noti-icon"></i>
                             </a>
                         </li>
 
-                        <li onclick="location.reload();" class="list-inline-item notification-list">
-                            <a class="nav-link waves-light waves-effect" href="#" >
+                        <li onclick="location.reload();" class="list-inline-item notification-list" title="reload page">
+                            <a class="nav-link waves-light waves-effect">
                                 <i class="dripicons-clockwise noti-icon"></i>
                             </a>
                         </li>
@@ -260,7 +266,7 @@
                 </div> <!-- content -->
 
                 <footer class="footer text-right">
-                    {{ config('app.name') }} &copy; {{ date('Y') }}. All rights reserved.
+                    ROBITSCO &copy; {{ date('Y') }}. All rights reserved.
                 </footer>
 
             </div>
