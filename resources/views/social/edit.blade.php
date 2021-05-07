@@ -24,7 +24,7 @@
             <div class="col-md-12">
 
                 <div class="card-box">
-                    <form action="{{ route('category.update', $resource->uuid) }}" method="post"
+                    <form action="{{ route('social.update', $resource->id) }}" method="post"
                           enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
