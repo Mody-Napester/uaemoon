@@ -42,6 +42,8 @@
                         <th>Active</th>
                         <th>In menu</th>
                         <th>In footer</th>
+                        <th>Is Privacy</th>
+                        <th>Is Terms</th>
                         <th>order</th>
                         <th>Created by</th>
                         <th>Updated by</th>
@@ -85,6 +87,20 @@
                             </td>
                             <td>
                                 @if($resource->in_footer == 1)
+                                    <span class="badge badge-success badge-pill">Yes</span>
+                                @else
+                                    <span class="badge badge-danger badge-pill">No</span>
+                                @endif
+                            </td>
+                            <td>
+                                @if($resource->is_privacy_page == 1)
+                                    <span class="badge badge-success badge-pill">Yes</span>
+                                @else
+                                    <span class="badge badge-danger badge-pill">No</span>
+                                @endif
+                            </td>
+                            <td>
+                                @if($resource->is_terms_page == 1)
                                     <span class="badge badge-success badge-pill">Yes</span>
                                 @else
                                     <span class="badge badge-danger badge-pill">No</span>

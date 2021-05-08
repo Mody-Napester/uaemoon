@@ -62,7 +62,7 @@
                         @endforeach
 
                         @foreach(langs("short_name") as $lang)
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-col-form-label"
                                            for="details_{{ $lang }}">{{ trans('page.details') }}
@@ -82,7 +82,7 @@
                             </div>
                         @endforeach
 
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-3">
                             <label for="in_menu">{{ trans('page.in_menu') }}</label>
                             <br>
                             <input class="checkbox-inline" name="in_menu" id="in_menu"
@@ -90,7 +90,7 @@
                                 {{old('in_menu') ? 'checked' : ''}}>
                         </div>
 
-                        <div class="form-group col-md-4">
+                        <div class="form-group col-md-3">
                             <label for="in_footer">{{ trans('page.in_footer') }}</label>
                             <br>
                             <input class="checkbox-inline" name="in_footer" id="in_footer"
@@ -98,12 +98,28 @@
                                 {{old('in_footer') ? 'checked' : ''}}>
                         </div>
 
+                        <div class="form-group col-md-3">
+                            <label for="is_privacy_page">{{ trans('page.is_privacy_page') }}</label>
+                            <br>
+                            <input class="checkbox-inline" name="is_privacy_page" id="is_privacy_page"
+                                   type="checkbox" autocomplete="off" value="1"
+                                {{old('is_privacy_page') ? 'checked' : ''}}>
+                        </div>
+
+                        <div class="form-group col-md-3">
+                            <label for="is_terms_page">{{ trans('page.is_terms_page') }}</label>
+                            <br>
+                            <input class="checkbox-inline" name="is_terms_page" id="is_terms_page"
+                                   type="checkbox" autocomplete="off" value="1"
+                                {{old('is_terms_page') ? 'checked' : ''}}>
+                        </div>
+
                         <div class="form-group col-md-4">
                             <label>{{ trans('page.order') }}</label>
                             <input required type="number" value="{{old('order')}}" name="order" class="form-control">
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label class="form-col-form-label" for="picture">{{ trans('page.picture') }}</label>
                                 <input class="form-control @if ($errors->has('picture')) is-invalid @endif" id="picture"
@@ -115,7 +131,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label class="form-col-form-label" for="cover">{{ trans('page.cover') }}</label>
                                 <input class="form-control @if ($errors->has('cover')) is-invalid @endif" id="cover"

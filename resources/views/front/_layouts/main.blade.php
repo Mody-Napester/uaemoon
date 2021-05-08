@@ -23,8 +23,8 @@
     <link href="{{ url('assets/front/assets/css/jquery.fancybox.css') }}" rel="stylesheet">
     <link href="{{ url('assets/front/assets/css/jquery-ui.css') }}" rel="stylesheet">
 
-    <link href="{{ url('assets/css/icons.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ url('assets/css/alerts.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ url('assets/css/icons.css') }}" rel="stylesheet" type="text/css"/>
+    <link href="{{ url('assets/css/alerts.css') }}" rel="stylesheet" type="text/css"/>
 
     <link href="{{ url('assets/front/assets/css/style.css') }}" rel="stylesheet">
     @if(lang() == 'ar')
@@ -142,8 +142,8 @@
                         {{--                            </ul>--}}
                         {{--                        </li>--}}
                         <li><a href="{{url('/')}}">{{trans('website.home')}}</a></li>
-                        <li><a href="about.html">{{trans('website.about_us')}}</a></li>
-                        <li><a href="contact.html">{{trans('website.contact_us')}}</a></li>
+                        <li><a href="{{route('front.page.aboutUs')}}">{{trans('website.about_us')}}</a></li>
+                        <li><a href="{{route('front.page.contactUs')}}">{{trans('website.contact_us')}}</a></li>
                         @if(lang() == 'en')
                             <li><a href="{{route('language', 'ar')}}">Arabic</a></li>
                         @else
@@ -157,9 +157,11 @@
                             $user = Auth::user()
                         @endphp
                         <div class="my-account-link">
-                            <a title="{{trans('website.profile')}}" href=""> <i class="icon-user"></i></a>
+                            <a title="{{'(' . $user->name . ') ' . trans('website.profile')}}" href="#"> <i
+                                    class="icon-user"></i></a>
                             &nbsp;
-                            <a title="{{trans('website.logout')}}" href="{{route('front.user.getLogout')}}"> <i class="fa fa-sign-out"></i></a>
+                            <a title="{{trans('website.logout')}}" href="{{route('front.user.getLogout')}}"> <i
+                                    class="fa fa-sign-out"></i></a>
                         </div>
                     @else
                         <div class="my-account-link">
@@ -183,40 +185,40 @@
                 </div>
             </div>
         </div>
-    @endif
+@endif
 @yield('content')
 
 <!-- start site-footer -->
     <footer class="site-footer">
         <div class="container-1410">
             <div class="row widget-area">
-                <div class="col-lg-4 col-xs-6  widget-col about-widget-col">
-                    <div class="widget newsletter-widget">
-                        <div class="inner">
-                            <h3>Sign Up Now & Get 10% Off</h3>
-                            <p>Get timely updates from your favorite products</p>
-                            <form>
-                                <div class="input-1">
-                                    <input type="email" class="form-control" placeholder="Email Address *" required>
-                                </div>
-                                <div class="submit clearfix">
-                                    <button type="submit">Subscribe</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-xs-6 widget-col">
+{{--                <div class="col-lg-4 col-xs-6  widget-col about-widget-col">--}}
+{{--                    <div class="widget newsletter-widget">--}}
+{{--                        <div class="inner">--}}
+{{--                            <h3>Sign Up Now & Get 10% Off</h3>--}}
+{{--                            <p>Get timely updates from your favorite products</p>--}}
+{{--                            <form>--}}
+{{--                                <div class="input-1">--}}
+{{--                                    <input type="email" class="form-control" placeholder="Email Address *" required>--}}
+{{--                                </div>--}}
+{{--                                <div class="submit clearfix">--}}
+{{--                                    <button type="submit">Subscribe</button>--}}
+{{--                                </div>--}}
+{{--                            </form>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+                <div class="col-lg-5 col-xs-6 widget-col">
                     <div class="widget contact-widget">
                         <h3>Contact info</h3>
                         <ul>
-                            <li>Phone: 888-999-000-1425</li>
-                            <li>Email: azedw@mail.com</li>
-                            <li>Address: 22/1 natinoal city austria, dreem land, Huwai</li>
+                            <li>{{trans('website.contact_us')}}: {{$settings['mobile']}}</li>
+                            <li>{{trans('website.mail_us')}}: {{$settings['email']}}</li>
+                            <li>{{trans('website.address')}}: {{$settings['address_' . lang()]}}</li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-lg-2 col-xs-6 widget-col">
+                <div class="col-lg-4 col-xs-6 widget-col">
                     <div class="widget company-widget">
                         <h3>Company</h3>
                         <ul>
@@ -279,9 +281,8 @@
                             </div>
                             <div class="extra-link">
                                 <ul>
-                                    <li><a href="#">Privacy </a></li>
-                                    <li><a href="#">Terms</a></li>
-                                    <li><a href="#">Promo T&amp;Cs Apply</a></li>
+                                    <li><a href="{{route('front.page.privacyPage')}}">{{trans('website.privacy_page')}} </a></li>
+                                    <li><a href="{{route('front.page.termsPage')}}">{{trans('website.terms_page')}}</a></li>
                                 </ul>
                             </div>
                         </div>

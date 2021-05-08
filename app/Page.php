@@ -12,7 +12,8 @@ class Page extends Model
      * @var array
      */
     protected $fillable = [
-        'slug','name','details','picture','cover','is_active','in_menu','in_footer','order','created_by','updated_by',
+        'slug','name','details','picture','cover','is_active','in_menu','in_footer'
+        ,'is_privacy_page','is_terms_page','order','created_by','updated_by',
     ];
 
     /**
@@ -65,6 +66,11 @@ class Page extends Model
     public static function getAllBy($field, $value)
     {
         return self::where($field, $value)->get();
+    }
+
+    public static function editAll($inputs = [])
+    {
+        return self::whereRaw('1=1')->update($inputs);
     }
 
     /**

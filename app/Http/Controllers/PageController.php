@@ -106,6 +106,16 @@ class PageController extends Controller
             }
         }
 
+//        if ((isset($request->is_privacy_page))) {
+//            Page::editAll([
+//                'is_privacy_page' => 0
+//            ]);
+//        }
+//        if ((isset($request->is_terms_page))) {
+//            Page::editAll([
+//                'is_terms_page' => 0
+//            ]);
+//        }
         $resource = Page::create([
             'slug' => Str::slug($name['en'], '_'),
             'name' => json_encode($name),
@@ -115,6 +125,8 @@ class PageController extends Controller
             'is_active' => ($request->is_active == 1) ? 1 : 0,
             'in_menu' => (isset($request->in_menu)) ? 1 : 0,
             'in_footer' => (isset($request->in_footer)) ? 1 : 0,
+            'is_privacy_page' => (isset($request->is_privacy_page)) ? 1 : 0,
+            'is_terms_page' => (isset($request->is_terms_page)) ? 1 : 0,
             'order' => $request->order,
             'created_by' => auth()->user()->id,
         ]);
@@ -227,7 +239,16 @@ class PageController extends Controller
                 ]);
             }
         }
-
+//        if (isset($request->is_privacy_page)) {
+//            Page::editAll([
+//                'is_privacy_page' => 0
+//            ]);
+//        }
+//        if (isset($request->is_terms_page)) {
+//            Page::editAll([
+//                'is_terms_page' => 0
+//            ]);
+//        }
         $resource = $data['resource']->update([
             'slug' => Str::slug($name['en'], '_'),
             'name' => json_encode($name),
@@ -237,10 +258,11 @@ class PageController extends Controller
             'is_active' => ($request->is_active == 1) ? 1 : 0,
             'in_menu' => (isset($request->in_menu)) ? 1 : 0,
             'in_footer' => (isset($request->in_footer)) ? 1 : 0,
+            'is_privacy_page' => (isset($request->is_privacy_page)) ? 1 : 0,
+            'is_terms_page' => (isset($request->is_terms_page)) ? 1 : 0,
             'order' => $request->order,
             'updated_by' => auth()->user()->id,
         ]);
-
         // Return
         if ($resource) {
             return redirect(route('page.index'))->with('message', [
