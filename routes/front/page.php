@@ -7,3 +7,5 @@ Route::get('/contact_us', 'Front\PageController@contactUs')->name('front.page.co
 Route::get('/privacy-page', 'Front\PageController@privacyPage')->name('front.page.privacyPage');
 
 Route::get('/terms-page', 'Front\PageController@termsPage')->name('front.page.termsPage');
+
+Route::get('/page/{uuid}', 'Front\PageController@anyPage')->name('front.page.anyPage');

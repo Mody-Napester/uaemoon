@@ -1,4 +1,30 @@
-<!DOCTYPE html>
+@php
+    $pagesFooter = \App\Page::getAll([
+        'is_active' => 1,
+        'in_footer' => 1,
+        'is_privacy_page' => 0,
+        'is_terms_page' => 0,
+    ]);
+    $pagesHeader = \App\Page::getAll([
+        'is_active' => 1,
+        'in_menu' => 1,
+        'is_privacy_page' => 0,
+        'is_terms_page' => 0,
+    ]);
+    $privacyPage = \App\Page::getAll([
+        'is_active' => 1,
+        'is_privacy_page' => 1,
+        'getFirst' => true
+    ]);
+
+    $termsPage = \App\Page::getAll([
+        'is_active' => 1,
+        'is_terms_page' => 1,
+        'getFirst' => true
+    ]);
+    $settings = \App\Settings::getById(1);
+@endphp
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -6,7 +32,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="irstheme">
 
-    <title> Uaemoon @yield('title')</title>
+    <title> @if(lang() == 'ar') {{$settings['title_ar']}} @else {{$settings['title_en']}} @endif @yield('title')</title>
 
     <link href="{{ url('assets/front/assets/css/themify-icons.css') }}" rel="stylesheet">
     <link href="{{ url('assets/front/assets/css/icomoon.css') }}" rel="stylesheet">
@@ -77,8 +103,14 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{{url('/')}}"><img
-                            src="{{ url('public/images/logo.png') }}" alt="Logo"></a>
+                    <a class="navbar-brand" href="{{url('/')}}">
+                        @if(lang() == 'ar')
+                            <img src="{{url('public/images/settings/' . $settings['logo_ar'])}} " alt="Logo">
+                        @else
+                            <img src="{{url('public/images/settings/' . $settings['logo_en'])}} " alt="Logo">
+                        @endif
+
+                    </a>
                 </div>
                 <div class="header-left">
                     <div class="side-info-bars">
@@ -89,7 +121,11 @@
                     <div class="side-info-content">
                         <button class="btn side-info-close-btn"><i class="ti-close"></i></button>
                         <div class="logo">
-                            <img src="{{ url('public/images/logo.png') }}" alt>
+                            @if(lang() == 'ar')
+                                <img src="{{url('public/images/settings/' . $settings['logo_ar'])}} " alt="Logo">
+                            @else
+                                <img src="{{url('public/images/settings/' . $settings['logo_en'])}} " alt="Logo">
+                            @endif
                         </div>
                         <div class="text">
                             <p>{{$settings['address_' . lang()]}}</p>
@@ -144,11 +180,21 @@
                         <li><a href="{{url('/')}}">{{trans('website.home')}}</a></li>
                         <li><a href="{{route('front.page.aboutUs')}}">{{trans('website.about_us')}}</a></li>
                         <li><a href="{{route('front.page.contactUs')}}">{{trans('website.contact_us')}}</a></li>
-                        @if(lang() == 'en')
-                            <li><a href="{{route('language', 'ar')}}">Arabic</a></li>
-                        @else
-                            <li><a href="{{route('language', 'en')}}">الإنجليزية</a></li>
-                        @endif
+                        @foreach($pagesHeader as $key => $val)
+                            <li>
+                                <a href="{{route('front.page.anyPage', $val->uuid)}}">{!! getFromJson($val->name , lang()) !!} </a>
+                            </li>
+                        @endforeach
+                        <li class="menu-item-has-children">
+                            <a>
+                                {{trans('website.language')}}
+                                {{--                                <i class="icon-globe"></i>--}}
+                            </a>
+                            <ul class="sub-menu">
+                                <li><a href="{{route('language', 'ar')}}">{{trans('website.arabic')}}</a></li>
+                                <li><a href="{{route('language', 'en')}}">{{trans('website.english')}}</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div><!-- end of nav-collapse -->
                 <div class="header-right">
@@ -192,25 +238,25 @@
     <footer class="site-footer">
         <div class="container-1410">
             <div class="row widget-area">
-{{--                <div class="col-lg-4 col-xs-6  widget-col about-widget-col">--}}
-{{--                    <div class="widget newsletter-widget">--}}
-{{--                        <div class="inner">--}}
-{{--                            <h3>Sign Up Now & Get 10% Off</h3>--}}
-{{--                            <p>Get timely updates from your favorite products</p>--}}
-{{--                            <form>--}}
-{{--                                <div class="input-1">--}}
-{{--                                    <input type="email" class="form-control" placeholder="Email Address *" required>--}}
-{{--                                </div>--}}
-{{--                                <div class="submit clearfix">--}}
-{{--                                    <button type="submit">Subscribe</button>--}}
-{{--                                </div>--}}
-{{--                            </form>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
+                {{--                <div class="col-lg-4 col-xs-6  widget-col about-widget-col">--}}
+                {{--                    <div class="widget newsletter-widget">--}}
+                {{--                        <div class="inner">--}}
+                {{--                            <h3>Sign Up Now & Get 10% Off</h3>--}}
+                {{--                            <p>Get timely updates from your favorite products</p>--}}
+                {{--                            <form>--}}
+                {{--                                <div class="input-1">--}}
+                {{--                                    <input type="email" class="form-control" placeholder="Email Address *" required>--}}
+                {{--                                </div>--}}
+                {{--                                <div class="submit clearfix">--}}
+                {{--                                    <button type="submit">Subscribe</button>--}}
+                {{--                                </div>--}}
+                {{--                            </form>--}}
+                {{--                        </div>--}}
+                {{--                    </div>--}}
+                {{--                </div>--}}
                 <div class="col-lg-5 col-xs-6 widget-col">
                     <div class="widget contact-widget">
-                        <h3>Contact info</h3>
+                        <h3>{{trans('website.contact_info')}}</h3>
                         <ul>
                             <li>{{trans('website.contact_us')}}: {{$settings['mobile']}}</li>
                             <li>{{trans('website.mail_us')}}: {{$settings['email']}}</li>
@@ -220,25 +266,29 @@
                 </div>
                 <div class="col-lg-4 col-xs-6 widget-col">
                     <div class="widget company-widget">
-                        <h3>Company</h3>
+                        <h3>{{trans('website.our_company')}}</h3>
                         <ul>
-                            <li><a href="#">About us</a></li>
-                            <li><a href="#">Best services</a></li>
-                            <li><a href="#">Recent insight</a></li>
-                            <li><a href="#">Shipping guid</a></li>
-                            <li><a href="#">Privacy policy</a></li>
+                            <li><a href="{{route('front.page.aboutUs')}}">{{trans('website.about_us')}}</a></li>
+                            <li><a href="{{route('front.page.contactUs')}}">{{trans('website.contact_us')}}</a></li>
+                            @if($privacyPage)
+                                <li><a href="{{route('front.page.privacyPage')}}">{{trans('website.privacy_page')}} </a>
+                                </li>
+                            @endif
+                            @if($termsPage)
+                                <li><a href="{{route('front.page.termsPage')}}">{{trans('website.terms_page')}}</a></li>
+                            @endif
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-2 col-xs-6 widget-col">
                     <div class="widget payment-widget">
-                        <h3>Payment & Shipping</h3>
+                        <h3>{{trans('website.pages')}}</h3>
                         <ul>
-                            <li><a href="#">Payment method</a></li>
-                            <li><a href="#">Tearms of use</a></li>
-                            <li><a href="#">Shipping policy</a></li>
-                            <li><a href="#">Shipping guide</a></li>
-                            <li><a href="#">Return policy</a></li>
+                            @foreach($pagesFooter as $key => $val)
+                                <li>
+                                    <a href="{{route('front.page.anyPage', $val->uuid)}}">{!! getFromJson($val->name , lang()) !!} </a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -281,8 +331,16 @@
                             </div>
                             <div class="extra-link">
                                 <ul>
-                                    <li><a href="{{route('front.page.privacyPage')}}">{{trans('website.privacy_page')}} </a></li>
-                                    <li><a href="{{route('front.page.termsPage')}}">{{trans('website.terms_page')}}</a></li>
+                                    @if($privacyPage)
+                                        <li>
+                                            <a href="{{route('front.page.privacyPage')}}">{{trans('website.privacy_page')}} </a>
+                                        </li>
+                                    @endif
+                                    @if($termsPage)
+                                        <li>
+                                            <a href="{{route('front.page.termsPage')}}">{{trans('website.terms_page')}}</a>
+                                        </li>
+                                    @endif
                                 </ul>
                             </div>
                         </div>

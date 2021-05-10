@@ -12,8 +12,8 @@ class Page extends Model
      * @var array
      */
     protected $fillable = [
-        'slug','name','details','picture','cover','is_active','in_menu','in_footer'
-        ,'is_privacy_page','is_terms_page','order','created_by','updated_by',
+        'slug', 'name', 'details', 'picture', 'cover', 'is_active', 'in_menu', 'in_footer'
+        , 'is_privacy_page', 'is_terms_page', 'order', 'created_by', 'updated_by',
     ];
 
     /**
@@ -48,8 +48,38 @@ class Page extends Model
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->uuid = (string) \Webpatser\Uuid\Uuid::generate(config('vars.uuid_version'));
+            $model->uuid = (string)\Webpatser\Uuid\Uuid::generate(config('vars.uuid_version'));
         });
+    }
+
+    public static function getAll($inputs = [])
+    {
+        $data = self::whereRaw('1=1');
+        if (isset($inputs['slug']) && $inputs['slug']) {
+            $data = $data->where('slug', $inputs['slug']);
+        }
+        if (isset($inputs['is_active'])) {
+            $data = $data->where('is_active', $inputs['is_active']);
+        }
+        if (isset($inputs['in_menu'])) {
+            $data = $data->where('in_menu', $inputs['in_menu']);
+        }
+        if (isset($inputs['in_footer'])) {
+            $data = $data->where('in_footer', $inputs['in_footer']);
+        }
+        if (isset($inputs['is_privacy_page'])) {
+            $data = $data->where('is_privacy_page', $inputs['is_privacy_page']);
+        }
+        if (isset($inputs['is_terms_page'])) {
+            $data = $data->where('is_terms_page', $inputs['is_terms_page']);
+        }
+        $data = $data->orderBy('order');
+        if (isset($inputs['getFirst'])) {
+            $data = $data->first();
+        } else {
+            $data = $data->get();
+        }
+        return $data;
     }
 
     /**

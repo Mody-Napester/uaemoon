@@ -51,7 +51,8 @@
                         <small>Recommended dimension 180x70</small>
                         <br>
                         @if(!empty($settings['logo_ar']))
-                            <img src="{{asset($settings['logo_ar'])}}" width="100" height="100">
+                            <img src="{{asset('public/images/settings/' .$settings['logo_ar'])}}" width="100"
+                                 height="100">
                         @endif
                     </div>
                     <div class="form-group col-md-6">
@@ -63,7 +64,8 @@
                         <small>Recommended dimension 180x70</small>
                         <br>
                         @if(!empty($settings['logo_en']))
-                            <img src="{{asset($settings['logo_en'])}}" width="100" height="100">
+                            <img src="{{asset('public/images/settings/' .$settings['logo_en'])}}" width="100"
+                                 height="100">
                         @endif
                     </div>
 

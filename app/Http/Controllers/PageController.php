@@ -64,8 +64,8 @@ class PageController extends Controller
 
         // Validation
         $rules = [
-            'picture' => 'required',
-            'cover' => 'required',
+//            'picture' => 'required',
+//            'cover' => 'required',
             'is_active' => 'required',
             'order' => 'required',
         ];

@@ -62,9 +62,9 @@ class CategoryController extends Controller
         // Validation
         $rules = [
 //            'parent_id' => 'required',
-            'icon' => 'required',
+//            'icon' => 'required',
             'picture' => 'required',
-            'cover' => 'required',
+//            'cover' => 'required',
             'is_active' => 'required',
             'order' => 'required',
         ];
@@ -193,8 +193,8 @@ class CategoryController extends Controller
         }
 
         $rules = [
-            'parent_id' => 'required',
-            'icon' => 'required',
+//            'parent_id' => 'required',
+//            'icon' => 'required',
 //            'picture' => 'required',
 //            'cover' => 'required',
             'is_active' => 'required',

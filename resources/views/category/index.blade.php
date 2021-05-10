@@ -38,13 +38,13 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Parent id</th>
+{{--                        <th>Parent id</th>--}}
                         <th>Slug</th>
-                        <th>Parent</th>
+{{--                        <th>Parent</th>--}}
                         <th>Name</th>
-                        <th>Icon</th>
+{{--                        <th>Icon</th>--}}
                         <th>Picture</th>
-                        <th>Cover</th>
+{{--                        <th>Cover</th>--}}
                         <th>Active</th>
                         <th>In menu</th>
                         <th>Order</th>
@@ -59,17 +59,17 @@
                     @foreach($resources as $resource)
                         <tr>
                             <td>{{ $resource->id }}</td>
-                            <td>{{ $resource->parent_id }}</td>
+{{--                            <td>{{ $resource->parent_id }}</td>--}}
                             <td>{{ $resource->slug }}</td>
-                            <td>
-                                @if($resource->parent_id != 0)
-                                    {{ ($parent = \App\Category::getOneBy('id', $resource->parent_id)) ? getFromJson($parent->name , lang()) : '-' }}
-                                @else
-                                    -
-                                @endif
-                            </td>
+{{--                            <td>--}}
+{{--                                @if($resource->parent_id != 0)--}}
+{{--                                    {{ ($parent = \App\Category::getOneBy('id', $resource->parent_id)) ? getFromJson($parent->name , lang()) : '-' }}--}}
+{{--                                @else--}}
+{{--                                    ---}}
+{{--                                @endif--}}
+{{--                            </td>--}}
                             <td>{{ getFromJson($resource->name , lang()) }}</td>
-                            <td style="text-align: center"><i class="{{ $resource->icon }}"></i></td>
+{{--                            <td style="text-align: center"><i class="{{ $resource->icon }}"></i></td>--}}
                             <td>
                                 <div style="width:50px;height: 50px;overflow: hidden">
                                     <img style="width:100%;"
@@ -77,13 +77,13 @@
                                          alt="">
                                 </div>
                             </td>
-                            <td>
-                                <div style="width:50px;height: 50px;overflow: hidden">
-                                    <img style="width:100%;"
-                                         src="{{ url('public/images/category/cover/'. $resource->cover) }}"
-                                         alt="">
-                                </div>
-                            </td>
+{{--                            <td>--}}
+{{--                                <div style="width:50px;height: 50px;overflow: hidden">--}}
+{{--                                    <img style="width:100%;"--}}
+{{--                                         src="{{ url('public/images/category/cover/'. $resource->cover) }}"--}}
+{{--                                         alt="">--}}
+{{--                                </div>--}}
+{{--                            </td>--}}
                             <td>
                                 @if($resource->is_active == 1)
                                     <span class="badge badge-success badge-pill">Yes</span>

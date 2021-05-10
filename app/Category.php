@@ -51,6 +51,28 @@ class Category extends Model
         });
     }
 
+
+    public static function getAll($inputs = [])
+    {
+        $data = self::whereRaw('1=1');
+        if (isset($inputs['slug']) && $inputs['slug']) {
+            $data = $data->where('slug', $inputs['slug']);
+        }
+        if (isset($inputs['is_active'])) {
+            $data = $data->where('is_active', $inputs['is_active']);
+        }
+        if (isset($inputs['in_menu'])) {
+            $data = $data->where('in_menu', $inputs['in_menu']);
+        }
+        $data = $data->orderBy('order');
+        if (isset($inputs['getFirst'])) {
+            $data = $data->first();
+        } else {
+            $data = $data->get();
+        }
+        return $data;
+    }
+
     /**
      *  Get One Resource By
      */

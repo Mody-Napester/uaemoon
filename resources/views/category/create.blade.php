@@ -40,26 +40,26 @@
                     @csrf
                     <div class="row">
 
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-col-form-label"
-                                       for="parent_id">{{ trans('category.parent') }}</label>
-                                <select class="select2 form-control @if($errors->has('parent_id')) is-invalid @endif"
-                                        id="parent_id" name="parent_id">
-                                    <option value="0">No Parent</option>
-                                    @foreach($parents as $parent)
-                                        <option
-                                            value="{{ $parent->uuid }}">{{ getFromJson($parent->name , lang()) }}</option>
-                                    @endforeach
-                                </select>
+{{--                        <div class="col-md-6">--}}
+{{--                            <div class="form-group">--}}
+{{--                                <label class="form-col-form-label"--}}
+{{--                                       for="parent_id">{{ trans('category.parent') }}</label>--}}
+{{--                                <select class="select2 form-control @if($errors->has('parent_id')) is-invalid @endif"--}}
+{{--                                        id="parent_id" name="parent_id">--}}
+{{--                                    <option value="0">No Parent</option>--}}
+{{--                                    @foreach($parents as $parent)--}}
+{{--                                        <option--}}
+{{--                                            value="{{ $parent->uuid }}">{{ getFromJson($parent->name , lang()) }}</option>--}}
+{{--                                    @endforeach--}}
+{{--                                </select>--}}
 
-                                @if ($errors->has('parent_id'))
-                                    <div class="invalid-feedback">{{ $errors->first('parent_id') }}</div>
-                                @endif
-                            </div>
-                        </div>
+{{--                                @if ($errors->has('parent_id'))--}}
+{{--                                    <div class="invalid-feedback">{{ $errors->first('parent_id') }}</div>--}}
+{{--                                @endif--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label class="form-col-form-label"
                                        for="is_active">{{ trans('category.is_active') }}</label>
@@ -76,7 +76,7 @@
                         </div>
 
                         @foreach(langs("short_name") as $lang)
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label class="form-col-form-label"
                                            for="name_{{ $lang }}">{{ trans('category.name') }} ({{ $lang }})</label>
@@ -112,29 +112,29 @@
                             </div>
                         @endforeach
 
-                        <div class="col-md-12">
-                            <label class="form-col-form-label" for="icon">{{ trans('category.icon') }}</label>
-                            <div class="row">
-                                <div class="col-md-9">
-                                    <div class="form-group">
-                                        <input required class="form-control @if ($errors->has('icon')) is-invalid @endif "
-                                               id="icon" type="text" name="icon" value="{{ old('icon') }}">
+{{--                        <div class="col-md-12">--}}
+{{--                            <label class="form-col-form-label" for="icon">{{ trans('category.icon') }}</label>--}}
+{{--                            <div class="row">--}}
+{{--                                <div class="col-md-9">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <input required class="form-control @if ($errors->has('icon')) is-invalid @endif "--}}
+{{--                                               id="icon" type="text" name="icon" value="{{ old('icon') }}">--}}
 
-                                        @if ($errors->has('icon'))
-                                            <div class="invalid-feedback">{{ $errors->first('icon') }}</div>
-                                        @endif
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <span class="btn btn-orange btn-block font_icons_btn">{{ trans('category.fonts') }} &nbsp; <i
-                                            class="czi-arrow-down"></i></span>
-                                </div>
-                            </div>
-                        </div>
+{{--                                        @if ($errors->has('icon'))--}}
+{{--                                            <div class="invalid-feedback">{{ $errors->first('icon') }}</div>--}}
+{{--                                        @endif--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                                <div class="col-md-3">--}}
+{{--                                    <span class="btn btn-orange btn-block font_icons_btn">{{ trans('category.fonts') }} &nbsp; <i--}}
+{{--                                            class="czi-arrow-down"></i></span>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
 
-                        <div class="col-md-12 font_icons_container" style="display: none;">
-                            @include('category._partials.font_icons')
-                        </div>
+{{--                        <div class="col-md-12 font_icons_container" style="display: none;">--}}
+{{--                            @include('category._partials.font_icons')--}}
+{{--                        </div>--}}
 
                         <div class="form-group col-md-6">
                             <label for="in_menu">{{ trans('category.show_in_menu') }}</label>
@@ -152,6 +152,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="form-col-form-label" for="picture">{{ trans('category.picture') }}</label>
+                                <small>Recommended dimension 400x400</small>
                                 <input required class="form-control @if ($errors->has('picture')) is-invalid @endif" id="picture"
                                        type="file" name="picture">
 
@@ -161,17 +162,17 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="form-col-form-label" for="cover">{{ trans('category.cover') }}</label>
-                                <input required class="form-control @if ($errors->has('cover')) is-invalid @endif" id="cover"
-                                       type="file" name="cover">
+{{--                        <div class="col-md-6">--}}
+{{--                            <div class="form-group">--}}
+{{--                                <label class="form-col-form-label" for="cover">{{ trans('category.cover') }}</label>--}}
+{{--                                <input required class="form-control @if ($errors->has('cover')) is-invalid @endif" id="cover"--}}
+{{--                                       type="file" name="cover">--}}
 
-                                @if ($errors->has('cover'))
-                                    <div class="invalid-feedback">{{ $errors->first('cover') }}</div>
-                                @endif
-                            </div>
-                        </div>
+{{--                                @if ($errors->has('cover'))--}}
+{{--                                    <div class="invalid-feedback">{{ $errors->first('cover') }}</div>--}}
+{{--                                @endif--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                     </div>
                     <button class="btn btn-success" type="submit"><i
                             class="fa fa-fw fa-save"></i> {{ trans('category.save') }}</button>
