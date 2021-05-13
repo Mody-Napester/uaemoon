@@ -204,15 +204,20 @@
                         @endphp
                         <div class="my-account-link">
                             <a title="{{'(' . $user->name . ') ' . trans('website.profile')}}" href="#"> <i
-                                    class="icon-user"></i></a>
-                            &nbsp;
+                                    class="fa fa-user-circle"></i></a>
+                        </div>
+                        <div class="my-account-link">
+                            <a title="{{trans('website.add_new_adv')}}" href="#"> <i
+                                    class="fa fa-plus"></i></a>
+                        </div>
+                        <div class="my-account-link">
                             <a title="{{trans('website.logout')}}" href="{{route('front.user.getLogout')}}"> <i
                                     class="fa fa-sign-out"></i></a>
                         </div>
                     @else
                         <div class="my-account-link">
                             <a title="{{trans('website.login_or_register')}}"
-                               href="{{route('front.user.login_or_register')}}"><i class="icon-user"></i></a>
+                               href="{{route('front.user.login_or_register')}}"><i class="fa fa-user-circle"></i></a>
                         </div>
                     @endif
 
