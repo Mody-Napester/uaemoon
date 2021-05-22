@@ -1,4 +1,4 @@
-/*! simple-grunt-starter - v1.7.0 - 2021-02-01 */ 
+/*! simple-grunt-starter - v1.7.0 - 2021-02-01 */
 (function($) {
 
 	"use strict";
@@ -102,10 +102,10 @@
 
     if($(".hero-style-1") || $(".hero-style-2")) {
          // settings
-        var $sliderDelay = 7500, 
-            $sliderSpeed = 1000; 
+        var $sliderDelay = 7500,
+            $sliderSpeed = 1000;
 
-        // animate stroke 
+        // animate stroke
         var count = 0,
         $svg = $('.slider-nav-progress').drawsvg({
             duration: $sliderDelay,
@@ -150,7 +150,7 @@
                         var innerTranslate = slideProgress * innerOffset;
                         swiper.slides[i].querySelector(".slide-inner").style.transform =
                         "translate3d(" + innerTranslate + "px, 0, 0)";
-                    }      
+                    }
                 },
 
                 touchStart: function() {
@@ -400,7 +400,7 @@
         var openSearchFormBtn = $(".header-search-form-wrapper .search-toggle-btn");
         var closeSeachFormBtn = $(".header-search-form-wrapper .close-form");
         var body = $(".page-wrapper");
-        
+
         $(document.body).append(serachFormBox);
         serachFormBox.hide();
 
@@ -513,7 +513,7 @@
 
     /*------------------------------------------
         = TOOLTIP
-    -------------------------------------------*/ 
+    -------------------------------------------*/
     $( document ).tooltip({
         position: {
             my: "center bottom-20",
@@ -527,12 +527,12 @@
                     .appendTo( this );
             }
         }
-    }); 
+    });
 
 
     /*------------------------------------------
         = SHOP PAGE GRID VIEW TOGGLE
-    -------------------------------------------*/  
+    -------------------------------------------*/
     if($(".woocommerce-toolbar-top").length) {
         var products = $(".products"),
             allButton = $(".products-sizes a"),
@@ -585,7 +585,7 @@
 
         $("#amount").val("$" + $("#slider-range").slider("values", 0) + " - $" + $("#slider-range").slider("values", 1));
     }
-    
+
 
 
     /*------------------------------------------
@@ -600,7 +600,7 @@
             asNavFor: '.slider-nav'
         });
         $('.slider-nav').slick({
-            slidesToShow: 4,
+            slidesToShow: 15,
             slidesToScroll: 1,
             asNavFor: '.slider-for',
             focusOnSelect: true,
@@ -632,7 +632,7 @@
         $("input.product-count").TouchSpin({
             verticalbuttons: true
         });
-    }    
+    }
 
 
 
@@ -650,7 +650,7 @@
             dots: false,
             items: 1
         });
-    }  
+    }
 
 
     /*------------------------------------------
@@ -713,7 +713,7 @@
             smartSpeed:450,
             dotData:true,
         });
-    }  
+    }
 
 
 
@@ -733,11 +733,11 @@
             + '<div class="box"><div>%M</div> <span>' + mins + '</span> </div>'
             + '<div class="box"><div>%S</div> <span>' + sec + '</span> </div>'));
         });
-    }   
+    }
 
 
     /*------------------------------------------
-        = NEWSLETTER POPUP 
+        = NEWSLETTER POPUP
     -------------------------------------------*/
     function newsletterPopup() {
         var newsletter = $(".newsletter-popup-area-section");
@@ -751,7 +751,7 @@
         if(localValue === "true") {
             newsletter.css({
                 "display": "none"
-            });                
+            });
         }
 
         newsletter.addClass("active-newsletter-popup");
@@ -822,7 +822,7 @@
         }, 700);
         return false;
     })
-    
+
 
 
     /*==========================================================================
@@ -859,16 +859,16 @@
     });
 
 
-    
+
     /*==========================================================================
         WHEN WINDOW RESIZE
     ==========================================================================*/
     $(window).on("resize", function() {
-        
+
         toggleClassForSmallNav();
 
         clearTimeout($.data(this, 'resizeTimer'));
-        
+
         $.data(this, 'resizeTimer', setTimeout(function() {
             smallNavFunctionality();
 

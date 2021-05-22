@@ -130,10 +130,10 @@ class Category extends Model
     }
 
     /**
-     *  Products Relation
+     *  Advertise Relation
      */
-    public function products()
+    public function advertises()
     {
-        return $this->belongsToMany(Product::class, 'product_category')->withTimestamps();
+        return $this->hasMany(Advertise::class, 'category_id');
     }
 }

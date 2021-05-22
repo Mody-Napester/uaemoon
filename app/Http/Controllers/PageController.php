@@ -117,7 +117,7 @@ class PageController extends Controller
 //            ]);
 //        }
         $resource = Page::create([
-            'slug' => Str::slug($name['en'], '_'),
+            'slug' => Str::slug($name['en'], '-'),
             'name' => json_encode($name),
             'details' => json_encode($details),
             'picture' => (isset($picture)) ? $picture : '',
@@ -250,7 +250,7 @@ class PageController extends Controller
 //            ]);
 //        }
         $resource = $data['resource']->update([
-            'slug' => Str::slug($name['en'], '_'),
+            'slug' => Str::slug($name['en'], '-'),
             'name' => json_encode($name),
             'details' => json_encode($details),
             'picture' => (isset($picture)) ? $picture : $data['resource']->picture,

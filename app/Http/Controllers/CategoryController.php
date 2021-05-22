@@ -113,7 +113,7 @@ class CategoryController extends Controller
         }
         $resource = Category::create([
             'parent_id' => $parent,
-            'slug' => Str::slug($name['en'], '_'),
+            'slug' => Str::slug($name['en'], '-'),
             'name' => json_encode($name),
             'details' => json_encode($details),
             'icon' => $request->icon,
@@ -245,7 +245,7 @@ class CategoryController extends Controller
         }
         $resource = $data['resource']->update([
             'parent_id' => $parent,
-            'slug' => Str::slug($name['en'], '_'),
+            'slug' => Str::slug($name['en'], '-'),
             'name' => json_encode($name),
             'details' => json_encode($details),
             'icon' => $request->icon,

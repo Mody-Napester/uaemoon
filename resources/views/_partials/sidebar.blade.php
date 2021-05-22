@@ -148,8 +148,18 @@
                             @endif
                         </ul>
                     </li>
-
                 @endif
+
+                    @if(check_authority('use.website'))
+                        <li class="text-muted menu-title">{{ trans('sidebar.website') }}</li>
+
+                        @if(check_authority('list.advertise'))
+                            <li class="has_sub">
+                                <a href="{{ route('advertise.list') }}" class="waves-effect fire-loader-anchor"><i
+                                        class="ti-agenda"></i> <span> {{ trans('sidebar.advertises') }} </span></a>
+                            </li>
+                        @endif
+                    @endif
 
             </ul>
             <div class="clearfix"></div>

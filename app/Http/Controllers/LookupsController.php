@@ -84,7 +84,7 @@ class LookupsController extends Controller
         $parent = (Lookup::getOneBy('uuid', $request->parent_id))? Lookup::getOneBy('uuid', $request->parent_id)->id : 0;
         $resource = Lookup::create([
             'parent_id' => $parent,
-            'key' => Str::slug($name['en'], '_'),
+            'key' => Str::slug($name['en'], '-'),
             'name' => json_encode($name),
             'is_active' => ($request->is_active == 1)? 1 : 0,
             'created_by' => auth()->user()->id,
@@ -179,7 +179,7 @@ class LookupsController extends Controller
 
         $resource = $data['resource']->update([
             'parent_id' => $parent,
-            'key' => Str::slug($name['en'], '_'),
+            'key' => Str::slug($name['en'], '-'),
             'name' => json_encode($name),
             'is_active' => ($request->is_active == 1)? 1 : 0,
             'updated_by' => auth()->user()->id,

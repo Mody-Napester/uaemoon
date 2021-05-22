@@ -67,6 +67,10 @@
         .is-invalid {
             border: 1px solid red !important;
         }
+        .custom-select {
+            border-radius: 0;
+            height: 50px;
+        }
     </style>
     @yield('header')
 </head>
@@ -207,7 +211,7 @@
                                     class="fa fa-user-circle"></i></a>
                         </div>
                         <div class="my-account-link">
-                            <a title="{{trans('website.add_new_adv')}}" href="#"> <i
+                            <a title="{{trans('website.add_new_advertise')}}" href="{{route('front.advertise.add')}}"> <i
                                     class="fa fa-plus"></i></a>
                         </div>
                         <div class="my-account-link">
