@@ -16,4 +16,10 @@ return array (
   'Form_Inputs' => 'Form Inputs',
   'List_Answers' => 'List Answers',
   'Resources' => 'Resources',
+  'home_page_seo' => 'Home SEO',
+  'about_us_seo' => 'About Us SEO',
+  'contact_us_seo' => 'Contact Us SEO',
+  'contact_us' => 'Contact Us',
+  'about_us' => 'About Us',
+  'general_settings' => 'General Settings',
 );

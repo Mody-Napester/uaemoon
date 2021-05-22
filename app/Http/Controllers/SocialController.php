@@ -25,7 +25,7 @@ class SocialController extends Controller
      */
     public function index(){
         // Check Authority
-        if (!check_authority('index.social')){
+        if (!check_authority('list.social')){
             return redirect('/');
         }
 

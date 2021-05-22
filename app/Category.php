@@ -12,7 +12,7 @@ class Category extends Model
      * @var array
      */
     protected $fillable = [
-        'parent_id','slug','name','details','icon','picture','cover','is_active','created_by','updated_by',
+        'parent_id','slug','name','details','icon','picture','cover','is_active','in_menu','order','created_by','updated_by',
     ];
 
     /**
@@ -49,6 +49,28 @@ class Category extends Model
         self::creating(function ($model) {
             $model->uuid = (string) \Webpatser\Uuid\Uuid::generate(config('vars.uuid_version'));
         });
+    }
+
+
+    public static function getAll($inputs = [])
+    {
+        $data = self::whereRaw('1=1');
+        if (isset($inputs['slug']) && $inputs['slug']) {
+            $data = $data->where('slug', $inputs['slug']);
+        }
+        if (isset($inputs['is_active'])) {
+            $data = $data->where('is_active', $inputs['is_active']);
+        }
+        if (isset($inputs['in_menu'])) {
+            $data = $data->where('in_menu', $inputs['in_menu']);
+        }
+        $data = $data->orderBy('order');
+        if (isset($inputs['getFirst'])) {
+            $data = $data->first();
+        } else {
+            $data = $data->get();
+        }
+        return $data;
     }
 
     /**
@@ -108,10 +130,10 @@ class Category extends Model
     }
 
     /**
-     *  Products Relation
+     *  Advertise Relation
      */
-    public function products()
+    public function advertises()
     {
-        return $this->belongsToMany(Product::class, 'product_category')->withTimestamps();
+        return $this->hasMany(Advertise::class, 'category_id');
     }
 }

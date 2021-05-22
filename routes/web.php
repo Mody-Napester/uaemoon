@@ -36,6 +36,10 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::put('users/{user}/update_password', 'UsersController@updatePassword')->name('users.update_password');
     // Reset password
     Route::get('users/{user}/reset_password', 'UsersController@resetPassword')->name('users.reset_password');
+
+    foreach (File::allFiles(__DIR__ . '/admin') as $route) {
+        require_once $route->getPathname();
+    }
 });
 
 /*

@@ -40,6 +40,11 @@
                         <th>Picture</th>
                         <th>Cover</th>
                         <th>Active</th>
+                        <th>In menu</th>
+                        <th>In footer</th>
+                        <th>Is Privacy</th>
+                        <th>Is Terms</th>
+                        <th>order</th>
                         <th>Created by</th>
                         <th>Updated by</th>
                         <th>Created at</th>
@@ -73,6 +78,37 @@
                                     <span class="badge badge-danger badge-pill">No</span>
                                 @endif
                             </td>
+                            <td>
+                                @if($resource->in_menu == 1)
+                                    <span class="badge badge-success badge-pill">Yes</span>
+                                @else
+                                    <span class="badge badge-danger badge-pill">No</span>
+                                @endif
+                            </td>
+                            <td>
+                                @if($resource->in_footer == 1)
+                                    <span class="badge badge-success badge-pill">Yes</span>
+                                @else
+                                    <span class="badge badge-danger badge-pill">No</span>
+                                @endif
+                            </td>
+                            <td>
+                                @if($resource->is_privacy_page == 1)
+                                    <span class="badge badge-success badge-pill">Yes</span>
+                                @else
+                                    <span class="badge badge-danger badge-pill">No</span>
+                                @endif
+                            </td>
+                            <td>
+                                @if($resource->is_terms_page == 1)
+                                    <span class="badge badge-success badge-pill">Yes</span>
+                                @else
+                                    <span class="badge badge-danger badge-pill">No</span>
+                                @endif
+                            </td>
+                            <td>
+                               {{$resource->order}}
+                            </td>
                             <td>{{ ($cb = $resource->created_by_user)? $cb->name : '-' }}</td>
                             <td>{{ ($ub = $resource->updated_by_user)? $ub->name : '-' }}</td>
                             <td>{{ $resource->created_at }}</td>
@@ -101,25 +137,25 @@
                 {
                     extend: 'copyHtml5',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+                        columns: [0, 1, 2, 5, 6, 7, 8]
                     }
                 },
                 {
                     extend: 'excelHtml5',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+                        columns: [0, 1, 2, 5, 6, 7, 8]
                     }
                 },
                 {
                     extend: 'pdfHtml5',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+                        columns: [0, 1, 2, 5, 6, 7, 8]
                     }
                 },
                 {
                     extend: 'print',
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+                        columns: [0, 1, 2, 5, 6, 7, 8]
                     }
                 }
             ],
