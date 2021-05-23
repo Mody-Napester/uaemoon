@@ -70,6 +70,14 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     *  Get a specific resource
+     */
+    public static function getOneBy($field, $value)
+    {
+        return self::where($field, $value)->first();
+    }
+
+    /**
      *  Relationship with users
      */
     public function createdBy()
