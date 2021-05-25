@@ -22,7 +22,7 @@ class AdvertiseController extends Controller
         $data['categories'] = Category::getAll([
             'is_active' => 1
         ]);
-        return view('front/advertise/add', $data);
+        return view('front/ver/add', $data);
     }
 
     public function create(Request $request)
@@ -38,16 +38,16 @@ class AdvertiseController extends Controller
         $cover = '';
         $all_images = array();
         if ($request->hasFile('cover')) {
-            $upload = upload_file('image', $request->file('cover'), 'public/images/advertise/cover');
+            $upload = upload_file('image', $request->file('cover'), 'public/images/ver/cover');
             if ($upload['status'] == true) {
-                $cover = 'public/images/advertise/cover/' . $upload['filename'];
+                $cover = 'public/images/ver/cover/' . $upload['filename'];
             }
         }
         if ($images = $request->file('images')) {
             foreach ($images as $index => $image) {
-                $upload = upload_file('image', $image, 'public/images/advertise/image');
+                $upload = upload_file('image', $image, 'public/images/ver/image');
                 if ($upload['status'] == true) {
-                    $all_images[] = 'public/images/advertise/image/' . $upload['filename'];
+                    $all_images[] = 'public/images/ver/image/' . $upload['filename'];
                 }
             }
         }
