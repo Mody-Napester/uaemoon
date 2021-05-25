@@ -41,7 +41,7 @@ class LookupsController extends Controller
     public function create()
     {
         // Check Authority
-        if (!check_authority('add.lookups')){
+        if (!check_authority('create.lookups')){
             return redirect('/');
         }
 
@@ -58,7 +58,7 @@ class LookupsController extends Controller
     public function store(Request $request)
     {
         // Check Authority
-        if (!check_authority('add.lookups')){
+        if (!check_authority('store.lookups')){
             return redirect('/');
         }
 
@@ -143,7 +143,7 @@ class LookupsController extends Controller
     public function update(Request $request, Lookup $lookup)
     {
         // Check Authority
-        if (!check_authority('edit.lookups')){
+        if (!check_authority('update.lookups')){
             return redirect('/');
         }
 

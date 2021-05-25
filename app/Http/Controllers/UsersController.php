@@ -57,7 +57,7 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         // Check permissions
-        if (!check_authority('add.users')){
+        if (!check_authority('store.users')){
             return redirect('/');
         }
 

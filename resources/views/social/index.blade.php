@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="btn-group pull-right m-t-15">
-                @if(check_authority('add.lookups'))
+                @if(check_authority('create.social'))
                     <a href="{{ route('social.create') }}" class="btn btn-default waves-effect waves-light"><i
                             class="fa fa-plus"></i> {{ trans('social.add_new') }}</a>
                 @endif
@@ -50,10 +50,10 @@
                             <td>{{ $resource->link }}</td>
                             <td>{{ $resource->created_at }}</td>
                             <td>
-                                <a href="{{ route('social.edit' , [$resource->id]) }}"
-                                   class="badge badge-sm badge-success mr-2"><i class="fa fa-edit"></i></a>
-                                <a href="{{ route('social.destroy' , [$resource->id]) }}"
-                                   class="badge badge-sm badge-danger confirm-delete"><i class="fa fa-times"></i></a>
+{{--                                <a href="{{ route('social.edit' , [$resource->id]) }}"--}}
+{{--                                   class="badge badge-sm badge-success mr-2"><i class="fa fa-edit"></i></a>--}}
+{{--                                <a href="{{ route('social.destroy' , [$resource->id]) }}"--}}
+{{--                                   class="badge badge-sm badge-danger confirm-delete"><i class="fa fa-times"></i></a>--}}
                             </td>
                         </tr>
                     @endforeach

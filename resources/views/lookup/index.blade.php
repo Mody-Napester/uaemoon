@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="btn-group pull-right m-t-15">
-                @if(check_authority('add.lookups'))
+                @if(check_authority('create.lookups'))
                     <a href="{{ route('lookup.create') }}" class="btn btn-default waves-effect waves-light"><i class="fa fa-plus"></i> {{ trans('lookups.Add_new') }}</a>
                 @endif
             </div>
@@ -105,12 +105,12 @@
                                 <td>{{ $child->created_at }}</td>
                                 <td>{{ $child->updated_at }}</td>
                                 <td>
-                                    @if(check_authority('edit.lookups'))
-                                        <a href="{{ route('lookup.edit' , [$child->uuid]) }}" class="badge badge-sm badge-success mr-2"><i class="fa fa-edit"></i></a>
-                                    @endif
-                                    @if(check_authority('delete.lookups'))
-                                        <a href="{{ route('lookup.destroy' , [$child->uuid]) }}" class="badge badge-sm badge-danger confirm-delete"><i class="fa fa-times"></i></a>
-                                    @endif
+{{--                                    @if(check_authority('edit.lookups'))--}}
+{{--                                        <a href="{{ route('lookup.edit' , [$child->uuid]) }}" class="badge badge-sm badge-success mr-2"><i class="fa fa-edit"></i></a>--}}
+{{--                                    @endif--}}
+{{--                                    @if(check_authority('delete.lookups'))--}}
+{{--                                        <a href="{{ route('lookup.destroy' , [$child->uuid]) }}" class="badge badge-sm badge-danger confirm-delete"><i class="fa fa-times"></i></a>--}}
+{{--                                    @endif--}}
                                 </td>
                             </tr>
                         @endforeach

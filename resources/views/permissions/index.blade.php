@@ -55,12 +55,12 @@
                             <td>{{ $resource->created_at }}</td>
                             <td>{{ $resource->updated_at }}</td>
                             <td>
-                                <a href="{{ route('permissions.edit', [$resource->uuid]) }}" class="update-modal btn btn-sm btn-success">
-                                    <i class="fa fa-edit"></i>
-                                </a>
-                                <a href="{{ route('permissions.destroy', [$resource->uuid]) }}" class="confirm-delete btn btn-sm btn-danger">
-                                    <i class="fa fa-times"></i>
-                                </a>
+{{--                                <a href="{{ route('permissions.edit', [$resource->uuid]) }}" class="update-modal btn btn-sm btn-success">--}}
+{{--                                    <i class="fa fa-edit"></i>--}}
+{{--                                </a>--}}
+{{--                                <a href="{{ route('permissions.destroy', [$resource->uuid]) }}" class="confirm-delete btn btn-sm btn-danger">--}}
+{{--                                    <i class="fa fa-times"></i>--}}
+{{--                                </a>--}}
                             </td>
                         </tr>
                     @endforeach

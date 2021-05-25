@@ -67,6 +67,7 @@
         .is-invalid {
             border: 1px solid red !important;
         }
+
         .custom-select {
             border-radius: 0;
             height: 50px;
@@ -207,11 +208,12 @@
                             $user = Auth::user()
                         @endphp
                         <div class="my-account-link">
-                            <a title="{{'(' . $user->name . ') ' . trans('website.profile')}}" href="#"> <i
-                                    class="fa fa-user-circle"></i></a>
+                            <a title="{{'(' . $user->name . ') ' . trans('website.profile')}}"
+                               href="{{route('front.user.profile')}}"> <i class="fa fa-user-circle"></i></a>
                         </div>
                         <div class="my-account-link">
-                            <a title="{{trans('website.add_new_advertise')}}" href="{{route('front.advertise.add')}}"> <i
+                            <a title="{{trans('website.add_new_advertise')}}" href="{{route('front.advertise.add')}}">
+                                <i
                                     class="fa fa-plus"></i></a>
                         </div>
                         <div class="my-account-link">

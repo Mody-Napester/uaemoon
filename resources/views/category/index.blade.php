@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="btn-group pull-right m-t-15">
-                @if(check_authority('add.lookups'))
+                @if(check_authority('create.category'))
                     <a href="{{ route('category.create') }}" class="btn btn-default waves-effect waves-light"><i
                             class="fa fa-plus"></i> {{ trans('category.add_new') }}</a>
                 @endif

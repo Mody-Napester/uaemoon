@@ -78,7 +78,7 @@
                                     class="ti-user"></i> <span> {{ trans('sidebar.Lookups') }} </span></a>
                         </li>
                     @endif
-                    @if(check_authority('list.lookups'))
+                    @if(check_authority('list.translations'))
                         <li class="has_sub">
                             <a href="{{ url('translations') }}" class="waves-effect fire-loader-anchor"><i
                                     class="ti-flag"></i> <span> {{ trans('sidebar.Translations') }} </span></a>
