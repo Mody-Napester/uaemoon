@@ -11,17 +11,37 @@ class Advertise extends Model
      *
      * @var array
      */
-    protected $guarded = [''];
+//    protected $guarded = [''];
     protected $table = 'advertise';
+
+    protected $fillable = [
+        'category_id',
+        'slug',
+        'title_ar',
+        'title_en',
+        'details_ar',
+        'details_en',
+        'cover',
+        'images',
+        'status',
+        'is_featured',
+        'approved_at',
+        'not_approved_at',
+        'not_approved_reason',
+        'expired_at',
+        'created_by',
+        'created_at',
+        'updated_at',
+    ];
 
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
-    protected $hidden = [
-        '',
-    ];
+//    protected $hidden = [
+//        '',
+//    ];
 
     /*
      * Change Route Key Name

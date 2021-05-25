@@ -103,7 +103,7 @@ function upload_file($type, $file, $path){
 
     if ($type == "image") {
         foreach($file_mimes as $file_mime){
-            $ext = strtolower(str_replace('image/', '', $file_mime->name));
+            $ext = strtolower(str_replace('image\/', '', $file_mime->name));
             $validExtentions[] = getFromJson($ext, 'en');
         }
     }
