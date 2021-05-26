@@ -63,7 +63,7 @@ class CategoryController extends Controller
         $rules = [
 //            'parent_id' => 'required',
 //            'icon' => 'required',
-            'picture' => 'required',
+//            'picture' => 'required',
 //            'cover' => 'required',
             'is_active' => 'required',
             'order' => 'required',
@@ -94,18 +94,6 @@ class CategoryController extends Controller
             }
         }
 
-        if ($request->hasFile('cover')) {
-            $upload = upload_file('image', $request->file('cover'), 'public/images/category/cover');
-            if ($upload['status'] == true) {
-                $cover = $upload['filename'];
-            } else {
-                return back()->with('message', [
-                    'type' => 'danger',
-                    'text' => 'Image ' . $upload['message']
-                ]);
-            }
-        }
-
         if ($request->parent_id) {
             $parent = (Category::getOneBy('uuid', $request->parent_id)) ? Category::getOneBy('uuid', $request->parent_id)->id : 0;
         } else {
@@ -116,9 +104,9 @@ class CategoryController extends Controller
             'slug' => Str::slug($name['en'], '-'),
             'name' => json_encode($name),
             'details' => json_encode($details),
-            'icon' => $request->icon,
+//            'icon' => $request->icon,
             'picture' => (isset($picture)) ? $picture : '',
-            'cover' => (isset($cover)) ? $cover : '',
+//            'cover' => (isset($cover)) ? $cover : '',
             'is_active' => ($request->is_active == 1) ? 1 : 0,
             'in_menu' => (isset($request->in_menu)) ? 1 : 0,
             'order' => $request->order,
@@ -213,23 +201,15 @@ class CategoryController extends Controller
         }
 
         $request->validate($rules);
+        $resource = Category::getOneBy('id', $category->id);
 
         if ($request->hasFile('picture')) {
+            if(file_exists(public_path('images/category/picture/' . $resource->picture))) {
+                unlink(public_path('images/category/picture/' . $resource->picture));
+            }
             $upload = upload_file('image', $request->file('picture'), 'public/images/category/picture');
             if ($upload['status'] == true) {
                 $picture = $upload['filename'];
-            } else {
-                return back()->with('message', [
-                    'type' => 'danger',
-                    'text' => 'Image ' . $upload['message']
-                ]);
-            }
-        }
-
-        if ($request->hasFile('cover')) {
-            $upload = upload_file('image', $request->file('cover'), 'public/images/category/cover');
-            if ($upload['status'] == true) {
-                $cover = $upload['filename'];
             } else {
                 return back()->with('message', [
                     'type' => 'danger',
@@ -248,9 +228,9 @@ class CategoryController extends Controller
             'slug' => Str::slug($name['en'], '-'),
             'name' => json_encode($name),
             'details' => json_encode($details),
-            'icon' => $request->icon,
+//            'icon' => $request->icon,
             'picture' => (isset($picture)) ? $picture : $data['resource']->picture,
-            'cover' => (isset($cover)) ? $cover : $data['resource']->cover,
+//            'cover' => (isset($cover)) ? $cover : $data['resource']->cover,
             'is_active' => ($request->is_active == 1) ? 1 : 0,
             'in_menu' => (isset($request->in_menu)) ? 1 : 0,
             'order' => $request->order,
@@ -287,6 +267,9 @@ class CategoryController extends Controller
         $data['resource'] = $category;
 
         if ($data['resource']) {
+            if(file_exists(public_path('images/category/picture/' . $category->picture))) {
+                unlink(public_path('images/category/picture/' . $category->picture));
+            }
             $data['resource']->delete();
 
             return redirect()->back()->with('message', [
@@ -299,25 +282,5 @@ class CategoryController extends Controller
                 'text' => 'Sorry! not exists.'
             ]);
         }
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function index_specifications(Request $request)
-    {
-        // Check Authority
-        if (isset($request->product)) {
-            $data['product_id'] = Product::getOneBy('uuid', $request->product)->id;
-        }
-        if (isset($request->categories) && count($request->categories) > 0) {
-            $data['categories'] = Category::whereIn('uuid', $request->categories)->pluck('id')->toArray();
-            $data['specifications'] = Specification::whereIn('category_id', $data['categories'])->get();
-            $data['has_data'] = true;
-        } else {
-            $data['has_data'] = false;
-        }
-        $data['view'] = view('category._partials.specifications', $data)->render();
-        return response($data);
     }
 }

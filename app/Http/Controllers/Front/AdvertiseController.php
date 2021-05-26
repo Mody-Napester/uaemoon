@@ -22,7 +22,7 @@ class AdvertiseController extends Controller
         $data['categories'] = Category::getAll([
             'is_active' => 1
         ]);
-        return view('front/ver/add', $data);
+        return view('front/advertise/add', $data);
     }
 
     public function create(Request $request)

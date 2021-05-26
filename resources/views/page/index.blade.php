@@ -61,14 +61,14 @@
                             <td>
                                 <div style="width:50px;height: 50px;overflow: hidden">
                                     <img style="width:100%;"
-                                         src="{{ url('public/images/page/picture/'. $resource->picture) }}"
+                                         src="{{ getPageImage($resource->picture, 'picture') }}"
                                          alt="">
                                 </div>
                             </td>
                             <td>
                                 <div style="width:50px;height: 50px;overflow: hidden">
                                     <img style="width:100%;"
-                                         src="{{ url('public/images/page/cover/'. $resource->cover) }}" alt="">
+                                         src="{{ getPageImage($resource->cover) }}" alt="">
                                 </div>
                             </td>
                             <td>

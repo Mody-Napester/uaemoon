@@ -216,7 +216,11 @@ class PageController extends Controller
 
         $request->validate($rules);
 
+        $resource = Page::getOneBy('id', $page->id);
         if ($request->hasFile('picture')) {
+            if(file_exists(public_path('images/page/picture/' . $resource->picture))) {
+                unlink(public_path('images/page/picture/' . $resource->picture));
+            }
             $upload = upload_file('image', $request->file('picture'), 'public/images/page/picture');
             if ($upload['status'] == true) {
                 $picture = $upload['filename'];
@@ -229,6 +233,9 @@ class PageController extends Controller
         }
 
         if ($request->hasFile('cover')) {
+            if(file_exists(public_path('images/page/cover/' . $resource->cover))) {
+                unlink(public_path('images/page/cover/' . $resource->cover));
+            }
             $upload = upload_file('image', $request->file('cover'), 'public/images/page/cover');
             if ($upload['status'] == true) {
                 $cover = $upload['filename'];
@@ -294,6 +301,13 @@ class PageController extends Controller
 
         if ($data['resource']) {
             $data['resource']->delete();
+
+            if(file_exists(public_path('images/page/picture/' . $page->picture))) {
+                unlink(public_path('images/page/picture/' . $page->picture));
+            }
+            if(file_exists(public_path('images/page/cover/' . $page->cover))) {
+                unlink(public_path('images/page/cover/' . $page->cover));
+            }
 
             return redirect()->back()->with('message', [
                 'type' => 'success',

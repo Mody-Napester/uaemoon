@@ -50,8 +50,8 @@ class Slider extends Model
         return self::where('uuid', $id)->pluck('name');
     }
 
-    public static function remove($id)
+    public static function remove($uuid)
     {
-        return self::where('uuid', $id)->delete();
+        return self::where('uuid', $uuid)->delete();
     }
 }

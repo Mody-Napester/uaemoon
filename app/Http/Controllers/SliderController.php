@@ -114,7 +114,11 @@ class SliderController extends Controller
         ];
         $request->validate($rules);
         try {
+            $resource = Slider::getByUuid($uuid);
             if ($request->hasFile('image')) {
+                if(file_exists(public_path('images/slider/' . $resource->image))) {
+                    unlink(public_path('images/slider/' . $resource->image));
+                }
                 $upload = upload_file('image', $request->file('image'), 'public/images/slider');
                 if ($upload['status'] == true) {
                     $image = $upload['filename'];
@@ -125,7 +129,6 @@ class SliderController extends Controller
                     ]);
                 }
             }
-            $resource = Slider::getByUuid($uuid);
             $resource->update([
                 'image' => isset($image) ? $image : $resource->image,
                 'order' => $request->order
@@ -142,13 +145,17 @@ class SliderController extends Controller
         }
     }
 
-    public function deleteSlider($id)
+    public function deleteSlider($uuid)
     {
         // Check Authority
         if (!check_authority('delete.slider')) {
             return redirect('/');
         }
-        Slider::remove($id);
+        $resource = Slider::getByUuid($uuid);
+        if(file_exists(public_path('images/slider/' . $resource->image))) {
+            unlink(public_path('images/slider/' . $resource->image));
+        }
+        Slider::remove($uuid);
         return redirect(route('listSlider'))->with('message', [
             'type' => 'success',
             'text' => 'Deleted successfully'

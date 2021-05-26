@@ -171,7 +171,7 @@
                                 <div class="form-group">
                                     <label class="form-col-form-label"
                                            for="picture">{{ trans('category.picture') }}</label>
-                                    <small>Recommended dimension 400x400</small>
+                                    <small>Recommended dimension 275 x 340</small>
                                     <input class="form-control  @if ($errors->has('picture')) is-invalid @endif"
                                            id="picture"
                                            type="file" name="picture">

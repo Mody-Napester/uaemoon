@@ -1,33 +1,38 @@
 <?php
 
-function getFromJson($json , $lang){
+function getFromJson($json, $lang)
+{
     $data = json_decode($json, true);
     return $data[$lang];
 }
 
 // Get path
-function get_path($path){
+function get_path($path)
+{
     return base_path() . config('custom.public') . '/' . $path;
 }
 
 // check authority
-function check_authority($authority){
+function check_authority($authority)
+{
     return \App\User::hasAuthority($authority);
 }
 
 // Default language
-function lang(){
+function lang()
+{
     return app()->getLocale();
 }
 
 // System languages
-function langs($get = null){
+function langs($get = null)
+{
     $get_array = [];
-    if($get == null){
+    if ($get == null) {
         $get_array = config('vars.langs');
-    }else{
+    } else {
         foreach (config('vars.langs') as $lang) {
-            if($get == 'short_name'){
+            if ($get == 'short_name') {
                 $get_array[] = $lang['short_name'];
             }
         }
@@ -36,56 +41,66 @@ function langs($get = null){
 }
 
 // Get lookup
-function lookup($by, $value){
+function lookup($by, $value)
+{
     $results = null;
-    $by_array = ['id','uuid','name','parent_id'];
-    if (in_array($by, $by_array)){$results = \App\Lookup::where($by, $value)->first();}
+    $by_array = ['id', 'uuid', 'name', 'parent_id'];
+    if (in_array($by, $by_array)) {
+        $results = \App\Lookup::where($by, $value)->first();
+    }
     return $results;
 }
 
 // Get lookups
-function lookups($key){
+function lookups($key)
+{
     $lookup = \App\Lookup::getOneBy('key', $key);
-    if($lookup){
+    if ($lookup) {
         return \App\Lookup::getAllBy('parent_id', $lookup->id);
-    }else{
+    } else {
         return null;
     }
 }
 
 // User fullname
-function name($user = null){
-    if($user != null){
+function name($user = null)
+{
+    if ($user != null) {
         return $user->fname . ' ' . $user->lname;
-    }else{
+    } else {
         return auth()->user()->fname . ' ' . auth()->user()->lname;
     }
 }
 
 // Custom Date
-function custom_date($date){
+function custom_date($date)
+{
     return date('d-m-Y, g:i:s a', strtotime($date));
 }
 
 // Human Date
-function human_date($date){
+function human_date($date)
+{
 //    $editDate = str_replace('-0001-11-30', '2016-11-30', $date);
     return Carbon\Carbon::createFromTimeStamp(strtotime($date))->diffForHumans();
 }
 
 // Site languages
-function languages(){
+function languages()
+{
     $lookup = \App\Lookup::where('name', 'languages')->first();
     return \App\Lookup::where('parent_id', $lookup->id)->get();
 }
 
 // Get lookups
-function str_well($value){
+function str_well($value)
+{
     return ucfirst(str_replace('_', ' ', $value));
 }
 
 // Upload files
-function upload_file($type, $file, $path){
+function upload_file($type, $file, $path)
+{
 
     $results = [
         'status' => false,
@@ -102,13 +117,12 @@ function upload_file($type, $file, $path){
     $results['mime'] = $type . '/' . $extention;
 
     if ($type == "image") {
-        foreach($file_mimes as $file_mime){
+        foreach ($file_mimes as $file_mime) {
             $ext = strtolower(str_replace('image\/', '', $file_mime->name));
             $validExtentions[] = getFromJson($ext, 'en');
         }
-    }
-    elseif ($type == "text") {
-        foreach($file_mimes as $file_mime){
+    } elseif ($type == "text") {
+        foreach ($file_mimes as $file_mime) {
             $ext = strtolower(str_replace('text/', '', $file_mime->name));
             $validExtentions[] = getFromJson($ext, 'en');
         }
@@ -116,7 +130,7 @@ function upload_file($type, $file, $path){
 
     if (in_array($extention, $validExtentions)) {
 
-        $filename = time().rand(1000,9999).'.'.$extention;
+        $filename = time() . rand(1000, 9999) . '.' . $extention;
         $destinationPath = get_path($path);
 
         $upload = $file->move($destinationPath, $filename);
@@ -128,14 +142,14 @@ function upload_file($type, $file, $path){
             $results['message'] = 'Uploaded Successfully';
 
             return $results;
-        }else{
+        } else {
             // Error Uploading
             $results['message'] = 'Error Uploading';
 
             return $results;
         }
 
-    }else{
+    } else {
         // File not valid
         $results['message'] = 'File not valid';
 
@@ -144,21 +158,44 @@ function upload_file($type, $file, $path){
 }
 
 // Function to get the client IP address
-function get_client_ip() {
+function get_client_ip()
+{
     $ipaddress = '';
     if (getenv('HTTP_CLIENT_IP'))
         $ipaddress = getenv('HTTP_CLIENT_IP');
-    else if(getenv('HTTP_X_FORWARDED_FOR'))
+    else if (getenv('HTTP_X_FORWARDED_FOR'))
         $ipaddress = getenv('HTTP_X_FORWARDED_FOR');
-    else if(getenv('HTTP_X_FORWARDED'))
+    else if (getenv('HTTP_X_FORWARDED'))
         $ipaddress = getenv('HTTP_X_FORWARDED');
-    else if(getenv('HTTP_FORWARDED_FOR'))
+    else if (getenv('HTTP_FORWARDED_FOR'))
         $ipaddress = getenv('HTTP_FORWARDED_FOR');
-    else if(getenv('HTTP_FORWARDED'))
+    else if (getenv('HTTP_FORWARDED'))
         $ipaddress = getenv('HTTP_FORWARDED');
-    else if(getenv('REMOTE_ADDR'))
+    else if (getenv('REMOTE_ADDR'))
         $ipaddress = getenv('REMOTE_ADDR');
     else
         $ipaddress = 'UNKNOWN';
     return $ipaddress;
+}
+
+function getCategoryImage($picture)
+{
+    if($picture) {
+        return url('public/images/category/picture/'. $picture);
+    } else {
+        return url('public/images/no-image.png');
+    }
+}
+
+function getPageImage($image, $pictureOrCover = '')
+{
+    if($image) {
+        if($pictureOrCover == 'picture') {
+            return url('public/images/page/picture/'. $image);
+        } else {
+            return url('public/images/page/cover/'. $image);
+        }
+    } else {
+        return url('public/images/no-image.png');
+    }
 }

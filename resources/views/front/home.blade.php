@@ -127,7 +127,7 @@
                                 <div class="grid">
                                     <div class="img-holder">
                                         <a href="{{route('front.category.show', $val2['uuid'])}}"><img loading="lazy" style="width: 275px;height: 340px;"
-                                                         src="{{ url('public/images/category/picture/'. $val2['picture']) }}"
+                                                         src="{{ getCategoryImage($val2['picture']) }}"
                                                          alt></a>
                                     </div>
                                     <div class="details" style="padding: 15px;">
