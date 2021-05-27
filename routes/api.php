@@ -4,7 +4,6 @@ use Illuminate\Http\Request;
 
 Route::group([
     'middleware' => [
-//        'api',
         'cors'
     ],
 ], function ($router) {
@@ -19,5 +18,6 @@ Route::group([
     Route::get('page/terms', 'ApisController@showTermsPage');
     Route::get('user/{uuid}', 'ApisController@showUser');
     Route::get('user/{uuid}/ads', 'ApisController@showUserAds');
+    Route::post('user/{uuid}/add-new-ads', 'ApisController@addUserInsert');
 });
 
