@@ -1,23 +1,8 @@
 <?php
-Route::group(
-    ['middleware' => ['cors']
-    ], function () {
-
-});
-
 // Site Languages
 Route::get('language/{language}', 'LanguagesController@setLanguage')->name('language');
 
 Auth::routes(['verify' => true]);
-
-/*
-|--------------------------------------------------------------------------
-| Dashboard routes
-|--------------------------------------------------------------------------
-|
-| Here is where dashboard routes exists.
-|
-*/
 
 Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/', 'DashboardController@index')->name('dashboard.index');
