@@ -34,8 +34,8 @@ class ApisController extends Controller
     {
         $data['ads'] = Advertise::where('is_featured', 1)->get();
         foreach ($data['ads'] as $ad){
-            $ad->cover = url('public/images/ver/cover/'. $ad->cover);;
-            $ad->images = url('public/images/ver/image/'. $ad->images);;
+            $ad->cover = url($ad->cover);;
+            $ad->images = url($ad->images);;
         }
         return response($data['ads']);
     }
@@ -69,8 +69,8 @@ class ApisController extends Controller
         $data['user'] = User::getOneBy('uuid', $uuid);
         $data['ads'] = Advertise::getAllBy('created_by', $data['user']->id);
         foreach ($data['ads'] as $ad){
-            $ad->cover = url('public/images/ver/cover/'. $ad->cover);;
-            $ad->images = url('public/images/ver/image/'. $ad->images);;
+            $ad->cover = url($ad->cover);;
+            $ad->images = url($ad->images);;
         }
         return response()->json($data['ads']);
     }
@@ -119,7 +119,7 @@ class ApisController extends Controller
         }else{
             $resource->status = 0;
         }
-        
+
         return response()->json($resource);
     }
 }
