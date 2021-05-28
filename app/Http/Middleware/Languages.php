@@ -17,6 +17,8 @@ class Languages
     {
         if (session()->has('locale')) {
             app()->setLocale(session()->get('locale'));
+        } else {
+            app()->setLocale('ar');
         }
         return $next($request);
     }

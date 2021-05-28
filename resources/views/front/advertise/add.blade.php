@@ -36,7 +36,7 @@
                             <div class="col-md-12">
                                 <form action="{{ route('front.advertise.create') }}" method="post"
                                       enctype="multipart/form-data">
-                                    @csrf
+                                    {{ csrf_field() }}
                                     <div class="woocommerce-billing-fields">
 
                                         <h3>{{trans('website.advertise_details')}}</h3>

@@ -43,7 +43,7 @@
                             <div class="col-md-12" style="padding-top: 50px;">
                                 <form action="{{ route('front.user.update_profile') }}" method="post"
                                       enctype="multipart/form-data">
-                                    @csrf
+                                    {{ csrf_field() }}
                                     <div class="woocommerce-billing-fields">
 
                                         <h3>{{trans('website.update_profile')}}</h3>
@@ -86,7 +86,7 @@
                             <div class="col-md-12" style="padding-top: 100px;">
                                 <form action="{{ route('front.user.change_password') }}" method="post"
                                       enctype="multipart/form-data">
-                                    @csrf
+                                    {{ csrf_field() }}
                                     <div class="woocommerce-billing-fields">
 
                                         <h3>{{trans('website.change_password')}}</h3>

@@ -1,5 +1,5 @@
 <form method="get" action="{{ route('users.index') }}" enctype="multipart/form-data">
-    @csrf
+    {{ csrf_field() }}
 
     <div class="row">
         <div class="col-md-6">

@@ -12,7 +12,7 @@
                                 <h2>{{trans('website.login')}}</h2>
                                 <form class="woocommerce-form woocommerce-form-login login" method="post"
                                       action="{{ route('front.user.postLogin') }}">
-                                    @csrf
+                                    {{ csrf_field() }}
                                     <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
                                         <label for="email">{{trans('website.email')}}&nbsp;<span
                                                 class="required">*</span></label>
@@ -54,7 +54,7 @@
                                 <h2>{{trans('website.register')}}</h2>
                                 <form class="woocommerce-form woocommerce-form-register register" method="post"
                                       action="{{ route('front.user.postRegister') }}">
-                                    @csrf
+                                    {{ csrf_field() }}
                                     <p class="woocommerce-form-row woocommerce-form-row--wide form-row form-row-wide">
                                         <label for="name">{{trans('website.name')}}&nbsp;<span
                                                 class="required">*</span></label>

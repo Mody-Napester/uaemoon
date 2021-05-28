@@ -15,7 +15,7 @@ class DashboardController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+//        $this->middleware('auth');
     }
 
     /**
@@ -24,12 +24,6 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        if (session()->has('locale')) {
-            app()->setLocale(session()->get('locale'));
-        } else {
-            $locale = app()->getLocale();
-            session()->put('locale', $locale);
-        }
         return view('dashboard');
     }
 

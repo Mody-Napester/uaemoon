@@ -37,7 +37,7 @@
         <div class="col-lg-12">
             <div class="card-box">
                 <form action="{{ route('category.store') }}" method="post" enctype="multipart/form-data">
-                    @csrf
+                    {{ csrf_field() }}
                     <div class="row">
 
 {{--                        <div class="col-md-6">--}}

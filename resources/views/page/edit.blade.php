@@ -31,7 +31,7 @@
                 <div class="card-box">
                     <form action="{{ route('page.update', $resource->uuid) }}" method="post"
                           enctype="multipart/form-data">
-                        @csrf
+                        {{ csrf_field() }}
                         @method('PUT')
                         <div class="row">
                             <div class="col-md-12">

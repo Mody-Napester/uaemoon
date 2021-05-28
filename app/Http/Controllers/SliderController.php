@@ -16,11 +16,12 @@ class SliderController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+//        $this->middleware('auth');
     }
 
     public function listSlider()
     {
+//        dd(session()->get('locale'), app()->getLocale());
         // Check Authority
         if (!check_authority('list.slider')) {
             return redirect('/');

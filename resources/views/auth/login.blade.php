@@ -17,7 +17,7 @@
 
             <div class="p-20">
                 <form class="form-horizontal" method="post" action="{{ route('login') }}">
-                    @csrf
+                    {{ csrf_field() }}
 
                     <div class="form-group">
                         <label class="control-label" for="email">{{ trans('login.Username') }}</label><i class="bar"></i>

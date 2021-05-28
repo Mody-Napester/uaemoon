@@ -13,12 +13,6 @@ class HomeController extends Controller
 {
     public function index()
     {
-        if (session()->has('locale')) {
-            app()->setLocale(session()->get('locale'));
-        } else {
-            $locale = app()->getLocale();
-            session()->put('locale', $locale);
-        }
         $data['settings'] = Settings::getById(1);
         $data['slider'] = Slider::getAll();
         $data['categories'] = Category::getAll([
