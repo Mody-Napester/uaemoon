@@ -99,6 +99,20 @@ class ApisController extends Controller
         return response($data['terms']);
     }
 
+    public function listPages()
+    {
+        $data['pages'] = Page::all();
+
+        foreach ($data['pages'] as $page){
+            $page->name = getFromJson($page->name, lang());
+            $page->details = getFromJson($page->details, lang());
+            $page->picture = url('public/images/page/picture/'. $page->picture);
+            $page->cover = url('public/images/page/cover/'. $page->cover);
+        }
+
+        return response($data['pages']);
+    }
+
     public function showUser($uuid)
     {
         $data['user'] = User::getOneBy('uuid', $uuid);
@@ -185,8 +199,8 @@ class ApisController extends Controller
             'title_en' => $request->title,
             'details_ar' => $request->details,
             'details_en' => $request->details,
-            'cover' => $image,
-            'images' => $image, // implode(',', $all_images)
+            'cover' => (isset($image)) ? $image : '',
+            'images' => (isset($image)) ? $image : '', // implode(',', $all_images)
             'status' => 0,
             'created_by' => $data['user']->id,
         ]);

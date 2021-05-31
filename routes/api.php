@@ -22,6 +22,7 @@ Route::group([
     Route::get('user/{uuid}/ads', 'ApisController@showUserAds');
     Route::post('user/{uuid}/add-new-ads', 'ApisController@addUserInsert');
 
+    Route::get('pages/all', 'ApisController@listPages');
     Route::get('pages/privacy', 'ApisController@showPrivacyPage');
     Route::get('pages/terms', 'ApisController@showTermsPage');
 
