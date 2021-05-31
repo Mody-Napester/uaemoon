@@ -29,7 +29,10 @@
                 <div class="col col-xs-12">
                     <div class="shop-area clearfix">
                         <ul class="products">
-                            @foreach($resource->advertises as $key => $val)
+                            @php
+                            $advertises = $resource->advertises()->where('status', 1)->get();
+                            @endphp
+                            @foreach($advertises as $key => $val)
                                 <li class="product">
                                     <div class="product-holder text-center">
                                         {{--                                    <div class="product-badge discount">-27%</div>--}}

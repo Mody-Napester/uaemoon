@@ -74,7 +74,7 @@ class CategoryController extends Controller
         $details = [];
         foreach (langs("short_name") as $lang) {
             $rules['name_' . $lang] = 'required';
-            $rules['details_' . $lang] = 'required';
+//            $rules['details_' . $lang] = 'required';
 
             $name[$lang] = $request->input('name_' . $lang);
             $details[$lang] = $request->input('details_' . $lang);
@@ -194,7 +194,7 @@ class CategoryController extends Controller
         $details = [];
         foreach (langs("short_name") as $lang) {
             $rules['name_' . $lang] = 'required';
-            $rules['details_' . $lang] = 'required';
+//            $rules['details_' . $lang] = 'required';
 
             $name[$lang] = $request->input('name_' . $lang);
             $details[$lang] = $request->input('details_' . $lang);
