@@ -62,7 +62,7 @@ class CategoryController extends Controller
         // Validation
         $rules = [
 //            'parent_id' => 'required',
-//            'icon' => 'required',
+            'icon' => 'required',
 //            'picture' => 'required',
 //            'cover' => 'required',
             'is_active' => 'required',
@@ -77,22 +77,22 @@ class CategoryController extends Controller
 //            $rules['details_' . $lang] = 'required';
 
             $name[$lang] = $request->input('name_' . $lang);
-            $details[$lang] = $request->input('details_' . $lang);
+//            $details[$lang] = $request->input('details_' . $lang);
         }
 
         $request->validate($rules);
 
-        if ($request->hasFile('picture')) {
-            $upload = upload_file('image', $request->file('picture'), 'public/images/category/picture');
-            if ($upload['status'] == true) {
-                $picture = $upload['filename'];
-            } else {
-                return back()->with('message', [
-                    'type' => 'danger',
-                    'text' => 'Image ' . $upload['message']
-                ]);
-            }
-        }
+//        if ($request->hasFile('picture')) {
+//            $upload = upload_file('image', $request->file('picture'), 'public/images/category/picture');
+//            if ($upload['status'] == true) {
+//                $picture = $upload['filename'];
+//            } else {
+//                return back()->with('message', [
+//                    'type' => 'danger',
+//                    'text' => 'Image ' . $upload['message']
+//                ]);
+//            }
+//        }
 
         if ($request->parent_id) {
             $parent = (Category::getOneBy('uuid', $request->parent_id)) ? Category::getOneBy('uuid', $request->parent_id)->id : 0;
@@ -104,8 +104,8 @@ class CategoryController extends Controller
             'slug' => Str::slug($name['en'], '-'),
             'name' => json_encode($name),
             'details' => json_encode($details),
-//            'icon' => $request->icon,
-            'picture' => (isset($picture)) ? $picture : '',
+            'icon' => $request->icon,
+//            'picture' => (isset($picture)) ? $picture : '',
 //            'cover' => (isset($cover)) ? $cover : '',
             'is_active' => ($request->is_active == 1) ? 1 : 0,
             'in_menu' => (isset($request->in_menu)) ? 1 : 0,
@@ -182,7 +182,7 @@ class CategoryController extends Controller
 
         $rules = [
 //            'parent_id' => 'required',
-//            'icon' => 'required',
+            'icon' => 'required',
 //            'picture' => 'required',
 //            'cover' => 'required',
             'is_active' => 'required',
@@ -197,26 +197,25 @@ class CategoryController extends Controller
 //            $rules['details_' . $lang] = 'required';
 
             $name[$lang] = $request->input('name_' . $lang);
-            $details[$lang] = $request->input('details_' . $lang);
+//            $details[$lang] = $request->input('details_' . $lang);
         }
 
         $request->validate($rules);
-        $resource = Category::getOneBy('id', $category->id);
-
-        if ($request->hasFile('picture')) {
-            if(file_exists(public_path('images/category/picture/' . $resource->picture))) {
-                unlink(public_path('images/category/picture/' . $resource->picture));
-            }
-            $upload = upload_file('image', $request->file('picture'), 'public/images/category/picture');
-            if ($upload['status'] == true) {
-                $picture = $upload['filename'];
-            } else {
-                return back()->with('message', [
-                    'type' => 'danger',
-                    'text' => 'Image ' . $upload['message']
-                ]);
-            }
-        }
+//        $resource = Category::getOneBy('id', $category->id);
+//        if ($request->hasFile('picture')) {
+//            if(file_exists(public_path('images/category/picture/' . $resource->picture))) {
+//                unlink(public_path('images/category/picture/' . $resource->picture));
+//            }
+//            $upload = upload_file('image', $request->file('picture'), 'public/images/category/picture');
+//            if ($upload['status'] == true) {
+//                $picture = $upload['filename'];
+//            } else {
+//                return back()->with('message', [
+//                    'type' => 'danger',
+//                    'text' => 'Image ' . $upload['message']
+//                ]);
+//            }
+//        }
 
         if ($request->parent_id) {
             $parent = (Category::getOneBy('uuid', $request->parent_id)) ? Category::getOneBy('uuid', $request->parent_id)->id : 0;
@@ -228,8 +227,8 @@ class CategoryController extends Controller
             'slug' => Str::slug($name['en'], '-'),
             'name' => json_encode($name),
             'details' => json_encode($details),
-//            'icon' => $request->icon,
-            'picture' => (isset($picture)) ? $picture : $data['resource']->picture,
+            'icon' => $request->icon,
+//            'picture' => (isset($picture)) ? $picture : $data['resource']->picture,
 //            'cover' => (isset($cover)) ? $cover : $data['resource']->cover,
             'is_active' => ($request->is_active == 1) ? 1 : 0,
             'in_menu' => (isset($request->in_menu)) ? 1 : 0,
@@ -267,7 +266,7 @@ class CategoryController extends Controller
         $data['resource'] = $category;
 
         if ($data['resource']) {
-            if(file_exists(public_path('images/category/picture/' . $category->picture))) {
+            if($category->picture && file_exists(public_path('images/category/picture/' . $category->picture))) {
                 unlink(public_path('images/category/picture/' . $category->picture));
             }
             $data['resource']->delete();

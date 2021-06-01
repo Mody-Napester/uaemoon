@@ -3,7 +3,7 @@
 @section('title') {{ trans('category.categories') }} @endsection
 
 @section('head')
-    <link rel="stylesheet" media="screen" href="{{ url('assets/css/cartzilla.icons.css') }}">
+{{--    <link rel="stylesheet" media="screen" href="{{ url('assets/css/cartzilla.icons.css') }}">--}}
     <script src="{{ url('assets/plugins/ckeditor/ckeditor.js') }}"></script>
 @endsection
 
@@ -105,49 +105,53 @@
                                 </div>
                             @endforeach
 
-                            @foreach(langs("short_name") as $lang)
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label class="form-col-form-label"
-                                               for="details_{{ $lang }}">{{ trans('category.details') }}
-                                            ({{ $lang }})</label>
-                                        <textarea
-                                            class="form-control @if ($errors->has('details_'.$lang)) is-invalid @endif "
-                                            id="details_{{ $lang }}" name="details_{{ $lang }}"
-                                            placeholder="Enter details_{{ $lang }} ..">{{ getFromJson($resource->details , $lang) }}</textarea>
+{{--                            @foreach(langs("short_name") as $lang)--}}
+{{--                                <div class="col-md-6">--}}
+{{--                                    <div class="form-group">--}}
+{{--                                        <label class="form-col-form-label"--}}
+{{--                                               for="details_{{ $lang }}">{{ trans('category.details') }}--}}
+{{--                                            ({{ $lang }})</label>--}}
+{{--                                        <textarea--}}
+{{--                                            class="form-control @if ($errors->has('details_'.$lang)) is-invalid @endif "--}}
+{{--                                            id="details_{{ $lang }}" name="details_{{ $lang }}"--}}
+{{--                                            placeholder="Enter details_{{ $lang }} ..">{{ getFromJson($resource->details , $lang) }}</textarea>--}}
 
-                                        @if ($errors->has('details_'.$lang))
-                                            <div class="invalid-feedback">{{ $errors->first('details_'.$lang) }}</div>
-                                        @endif
+{{--                                        @if ($errors->has('details_'.$lang))--}}
+{{--                                            <div class="invalid-feedback">{{ $errors->first('details_'.$lang) }}</div>--}}
+{{--                                        @endif--}}
 
-                                        <script>
-                                            CKEDITOR.replace('details_{{ $lang }}');
-                                        </script>
-                                    </div>
-                                </div>
-                            @endforeach
-
-{{--                            <div class="col-md-12">--}}
-{{--                                <label class="form-col-form-label" for="icon">{{ trans('category.icon') }}</label>--}}
-{{--                                <div class="row">--}}
-{{--                                    <div class="col-md-9">--}}
-{{--                                        <div class="form-group">--}}
-{{--                                            <input class="form-control  @if ($errors->has('icon')) is-invalid @endif "--}}
-{{--                                                   id="icon"--}}
-{{--                                                   type="text" name="icon"--}}
-{{--                                                   placeholder="Enter icon .." value="{{ $resource->icon }}">--}}
-
-{{--                                            @if ($errors->has('icon'))--}}
-{{--                                                <div class="invalid-feedback">{{ $errors->first('icon') }}</div>--}}
-{{--                                            @endif--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="col-md-3">--}}
-{{--                                        <span class="btn btn-orange btn-block font_icons_btn">{{ trans('category.fonts') }} &nbsp; <i--}}
-{{--                                                class="czi-arrow-down"></i></span>--}}
+{{--                                        <script>--}}
+{{--                                            CKEDITOR.replace('details_{{ $lang }}');--}}
+{{--                                        </script>--}}
 {{--                                    </div>--}}
 {{--                                </div>--}}
-{{--                            </div>--}}
+{{--                            @endforeach--}}
+
+                            <div class="col-md-12">
+                                <label class="form-col-form-label" for="icon">{{ trans('category.icon') }}</label>
+                                <br>
+                                <small>Example: get name of icon like: fa-xxxxxxxxxxxx</small>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <input class="form-control  @if ($errors->has('icon')) is-invalid @endif "
+                                                   id="icon"
+                                                   type="text" name="icon"
+                                                   placeholder="Enter icon .." value="{{ $resource->icon }}">
+
+                                            @if ($errors->has('icon'))
+                                                <div class="invalid-feedback">{{ $errors->first('icon') }}</div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <a href="https://fontawesome.com/v4.7/icons/" target="_blank">
+                                        <span class="btn btn-orange btn-block font_icons_btn">{{ trans('category.get_icons') }} &nbsp; <i
+                                                class="fa fa-link"></i></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
 
 {{--                            <div class="col-md-12 font_icons_container" style="display: none;">--}}
 {{--                                @include('category._partials.font_icons')--}}
@@ -167,20 +171,20 @@
                                        class="form-control">
                             </div>
 
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-col-form-label"
-                                           for="picture">{{ trans('category.picture') }}</label>
-                                    <small>Recommended dimension 275 x 340</small>
-                                    <input class="form-control  @if ($errors->has('picture')) is-invalid @endif"
-                                           id="picture"
-                                           type="file" name="picture">
+{{--                            <div class="col-md-6">--}}
+{{--                                <div class="form-group">--}}
+{{--                                    <label class="form-col-form-label"--}}
+{{--                                           for="picture">{{ trans('category.picture') }}</label>--}}
+{{--                                    <small>Recommended dimension 275 x 340</small>--}}
+{{--                                    <input class="form-control  @if ($errors->has('picture')) is-invalid @endif"--}}
+{{--                                           id="picture"--}}
+{{--                                           type="file" name="picture">--}}
 
-                                    @if ($errors->has('picture'))
-                                        <div class="invalid-feedback">{{ $errors->first('picture') }}</div>
-                                    @endif
-                                </div>
-                            </div>
+{{--                                    @if ($errors->has('picture'))--}}
+{{--                                        <div class="invalid-feedback">{{ $errors->first('picture') }}</div>--}}
+{{--                                    @endif--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
 
 {{--                            <div class="col-md-6">--}}
 {{--                                <div class="form-group">--}}

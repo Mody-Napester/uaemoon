@@ -115,7 +115,7 @@
 
     @if(!$categories->isEmpty())
         <!-- start featured-proeducts-section-s2 -->
-        <section class="featured-proeducts-section-s2 section-padding">
+        <section class="category-section-area section-padding">
             <div class="container-1410">
                 <div class="row">
                     <div class="col col-xs-12">
@@ -126,30 +126,44 @@
                 </div>
                 <div class="row">
                     <div class="col col-xs-12">
-                        @php
-                            $chunks = array_chunk($categories->toArray(), 3);
-                        @endphp
-                        @foreach($chunks as $key => $val)
-                            <div class="product-grids clearfix">
-                                @foreach($val as $key2 => $val2)
-                                    <div class="grid">
-                                        <div class="img-holder">
-                                            <a href="{{route('front.category.show', $val2['uuid'])}}"><img
-                                                    loading="lazy"
-                                                    style="width: 275px;height: 340px;"
-                                                    src="{{ getCategoryImage($val2['picture']) }}"
-                                                    alt></a>
-                                        </div>
-                                        <div class="details" style="padding: 15px;">
-                                            <h3>{{getFromJson($val2['name'] , lang())}}</h3>
-                                            <a href="{{route('front.category.show', $val2['uuid'])}}"
-                                               class="shop-btn">{{trans('website.see_more')}}</a>
-                                        </div>
-                                    </div>
+                        <div class="all-cat">
+                            <ul class="clearfix" style="text-align: center !important;">
+                                @foreach($categories as $key => $val)
+                                    <li style="margin: 0 20px;text-align: center !important;">
+                                        <a
+                                            href="{{route('front.category.show', $val['uuid'])}}">
+                                            <i style="padding-bottom: 20px;" class="fa {{$val['icon']}}  fa-5x"></i>
+                                            <span>{{getFromJson($val['name'] , lang())}}</span>
+                                        </a>
+                                    </li>
                                 @endforeach
-                            </div>
-                        @endforeach
+                            </ul>
+                        </div>
                     </div>
+                    {{--                    <div class="col col-xs-12">--}}
+                    {{--                        @php--}}
+                    {{--                            $chunks = array_chunk($categories->toArray(), 3);--}}
+                    {{--                        @endphp--}}
+                    {{--                        @foreach($chunks as $key => $val)--}}
+                    {{--                            <div class="product-grids clearfix">--}}
+                    {{--                                @foreach($val as $key2 => $val2)--}}
+                    {{--                                    <div class="grid">--}}
+                    {{--                                        <div class="img-holder">--}}
+                    {{--                                            <a href="{{route('front.category.show', $val2['uuid'])}}">--}}
+                    {{--                                                <img loading="lazy" style="width: 275px;height: 340px;" src="{{ getCategoryImage($val2['picture']) }}" alt>--}}
+                    {{--                                                {!! $val2['icon'] !!}--}}
+                    {{--                                            </a>--}}
+                    {{--                                        </div>--}}
+                    {{--                                        <div class="details" style="padding: 15px;">--}}
+                    {{--                                            <h3>{{getFromJson($val2['name'] , lang())}}</h3>--}}
+                    {{--                                            <a href="{{route('front.category.show', $val2['uuid'])}}"--}}
+                    {{--                                               class="shop-btn">{{trans('website.see_more')}}</a>--}}
+                    {{--                                        </div>--}}
+                    {{--                                    </div>--}}
+                    {{--                                @endforeach--}}
+                    {{--                            </div>--}}
+                    {{--                        @endforeach--}}
+                    {{--                    </div>--}}
                 </div>
             </div> <!-- end container-1410 -->
         </section>

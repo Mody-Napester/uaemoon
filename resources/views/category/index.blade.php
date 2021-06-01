@@ -42,8 +42,8 @@
                         <th>Slug</th>
 {{--                        <th>Parent</th>--}}
                         <th>Name</th>
-{{--                        <th>Icon</th>--}}
-                        <th>Picture</th>
+                        <th>Icon</th>
+{{--                        <th>Picture</th>--}}
 {{--                        <th>Cover</th>--}}
                         <th>Active</th>
                         <th>In menu</th>
@@ -69,14 +69,14 @@
 {{--                                @endif--}}
 {{--                            </td>--}}
                             <td>{{ getFromJson($resource->name , lang()) }}</td>
-{{--                            <td style="text-align: center"><i class="{{ $resource->icon }}"></i></td>--}}
-                            <td>
-                                <div style="width:50px;height: 50px;overflow: hidden">
-                                    <img style="width:100%;"
-                                         src="{{ getCategoryImage($resource->picture) }}"
-                                         alt="">
-                                </div>
-                            </td>
+                            <td style="text-align: center"><i class="fa {{ $resource->icon }} fa-lg"></i></td>
+{{--                            <td>--}}
+{{--                                <div style="width:50px;height: 50px;overflow: hidden">--}}
+{{--                                    <img style="width:100%;"--}}
+{{--                                         src="{{ getCategoryImage($resource->picture) }}"--}}
+{{--                                         alt="">--}}
+{{--                                </div>--}}
+{{--                            </td>--}}
 {{--                            <td>--}}
 {{--                                <div style="width:50px;height: 50px;overflow: hidden">--}}
 {{--                                    <img style="width:100%;"--}}
