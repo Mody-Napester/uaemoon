@@ -129,10 +129,10 @@
                         <div class="all-cat">
                             <ul class="clearfix" style="text-align: center !important;">
                                 @foreach($categories as $key => $val)
-                                    <li style="margin: 0 20px;text-align: center !important;">
+                                    <li style="margin: 0 20px;text-align: center !important;height: 230px;">
                                         <a
                                             href="{{route('front.category.show', $val['uuid'])}}">
-                                            <i style="padding-bottom: 20px;" class="fa {{$val['icon']}}  fa-5x"></i>
+                                            <i style="padding-bottom: 30px;" class="fa {{$val['icon']}}  fa-5x"></i>
                                             <span>{{getFromJson($val['name'] , lang())}}</span>
                                         </a>
                                     </li>
