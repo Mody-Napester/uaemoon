@@ -29,6 +29,7 @@
 
         <link href="{{ url('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ url('assets/css/icons.css') }}" rel="stylesheet" type="text/css" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
         @if(lang() == 'ar')
             <link href="{{ url('assets/css/style-rtl.css') }}" rel="stylesheet" type="text/css" />
         @else

@@ -49,7 +49,8 @@
     <link href="{{ url('assets/front/assets/css/jquery.fancybox.css') }}" rel="stylesheet">
     <link href="{{ url('assets/front/assets/css/jquery-ui.css') }}" rel="stylesheet">
 
-    <link href="{{ url('assets/css/icons.css') }}" rel="stylesheet" type="text/css"/>
+{{--    <link href="{{ url('assets/css/icons.css') }}" rel="stylesheet" type="text/css"/>--}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <link href="{{ url('assets/css/alerts.css') }}" rel="stylesheet" type="text/css"/>
 
     <link href="{{ url('assets/front/assets/css/style.css') }}" rel="stylesheet">
