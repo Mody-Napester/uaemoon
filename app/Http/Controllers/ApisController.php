@@ -178,7 +178,8 @@ class ApisController extends Controller
 
     public function uploadImage(Request $request)
     {
-        return count($request->file('picture'));
+//        $request->picture = json_decode($request->picture);
+//        return $request->all();
 
         $resource = [];
 
@@ -189,27 +190,21 @@ class ApisController extends Controller
             $cover = 'public/images/inserts/cover/' . $upload['filename'];
         }
 
-        // $picture = '';
-        // $upload2 = upload_file('image', $request->file('picture'), 'public/images/inserts/image');
-        // if ($upload['status'] == true) {
-        //     $picture = 'public/images/inserts/image/' . $upload['filename'];
-        // }
-
         // Images
         $images = array();
-        foreach ($request->file('picture') as $index => $image) {
-            $upload3 = upload_file('image', $image, 'public/images/inserts/image');
+        for ($i = 0; $i < $request->pictures_count ; $i++){
+            $upload3 = upload_file('image', $request->file('picture_'.$i), 'public/images/inserts/image');
             if ($upload3['status'] == true) {
                 $images[] = 'public/images/inserts/image/' . $upload3['filename'];
             }
         }
 
-        // if(isset($image)){
-        //     $resource['image'] = $image;
-        //     $resource['status'] = 1;
-        // }else{
-        //     $resource['status'] = 0;
-        // }
+         if(isset($image)){
+             $resource['image'] = $image;
+             $resource['status'] = 1;
+         }else{
+             $resource['status'] = 0;
+         }
 
         return response()->json($resource);
     }
@@ -226,20 +221,13 @@ class ApisController extends Controller
         }
 
         // Images
-        $picture = '';
-        $upload2 = upload_file('image', $request->file('picture'), 'public/images/inserts/image');
-        if ($upload2['status'] == true) {
-            $picture = 'public/images/inserts/image/' . $upload2['filename'];
+        $images = array();
+        for ($i = 0; $i < $request->pictures_count ; $i++){
+            $upload3 = upload_file('image', $request->file('picture_'.$i), 'public/images/inserts/image');
+            if ($upload3['status'] == true) {
+                $images[] = 'public/images/inserts/image/' . $upload3['filename'];
+            }
         }
-
-        // Images
-        // $images = array();
-        // foreach ($request->file('images') as $index => $image) {
-        //     $upload = upload_file('image', $request->file('images')[$index], 'public/images/inserts/image');
-        //     if ($upload['status'] == true) {
-        //         $images[] = 'public/images/inserts/image/' . $upload['filename'];
-        //     }
-        // }
 
         if ($request->category) {
             $category_id = (Category::getOneBy('uuid', $request->category)) ? Category::getOneBy('uuid', $request->category)->id : 0;
@@ -255,7 +243,7 @@ class ApisController extends Controller
             'details_ar' => $request->details,
             'details_en' => $request->details,
             'cover' => $cover,
-            'images' => $picture,
+            'images' => implode(',', $images),
             'status' => 0,
             'created_by' => $data['user']->id,
         ]);
