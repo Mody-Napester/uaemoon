@@ -64,6 +64,7 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js') }}"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js') }}"></script>
     <![endif]-->
+    <script src="https://kit.fontawesome.com/b505813215.js" crossorigin="anonymous"></script>
     <style>
         .is-invalid {
             border: 1px solid red !important;
@@ -384,6 +385,10 @@
             $(this).remove();
         });
     });
+    $(".fontawesome2x i").addClass('fa-2x');
+    $(".fontawesome5x i").addClass('fa-5x');
+    $(".fontawesome7x i").addClass('fa-7x');
+    $(".fontawesome10x i").addClass('fa-10x');
 </script>
 @yield('footer')
 </body>

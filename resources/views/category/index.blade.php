@@ -69,7 +69,7 @@
 {{--                                @endif--}}
 {{--                            </td>--}}
                             <td>{{ getFromJson($resource->name , lang()) }}</td>
-                            <td style="text-align: center"><i class="fa {{ $resource->icon }} fa-lg"></i></td>
+                            <td style="text-align: center" class="fontawesome2x">{!! $resource->icon !!}</td>
 {{--                            <td>--}}
 {{--                                <div style="width:50px;height: 50px;overflow: hidden">--}}
 {{--                                    <img style="width:100%;"--}}
