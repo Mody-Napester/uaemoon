@@ -115,12 +115,10 @@
 
                         <div class="col-md-12">
                             <label class="form-col-form-label" for="icon">{{ trans('category.icon') }}</label>
-                            <br>
-                            <small>Example: get name of icon like: fa-xxxxxxxxxxxx</small>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <input required
+                                        <input required placeholder="{{'<i class="xxx xxxxxxxxxxx"></i>'}}"
                                                class="form-control @if ($errors->has('icon')) is-invalid @endif "
                                                id="icon" type="text" name="icon" value="{{ old('icon') }}">
 
@@ -130,7 +128,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <a href="https://fontawesome.com/v4.7/icons/" target="_blank">
+                                    <a href="https://fontawesome.com/v5.15/icons?d=gallery&p=2&m=free" target="_blank">
                                         <span class="btn btn-orange btn-block font_icons_btn">{{ trans('category.get_icons') }} &nbsp; <i
                                             class="fa fa-link"></i></span>
                                     </a>

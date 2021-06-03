@@ -49,7 +49,8 @@
     <link href="{{ url('assets/front/assets/css/jquery.fancybox.css') }}" rel="stylesheet">
     <link href="{{ url('assets/front/assets/css/jquery-ui.css') }}" rel="stylesheet">
 
-    <link href="{{ url('assets/css/icons.css') }}" rel="stylesheet" type="text/css"/>
+{{--    <link href="{{ url('assets/css/icons.css') }}" rel="stylesheet" type="text/css"/>--}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <link href="{{ url('assets/css/alerts.css') }}" rel="stylesheet" type="text/css"/>
 
     <link href="{{ url('assets/front/assets/css/style.css') }}" rel="stylesheet">
@@ -63,6 +64,7 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js') }}"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js') }}"></script>
     <![endif]-->
+    <script src="https://kit.fontawesome.com/b505813215.js" crossorigin="anonymous"></script>
     <style>
         .is-invalid {
             border: 1px solid red !important;
@@ -383,6 +385,10 @@
             $(this).remove();
         });
     });
+    $(".fontawesome2x i").addClass('fa-2x');
+    $(".fontawesome5x i").addClass('fa-5x');
+    $(".fontawesome7x i").addClass('fa-7x');
+    $(".fontawesome10x i").addClass('fa-10x');
 </script>
 @yield('footer')
 </body>

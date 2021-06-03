@@ -29,6 +29,7 @@
 
         <link href="{{ url('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ url('assets/css/icons.css') }}" rel="stylesheet" type="text/css" />
+{{--        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />--}}
         @if(lang() == 'ar')
             <link href="{{ url('assets/css/style-rtl.css') }}" rel="stylesheet" type="text/css" />
         @else
@@ -58,7 +59,7 @@
                 background-color: #a0d7cd;
             }
         </style>
-
+        <script src="https://kit.fontawesome.com/b505813215.js" crossorigin="anonymous"></script>
     </head>
 
     <body class="fixed-left">
@@ -501,6 +502,10 @@
         <script type="text/javascript">
             $(document).ready(function() {
                 $('form').parsley();
+                $(".fontawesome2x").addClass('fa-2x');
+                $(".fontawesome5x").addClass('fa-5x');
+                $(".fontawesome7x").addClass('fa-7x');
+                $(".fontawesome10x").addClass('fa-10x');
             });
         </script>
 

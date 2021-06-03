@@ -130,10 +130,10 @@
                             <ul class="clearfix" style="text-align: center !important;">
                                 @foreach($categories as $key => $val)
                                     <li style="margin: 0 20px;text-align: center !important;height: 230px;">
-                                        <a
+                                        <a style="padding-bottom: 30px;" class="fontawesome5x"
                                             href="{{route('front.category.show', $val['uuid'])}}">
-                                            <i style="padding-bottom: 30px;" class="fa {{$val['icon']}}  fa-5x"></i>
-                                            <span>{{getFromJson($val['name'] , lang())}}</span>
+                                            {!! $val['icon'] !!}
+                                            <span style="padding-top: 20px;">{{getFromJson($val['name'] , lang())}}</span>
                                         </a>
                                     </li>
                                 @endforeach
