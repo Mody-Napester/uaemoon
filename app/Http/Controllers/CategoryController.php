@@ -63,7 +63,7 @@ class CategoryController extends Controller
         $rules = [
 //            'parent_id' => 'required',
             'icon' => 'required',
-//            'picture' => 'required',
+            'picture' => 'required',
 //            'cover' => 'required',
             'is_active' => 'required',
             'order' => 'required',
@@ -82,17 +82,17 @@ class CategoryController extends Controller
 
         $request->validate($rules);
 
-//        if ($request->hasFile('picture')) {
-//            $upload = upload_file('image', $request->file('picture'), 'public/images/category/picture');
-//            if ($upload['status'] == true) {
-//                $picture = $upload['filename'];
-//            } else {
-//                return back()->with('message', [
-//                    'type' => 'danger',
-//                    'text' => 'Image ' . $upload['message']
-//                ]);
-//            }
-//        }
+        if ($request->hasFile('picture')) {
+            $upload = upload_file('image', $request->file('picture'), 'public/images/category/picture');
+            if ($upload['status'] == true) {
+                $picture = $upload['filename'];
+            } else {
+                return back()->with('message', [
+                    'type' => 'danger',
+                    'text' => 'Image ' . $upload['message']
+                ]);
+            }
+        }
 
         if ($request->parent_id) {
             $parent = (Category::getOneBy('uuid', $request->parent_id)) ? Category::getOneBy('uuid', $request->parent_id)->id : 0;
@@ -105,7 +105,7 @@ class CategoryController extends Controller
             'name' => json_encode($name),
             'details' => json_encode($details),
             'icon' => $request->icon,
-//            'picture' => (isset($picture)) ? $picture : '',
+            'picture' => (isset($picture)) ? $picture : '',
 //            'cover' => (isset($cover)) ? $cover : '',
             'is_active' => ($request->is_active == 1) ? 1 : 0,
             'in_menu' => (isset($request->in_menu)) ? 1 : 0,
@@ -201,21 +201,22 @@ class CategoryController extends Controller
         }
 
         $request->validate($rules);
-//        $resource = Category::getOneBy('id', $category->id);
-//        if ($request->hasFile('picture')) {
-//            if(file_exists(public_path('images/category/picture/' . $resource->picture))) {
-//                unlink(public_path('images/category/picture/' . $resource->picture));
-//            }
-//            $upload = upload_file('image', $request->file('picture'), 'public/images/category/picture');
-//            if ($upload['status'] == true) {
-//                $picture = $upload['filename'];
-//            } else {
-//                return back()->with('message', [
-//                    'type' => 'danger',
-//                    'text' => 'Image ' . $upload['message']
-//                ]);
-//            }
-//        }
+
+        $resource = Category::getOneBy('id', $category->id);
+        if ($request->hasFile('picture')) {
+            if($resource->picture && file_exists(public_path('images/category/picture/' . $resource->picture))) {
+                unlink(public_path('images/category/picture/' . $resource->picture));
+            }
+            $upload = upload_file('image', $request->file('picture'), 'public/images/category/picture');
+            if ($upload['status'] == true) {
+                $picture = $upload['filename'];
+            } else {
+                return back()->with('message', [
+                    'type' => 'danger',
+                    'text' => 'Image ' . $upload['message']
+                ]);
+            }
+        }
 
         if ($request->parent_id) {
             $parent = (Category::getOneBy('uuid', $request->parent_id)) ? Category::getOneBy('uuid', $request->parent_id)->id : 0;
@@ -228,7 +229,7 @@ class CategoryController extends Controller
             'name' => json_encode($name),
             'details' => json_encode($details),
             'icon' => $request->icon,
-//            'picture' => (isset($picture)) ? $picture : $data['resource']->picture,
+            'picture' => (isset($picture)) ? $picture : $data['resource']->picture,
 //            'cover' => (isset($cover)) ? $cover : $data['resource']->cover,
             'is_active' => ($request->is_active == 1) ? 1 : 0,
             'in_menu' => (isset($request->in_menu)) ? 1 : 0,

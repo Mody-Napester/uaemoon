@@ -154,18 +154,18 @@
                                    class="form-control">
                         </div>
 
-{{--                        <div class="col-md-6">--}}
-{{--                            <div class="form-group">--}}
-{{--                                <label class="form-col-form-label" for="picture">{{ trans('category.picture') }}</label>--}}
-{{--                                <small>Recommended dimension 275 x 340</small>--}}
-{{--                                <input class="form-control @if ($errors->has('picture')) is-invalid @endif" id="picture"--}}
-{{--                                       type="file" name="picture">--}}
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="form-col-form-label" for="picture">{{ trans('category.picture') }}</label>
+                                <small>Recommended dimension 215 x 215</small>
+                                <input required class="form-control @if ($errors->has('picture')) is-invalid @endif" id="picture"
+                                       type="file" name="picture">
 
-{{--                                @if ($errors->has('picture'))--}}
-{{--                                    <div class="invalid-feedback">{{ $errors->first('picture') }}</div>--}}
-{{--                                @endif--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
+                                @if ($errors->has('picture'))
+                                    <div class="invalid-feedback">{{ $errors->first('picture') }}</div>
+                                @endif
+                            </div>
+                        </div>
 
                         {{--                        <div class="col-md-6">--}}
                         {{--                            <div class="form-group">--}}

@@ -32,7 +32,10 @@
                         <div class="thb-product-meta-before">
                             <div class="product_meta">
                                 <span class="posted_in">{{trans('website.category')}}: <a
-                                        href="{{route('front.category.show', $resource->category->uuid)}}">{{getFromJson($resource->category->name , lang())}}</a></span>
+                                        href="{{route('front.category.show', $resource->category->uuid)}}">
+                                <b>{{getFromJson($resource->category->name , lang())}}</b>
+                                    </a>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -48,7 +51,7 @@
                                     <div><img style="width: 535px;height: 600px;" src="{{asset($val)}}" alt></div>
                                 @endforeach
                             </div>
-                            <div class="slider-nav" >
+                            <div class="slider-nav">
                                 @foreach($images as $key => $val)
                                     <div><img style="height: 80px;" src="{{asset($val)}}" alt></div>
                                 @endforeach
@@ -63,18 +66,47 @@
                     <div class="single-product-info">
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs" role="tablist">
-                            <li class="active"><a href="#01" data-toggle="tab">{{trans('website.details')}}</a></li>
+                            <li class="active"><a data-toggle="tab">{{trans('website.details')}}</a></li>
                         </ul>
 
                         <!-- Tab panes -->
                         <div class="tab-content">
-                            <div role="tabpanel" class="tab-pane fade in active" id="01">
+                            <div role="tabpanel" class="tab-pane fade in active">
                                 {!! lang() == 'ar' ? $resource->details_ar : $resource->details_en !!}
                             </div>
                         </div>
                     </div>
                 </div>
             </div> <!-- end row -->
+            @if($resource->url)
+                @php
+                    $youtubeId = getYoutubeId($resource->url, 'getEmbedUrl');
+                @endphp
+                @if($youtubeId)
+                    <div class="row">
+                        <div class="col col-xs-12">
+                            <div class="single-product-info">
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="active"><a data-toggle="tab">{{trans('website.video')}}</a></li>
+                                </ul>
+
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane fade in active text-center">
+                                        <iframe width="700" height="400"
+                                                src="{{$youtubeId}}"
+                                                title="YouTube video player" frameborder="0"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- end row -->
+                @endif
+            @endif
+
         </div> <!-- end of container -->
     </section>
     <!-- end of shop-single-section -->

@@ -28,12 +28,12 @@ class AdvertiseController extends Controller
     public function create(Request $request)
     {
         $this->validate($request, [
-            'is_vip' => 'required',
+            'adv_type' => 'required',
             'category_id' => 'required',
             'title' => 'required',
             'details' => 'required',
-            'cover' => 'required|mimes:jpeg,jpg,png,gif|max:10000',
-            'images' => 'required',
+            'cover' => 'required|mimes:jpeg,jpg,png,gif,webp|max:5000',
+            'images' => 'required|max:10000',
         ]);
         $cover = '';
         $all_images = array();
@@ -56,8 +56,8 @@ class AdvertiseController extends Controller
         } else {
             $category_id = 0;
         }
-        $resource = Advertise::create([
-            'is_featured' => $request->is_vip,
+        $arrayData = [
+            'adv_type' => $request->adv_type,
             'category_id' => $category_id,
             'slug' => Str::slug($request->title, '-'),
             'title_ar' => $request->title,
@@ -66,9 +66,18 @@ class AdvertiseController extends Controller
             'details_en' => $request->details,
             'cover' => $cover,
             'images' => implode(',', $all_images),
-            'status' => 0,
+            'status' => 1,
             'created_by' => auth()->user()->id,
-        ]);
+            'url' => $request->youtube_url,
+        ];
+        if ($request->adv_type == 1) {
+            $arrayData['expired_at'] = date('Y-m-d', strtotime(date('Y-m-d') . ' +' . config('vars.adv_type_expiration_days')[1] . ' days')) . ' 23:59:59';
+        } elseif ($request->adv_type == 2) {
+            $arrayData['expired_at'] = date('Y-m-d', strtotime(date('Y-m-d') . ' +' . config('vars.adv_type_expiration_days')[2] . ' days')) . ' 23:59:59';
+        } elseif ($request->adv_type == 3) {
+            $arrayData['expired_at'] = date('Y-m-d', strtotime(date('Y-m-d') . ' +' . config('vars.adv_type_expiration_days')[3] . ' days')) . ' 23:59:59';
+        }
+        $resource = Advertise::create($arrayData);
         // Return
         if ($resource) {
             return redirect(route('front.home.index'))->with('message', [

@@ -134,6 +134,21 @@ class Category extends Model
      */
     public function advertises()
     {
-        return $this->hasMany(Advertise::class, 'category_id');
+        return $this->hasMany(Advertise::class, 'category_id')
+            ->where('status', 1)
+            ->where(function ($q2) {
+            $q2->whereNull('expired_at');
+            $q2->orWhere('expired_at', '>=', date('Y-m-d') . ' 23:59:59');
+        });
+    }
+    public function advertisesVipAndActive()
+    {
+        return $this->hasMany(Advertise::class, 'category_id')
+            ->where('status', 1)
+            ->where('adv_type', 3)
+            ->where(function ($q2) {
+                $q2->whereNull('expired_at');
+                $q2->orWhere('expired_at', '>=', date('Y-m-d') . ' 23:59:59');
+            });
     }
 }

@@ -180,8 +180,8 @@ function get_client_ip()
 
 function getCategoryImage($picture)
 {
-    if($picture) {
-        return url('public/images/category/picture/'. $picture);
+    if ($picture) {
+        return url('public/images/category/picture/' . $picture);
     } else {
         return url('public/images/no-image.png');
     }
@@ -189,13 +189,41 @@ function getCategoryImage($picture)
 
 function getPageImage($image, $pictureOrCover = '')
 {
-    if($image) {
-        if($pictureOrCover == 'picture') {
-            return url('public/images/page/picture/'. $image);
+    if ($image) {
+        if ($pictureOrCover == 'picture') {
+            return url('public/images/page/picture/' . $image);
         } else {
-            return url('public/images/page/cover/'. $image);
+            return url('public/images/page/cover/' . $image);
         }
     } else {
         return url('public/images/no-image.png');
+    }
+}
+
+function getYoutubeId($url, $getEmbedUrl = false)
+{
+    $id = '';
+    if (strpos($url, '?v=') !== false) {
+        if (strpos($url, 'https://www.youtube.com/') !== false) {
+            $id = str_replace('https://www.youtube.com/watch?v=', '', $url);
+        } elseif (strpos($url, 'https://youtu.be') !== false) {
+            $id = str_replace('https://youtu.be?v=', '', $url);
+        }
+    } else {
+        if (strpos($url, 'https://www.youtube.com/embed/') !== false) {
+            $id = str_replace('https://www.youtube.com/embed/', '', $url);
+        } elseif (strpos($url, 'https://youtu.be/') !== false) {
+            $id = str_replace('https://youtu.be/', '', $url);
+        }
+    }
+    if($id) {
+        if (strpos($url, '&') !== false) {
+            $id = explode('&', $id)[0];
+        }
+    }
+    if ($id && $getEmbedUrl) {
+        return 'https://www.youtube.com/embed/' . $id;
+    } else {
+        return $id;
     }
 }

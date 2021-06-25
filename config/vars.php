@@ -19,4 +19,9 @@ return [
 
     ],
     'currencies' => ['EGP', 'USD'],
+    'adv_type_expiration_days' => [
+        1 => 3, // normal type expire after 3 days
+        2 => 30, // featured type expire after 30 days
+        3 => 30 // vip type expire after 30 days
+    ]
 ];

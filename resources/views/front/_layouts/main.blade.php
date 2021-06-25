@@ -1,4 +1,8 @@
 @php
+    $categories = \App\Category::getAll([
+        'is_active' => 1,
+        'in_menu' => 1
+    ]);
     $pagesFooter = \App\Page::getAll([
         'is_active' => 1,
         'in_footer' => 1,
@@ -49,8 +53,9 @@
     <link href="{{ url('assets/front/assets/css/jquery.fancybox.css') }}" rel="stylesheet">
     <link href="{{ url('assets/front/assets/css/jquery-ui.css') }}" rel="stylesheet">
 
-{{--    <link href="{{ url('assets/css/icons.css') }}" rel="stylesheet" type="text/css"/>--}}
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    {{--    <link href="{{ url('assets/css/icons.css') }}" rel="stylesheet" type="text/css"/>--}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          type="text/css"/>
     <link href="{{ url('assets/css/alerts.css') }}" rel="stylesheet" type="text/css"/>
 
     <link href="{{ url('assets/front/assets/css/style.css') }}" rel="stylesheet">
@@ -74,6 +79,17 @@
             border-radius: 0;
             height: 50px;
         }
+
+        .custom-background {
+            background-image: url('{{asset('public/images/1.jpg')}}');
+        }
+        {{--.text-white {--}}
+        {{--    color: white;--}}
+        {{--}--}}
+        {{--.navigation a, .navigation i, .navigation div {--}}
+        {{--    color: white !important;--}}
+        {{--}--}}
+
     </style>
     @yield('header')
 </head>
@@ -176,15 +192,20 @@
                 <div id="navbar" class="navbar-collapse collapse navigation-holder">
                     <button class="close-navbar"><i class="ti-close"></i></button>
                     <ul class="nav navbar-nav">
-                        {{--                        <li class="menu-item-has-children current-menu-parent">--}}
-                        {{--                            <a href="#">Home</a>--}}
-                        {{--                            <ul class="sub-menu">--}}
-                        {{--                                <li class="current-menu-item"><a href="index.html">Home Default</a></li>--}}
-                        {{--                                <li><a href="index-2.html">Home style 2</a></li>--}}
-                        {{--                                <li><a href="index-3.html">Home style 3</a></li>--}}
-                        {{--                            </ul>--}}
-                        {{--                        </li>--}}
                         <li><a href="{{url('/')}}">{{trans('website.home')}}</a></li>
+                        <li class="menu-item-has-children">
+                            <a>
+                                {{trans('website.categories')}}
+                            </a>
+                            <ul class="sub-menu">
+                                @foreach($categories as $key => $val)
+                                    <li>
+                                        <a href="{{route('front.category.show', $val->uuid)}}">{!! $val->icon !!}
+                                            &nbsp;{{getFromJson($val['name'] , lang())}}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
                         <li><a href="{{route('front.page.aboutUs')}}">{{trans('website.about_us')}}</a></li>
                         <li><a href="{{route('front.page.contactUs')}}">{{trans('website.contact_us')}}</a></li>
                         @foreach($pagesHeader as $key => $val)

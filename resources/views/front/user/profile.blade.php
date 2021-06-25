@@ -156,7 +156,7 @@
                                             <th>Cover</th>
                                             <th>Status</th>
                                             <th>Status At</th>
-                                            <th>Is VIP</th>
+                                            <th>Type</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -172,6 +172,13 @@
                                                         </div>
                                                     </td>
                                                     <td>
+                                                        @if($resource->expired_at)
+                                                            @if(date('Y-m-d') . ' 23:59:59' > $resource->expired_at)
+                                                                @php
+                                                                    $resource->status = 3;
+                                                                @endphp
+                                                            @endif
+                                                        @endif
                                                         @if($resource->status == 0)
                                                             <span class="badge" style="background-color: orange;">Pending</span>
                                                         @elseif($resource->status == 1)
@@ -199,12 +206,15 @@
                                                         @endif
                                                     </td>
                                                     <td>
-                                                        @if($resource->is_featured == 0)
+                                                        @if($resource->adv_type == 1)
                                                             <span class="badge"
-                                                                  style="background-color: orange;">NO</span>
-                                                        @elseif($resource->is_featured == 1)
+                                                                  style="background-color: blue;">Normal</span>
+                                                        @elseif($resource->adv_type == 2)
                                                             <span class="badge"
-                                                                  style="background-color: green;">YES</span>
+                                                                  style="background-color: orange;">Featured</span>
+                                                        @elseif($resource->adv_type == 3)
+                                                            <span class="badge"
+                                                                  style="background-color: green;">VIP</span>
                                                         @endif
                                                     </td>
                                                 </tr>

@@ -25,6 +25,8 @@ class Advertise extends Model
         'images',
         'status',
         'is_featured',
+        'adv_type',
+        'url',
         'approved_at',
         'not_approved_at',
         'not_approved_reason',

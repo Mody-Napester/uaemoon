@@ -33,12 +33,18 @@ URL:            http://themeforest.net/user/wp_studio
 /*--------------------------------------------------------------
 #1.1	Global
 --------------------------------------------------------------*/
-@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;1,300&amp;display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;1,300&amp;display=swap');*/
 
-body p, body span, body div, body h1, 
+@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@700&display=swap');
+
+html {
+    font-family: 'Almarai', sans-serif !important;
+}
+
+body p, body span, body div, body h1,
 body h2, body h3, body h4, body h5 ,
 body h6, body button, body a, label{
-    font-family: 'Rubik', sans-serif!important;
+    font-family: 'Almarai', sans-serif !important;
 }
 
 ul {
@@ -70,7 +76,7 @@ ul {
     left: 0;
 }
 
-.header-style-1 .header-right .mini-cart-content-toggle, 
+.header-style-1 .header-right .mini-cart-content-toggle,
 .header-style-1 .header-right .header-search-content-toggle {
     left: 0;
     right: inherit;
@@ -84,7 +90,7 @@ ul {
 .header-style-1 .header-left .search-area{
     margin-left: 10px;
     margin-right: 0;
-} 
+}
 
 .side-info-content {
     left: inherit;
@@ -142,7 +148,7 @@ ul {
         padding-right: 0;
         padding-left: 10px;
     }
-    
+
     .site-header #navbar .mega-menu-list-holder li a {
         margin-right: -8px;
         margin-left: inherit;
@@ -176,13 +182,13 @@ ul {
         padding-right: 60px;
     }
 
-    .header-style-2 .header-right .mini-cart-content-toggle, 
+    .header-style-2 .header-right .mini-cart-content-toggle,
     .header-style-2 .header-right .header-search-content-toggle {
         right: inherit;
         left: -106px;
     }
 
-    .header-style-1 .header-right .mini-cart-content-toggle, 
+    .header-style-1 .header-right .mini-cart-content-toggle,
     .header-style-1 .header-right .header-search-content-toggle {
         left: -77px;
         right: inherit;
@@ -220,7 +226,7 @@ ul {
 
 .hero-style-1 .slide-btns {
     text-align: right;
-} 
+}
 
 .hero-style-1 .swiper-button-next {
     right: 25px;
@@ -232,7 +238,7 @@ ul {
     right: auto;
 }
 
-.hero-style-2 .swiper-control .swiper-button-next, 
+.hero-style-2 .swiper-control .swiper-button-next,
 .hero-style-2 .swiper-control .swiper-button-prev {
     font-size: 14px;
     text-decoration: none;
@@ -259,7 +265,7 @@ ul {
 /*--------------------------------------------------------------
 #1.4	Featureds
 --------------------------------------------------------------*/
-.featured-proeducts-section-s2 .shop-btn, 
+.featured-proeducts-section-s2 .shop-btn,
 .featured-proeducts-section-s3 .shop-btn {
     font-size: 0.8666666667rem;
 }
@@ -282,7 +288,7 @@ ul {
     border-left: 0;
 }
 
-.feautured-product-s3-section .details, 
+.feautured-product-s3-section .details,
 .feautured-product-s4-section .details {
     right: 40px;
     left: inherit;
@@ -559,9 +565,9 @@ select {
 
 
 /*--------------------------------------------------------------
-#1.14	My Account 
+#1.14	My Account
 --------------------------------------------------------------*/
-.my-account-section .woocommerce-form.woocommerce-form-login, 
+.my-account-section .woocommerce-form.woocommerce-form-login,
 .my-account-section .woocommerce-form.woocommerce-form-register.register{
     text-align: right;
 }
@@ -597,7 +603,7 @@ select {
     text-align: right;
 }
 
-.woocommerce table.shop_table th, 
+.woocommerce table.shop_table th,
 .woocommerce table.shop_table td {
     text-align: right;
 }

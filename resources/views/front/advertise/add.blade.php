@@ -74,23 +74,7 @@
                                             @endif
                                         </p>
 
-                                        <p class="form-row col-md-12">
-                                            <label for="details" class="">{{trans('website.adv_details')}} <abbr
-                                                    class="required" title="required">*</abbr></label>
-                                            <textarea required
-                                                      class="input-text {{ $errors->has('details') ? ' is-invalid' : '' }}"
-                                                      name="details"
-                                                      id="details" placeholder=""
-                                                      autocomplete="family-name">{{old('details')}}</textarea>
-                                            @if ($errors->has('details'))
-                                                <span class="invalid-feedback" style="color: red;" role="alert">
-                                                <strong>{{ $errors->first('details') }}</strong>
-                                            </span>
-                                            @endif
-                                            <script>
-                                                CKEDITOR.replace('details');
-                                            </script>
-                                        </p>
+                                        <div class="clearfix"></div>
 
                                         <p class="form-row col-md-6">
                                             <label for="cover" class="">{{trans('website.adv_cover')}} <small
@@ -124,19 +108,52 @@
                                         </p>
 
                                         <p class="form-row col-md-12">
-                                            <label for="is_vip" class="">{{trans('website.is_vip')}} <abbr
+                                            <label for="details" class="">{{trans('website.adv_details')}} <abbr
                                                     class="required" title="required">*</abbr></label>
-                                            <select id="is_vip" required autocomplete="off"
-                                                    class="custom-select form-control {{ $errors->has('is_vip') ? ' is-invalid' : '' }}"
-                                                    name="is_vip">
-                                                <option @if(old('is_vip') == 0) selected
-                                                        @endif value="0">{{trans('website.not_vip')}}</option>
-                                                <option @if(old('is_vip') == 1) selected
-                                                        @endif value="1">{{trans('website.vip')}}</option>
-                                            </select>
-                                            @if ($errors->has('is_vip'))
+                                            <textarea required
+                                                      class="input-text {{ $errors->has('details') ? ' is-invalid' : '' }}"
+                                                      name="details"
+                                                      id="details" placeholder=""
+                                                      autocomplete="family-name">{{old('details')}}</textarea>
+                                            @if ($errors->has('details'))
                                                 <span class="invalid-feedback" style="color: red;" role="alert">
-                                                <strong>{{ $errors->first('is_vip') }}</strong>
+                                                <strong>{{ $errors->first('details') }}</strong>
+                                            </span>
+                                            @endif
+                                            <script>
+                                                CKEDITOR.replace('details');
+                                            </script>
+                                        </p>
+
+                                        <p class="form-row col-md-6">
+                                            <label for="adv_type" class="">{{trans('website.adv_type')}} <abbr
+                                                    class="required" title="required">*</abbr></label>
+                                            <select id="adv_type" required autocomplete="off"
+                                                    class="custom-select form-control {{ $errors->has('adv_type') ? ' is-invalid' : '' }}"
+                                                    name="adv_type">
+                                                <option @if(old('adv_type') == 1) selected
+                                                        @endif value="1">{{trans('website.normal_advertise')}}</option>
+                                                <option @if(old('adv_type') == 2) selected
+                                                        @endif value="2">{{trans('website.featured_advertise')}}</option>
+                                                <option @if(old('adv_type') == 3) selected
+                                                        @endif value="3">{{trans('website.vip_advertise')}}</option>
+                                            </select>
+                                            @if ($errors->has('adv_type'))
+                                                <span class="invalid-feedback" style="color: red;" role="alert">
+                                                <strong>{{ $errors->first('adv_type') }}</strong>
+                                            </span>
+                                            @endif
+                                        </p>
+
+                                        <p class="form-row col-md-6">
+                                            <label for="title" class="">{{trans('website.youtube_url')}}</label>
+                                            <input id="youtube_url" type="url" style="width: 100%"
+                                                   class="input-text {{ $errors->has('youtube_url') ? ' is-invalid' : '' }}"
+                                                   name="youtube_url"
+                                                   autocomplete="off" value="{{old('youtube_url')}}"/>
+                                            @if ($errors->has('youtube_url'))
+                                                <span class="invalid-feedback" style="color: red;" role="alert">
+                                                <strong>{{ $errors->first('youtube_url') }}</strong>
                                             </span>
                                             @endif
                                         </p>

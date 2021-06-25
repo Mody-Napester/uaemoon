@@ -117,7 +117,7 @@ class SliderController extends Controller
         try {
             $resource = Slider::getByUuid($uuid);
             if ($request->hasFile('image')) {
-                if(file_exists(public_path('images/slider/' . $resource->image))) {
+                if($resource->image && file_exists(public_path('images/slider/' . $resource->image))) {
                     unlink(public_path('images/slider/' . $resource->image));
                 }
                 $upload = upload_file('image', $request->file('image'), 'public/images/slider');
@@ -153,7 +153,7 @@ class SliderController extends Controller
             return redirect('/');
         }
         $resource = Slider::getByUuid($uuid);
-        if(file_exists(public_path('images/slider/' . $resource->image))) {
+        if($resource->image && file_exists(public_path('images/slider/' . $resource->image))) {
             unlink(public_path('images/slider/' . $resource->image));
         }
         Slider::remove($uuid);

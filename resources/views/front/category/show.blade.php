@@ -30,7 +30,7 @@
                     <div class="shop-area clearfix">
                         <ul class="products">
                             @php
-                            $advertises = $resource->advertises()->where('status', 1)->get();
+                            $advertises = $resource->advertises()->get();
                             @endphp
                             @foreach($advertises as $key => $val)
                                 <li class="product">
