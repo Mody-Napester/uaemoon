@@ -30,24 +30,26 @@
                     <div class="shop-area clearfix">
                         <ul class="products">
                             @php
-                            $advertises = $resource->advertises()->get();
+                                $advertises = $resource->advertises()->get();
                             @endphp
                             @foreach($advertises as $key => $val)
                                 <li class="product">
                                     <div class="product-holder text-center">
                                         {{--                                    <div class="product-badge discount">-27%</div>--}}
-                                        <a href="{{route('front.advertise.show', $val->uuid)}}">
-                                            <img loading=lazy src="{{ url($val->cover) }}"
-                                                 alt style="width: 275px;height: 340px;"></a>
-                                        <div class="shop-action-wrap">
-                                            <ul class="shop-action">
-                                                <li>
-                                                    <a href="{{route('front.advertise.show', $val->uuid)}}"
-                                                       title="{{trans('website.view')}}"><i
-                                                            class="fi flaticon-view"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                        <center>
+                                            <a href="{{route('front.advertise.show', $val->uuid)}}">
+                                                <img loading=lazy src="{{ url($val->cover) }}"
+                                                     alt style="width: 275px;height: 340px;"></a>
+                                            <div class="shop-action-wrap">
+                                                <ul class="shop-action">
+                                                    <li>
+                                                        <a href="{{route('front.advertise.show', $val->uuid)}}"
+                                                           title="{{trans('website.view')}}"><i
+                                                                class="fi flaticon-view"></i></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </center>
                                     </div>
                                     <div class="product-info">
                                         <h4>

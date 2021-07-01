@@ -1,5 +1,6 @@
 @php
-    $categories = \App\Category::getAll([
+    use Illuminate\Support\Facades\Input;
+$categories = \App\Category::getAll([
         'is_active' => 1,
         'in_menu' => 1
     ]);
@@ -27,6 +28,8 @@
         'getFirst' => true
     ]);
     $settings = \App\Settings::getById(1);
+    $pageStyleNumber = Input::has('style') ? Input::get('style') : 0;
+    $transparent = Input::has('transparent') && Input::get('transparent') == 'yes' ? 1 : 0;
 @endphp
     <!DOCTYPE html>
 <html lang="en">
@@ -80,30 +83,31 @@
             height: 50px;
         }
 
-        .custom-background {
-            background-image: url('{{asset('public/images/1.jpg')}}');
-        }
-        {{--.text-white {--}}
-        {{--    color: white;--}}
-        {{--}--}}
-        {{--.navigation a, .navigation i, .navigation div {--}}
-        {{--    color: white !important;--}}
-        {{--}--}}
-
-        .cm-card-box{
-            background-color: #ffffff;
-            padding: 40px;
+        .cm-card-box {
+            @if(!$transparent)
+              background-color: #ffffff;
+            @endif
+              padding: 20px;
         }
 
-        .trendy-product-section .product-info h4 a, .best-seller-section .product-info h4 a,.section-title-s2 h2 {
+        .trendy-product-section .product-info h4 a, .best-seller-section .product-info h4 a, .section-title-s2 h2 {
             color: #333 !important;
         }
 
     </style>
+    <?php
+    if ($pageStyleNumber) {
+        $background = "background: url('" . asset('assets/stars/' . $pageStyleNumber . '.gif') . "') repeat center;";
+        $background1 = "background: url('" . asset('assets/stars/1.gif') . "') repeat center;";
+    } else {
+        $background = '';
+        $background1 = '';
+    }
+    ?>
     @yield('header')
 </head>
 
-<body style="background: url('{{ url('assets/stars_pattern3.png') }}') repeat center;">
+<body>
 
 <!-- start page-wrapper -->
 <div class="page-wrapper">
@@ -126,7 +130,7 @@
     <!-- Start header -->
     <header id="header" class="site-header header-style-1">
 
-        <nav class="navigation navbar navbar-default">
+        <nav class="navigation navbar navbar-default" style="{{$background1}}">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="open-btn">
@@ -274,10 +278,12 @@
                 </div>
             </div>
         </div>
-@endif
-@yield('content')
+    @endif
+    <div style="{{$background}}">
+        @yield('content')
+    </div>
 
-<!-- start site-footer -->
+    <!-- start site-footer -->
     <footer class="site-footer" style="margin-top: 40px;">
         <div class="container-1410">
             <div class="row widget-area">
