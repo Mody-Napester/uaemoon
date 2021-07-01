@@ -60,51 +60,53 @@
         <!-- start featured-proeducts-section-s2 -->
         <section class="trendy-product-section section-padding" style="padding: 80px 0 0 0;">
             <div class="container-1410">
-                <div class="row">
-                    <div class="col col-xs-12">
-                        <div class="section-title-s2">
-                            <h2>{{trans('website.all_categories')}}</h2>
+                <div class="cm-card-box">
+                    <div class="row">
+                        <div class="col col-xs-12">
+                            <div class="section-title-s2">
+                                <h2>{{trans('website.all_categories')}}</h2>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col col-xs-12">
-                        <div class="products-wrapper ">
-                            <ul class="products product-row-slider">
-                                @foreach($categories as $key => $val)
-                                    <li class="product">
-                                        <div class="product-holder">
-                                            {{--                                    <div class="product-badge discount">-27%</div>--}}
-                                            <a href="{{route('front.category.show', $val->uuid)}}">
-                                                <img style="width: 215px;height: 215px;"
-                                                     loading=lazy src="{{ getCategoryImage($val->picture) }}"
-                                                     alt>
-                                            </a>
-                                        </div>
-                                        <div class="product-info">
-                                            <h4>
-                                                <a href="{{route('front.category.show', $val->uuid)}}">{{getFromJson($val['name'] , lang())}}</a>
-                                            </h4>
-                                        </div>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
+                    <div class="row">
+                        <div class="col col-xs-12">
+                            <div class="products-wrapper ">
+                                <ul class="products product-row-slider">
+                                    @foreach($categories as $key => $val)
+                                        <li class="product">
+                                            <div class="product-holder">
+                                                {{--                                    <div class="product-badge discount">-27%</div>--}}
+                                                <a href="{{route('front.category.show', $val->uuid)}}">
+                                                    <img style="width: 215px;height: 215px;"
+                                                         loading=lazy src="{{ getCategoryImage($val->picture) }}"
+                                                         alt>
+                                                </a>
+                                            </div>
+                                            <div class="product-info">
+                                                <h4>
+                                                    <a href="{{route('front.category.show', $val->uuid)}}">{{getFromJson($val['name'] , lang())}}</a>
+                                                </h4>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
 
-                        {{--                        <div class="all-cat">--}}
-                        {{--                            <ul class="clearfix product-row-slider" style="text-align: center !important;">--}}
-                        {{--                                @foreach($categories as $key => $val)--}}
-                        {{--                                    <li style="margin: 0 20px;text-align: center !important;height: 230px;">--}}
-                        {{--                                        <a style="padding-bottom: 30px;" class="fontawesome5x"--}}
-                        {{--                                           href="{{route('front.category.show', $val['uuid'])}}">--}}
-                        {{--                                            <span style="color: #20255D;">{!! $val['icon'] !!}</span>--}}
-                        {{--                                            <span--}}
-                        {{--                                                style="padding-top: 20px;">{{getFromJson($val['name'] , lang())}}</span>--}}
-                        {{--                                        </a>--}}
-                        {{--                                    </li>--}}
-                        {{--                                @endforeach--}}
-                        {{--                            </ul>--}}
-                        {{--                        </div>--}}
+                            {{--                        <div class="all-cat">--}}
+                            {{--                            <ul class="clearfix product-row-slider" style="text-align: center !important;">--}}
+                            {{--                                @foreach($categories as $key => $val)--}}
+                            {{--                                    <li style="margin: 0 20px;text-align: center !important;height: 230px;">--}}
+                            {{--                                        <a style="padding-bottom: 30px;" class="fontawesome5x"--}}
+                            {{--                                           href="{{route('front.category.show', $val['uuid'])}}">--}}
+                            {{--                                            <span style="color: #20255D;">{!! $val['icon'] !!}</span>--}}
+                            {{--                                            <span--}}
+                            {{--                                                style="padding-top: 20px;">{{getFromJson($val['name'] , lang())}}</span>--}}
+                            {{--                                        </a>--}}
+                            {{--                                    </li>--}}
+                            {{--                                @endforeach--}}
+                            {{--                            </ul>--}}
+                            {{--                        </div>--}}
+                        </div>
                     </div>
                 </div>
             </div> <!-- end container-1410 -->
@@ -117,43 +119,45 @@
         <!-- start trendy-product-section -->
         <section class="trendy-product-section section-padding" style="padding: 80px 0 0 0;">
             <div class="container-1410">
-                <div class="row">
-                    <div class="col col-xs-12">
-                        <div class="section-title-s2">
-                            <h2>{{getFromJson($val['name'] , lang())}} ({{trans('website.vip')}})</h2>
+                <div class="cm-card-box">
+                    <div class="row">
+                        <div class="col col-xs-12">
+                            <div class="section-title-s2">
+                                <h2>{{getFromJson($val['name'] , lang())}} ({{trans('website.vip')}})</h2>
+                            </div>
+                            {{--                    <a href="#" class="more-products">{{trans('website.see_all')}}</a>--}}
                         </div>
-                        {{--                    <a href="#" class="more-products">{{trans('website.see_all')}}</a>--}}
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col col-xs-12">
-                        <div class="products-wrapper">
-                            <ul class="products product-row-slider">
-                                @foreach($val->advertisesVipAndActive as $key2 => $val2)
-                                    <li class="product">
-                                        <div class="product-holder">
-                                            {{--                                    <div class="product-badge discount">-27%</div>--}}
-                                            <a href="{{route('front.advertise.show', $val2->uuid)}}">
-                                                <img loading=lazy src="{{ url($val2->cover) }}"
-                                                     alt style="width: 275px;height: 340px;"></a>
-                                            <div class="shop-action-wrap">
-                                                <ul class="shop-action">
-                                                    <li>
-                                                        <a href="{{route('front.advertise.show', $val2->uuid)}}"
-                                                           title="{{trans('website.view')}}"><i
-                                                                class="fi flaticon-view"></i></a>
-                                                    </li>
-                                                </ul>
+                    <div class="row">
+                        <div class="col col-xs-12">
+                            <div class="products-wrapper">
+                                <ul class="products product-row-slider">
+                                    @foreach($val->advertisesVipAndActive as $key2 => $val2)
+                                        <li class="product">
+                                            <div class="product-holder">
+                                                {{--                                    <div class="product-badge discount">-27%</div>--}}
+                                                <a href="{{route('front.advertise.show', $val2->uuid)}}">
+                                                    <img loading=lazy src="{{ url($val2->cover) }}"
+                                                         alt style="width: 275px;height: 340px;"></a>
+                                                <div class="shop-action-wrap">
+                                                    <ul class="shop-action">
+                                                        <li>
+                                                            <a href="{{route('front.advertise.show', $val2->uuid)}}"
+                                                               title="{{trans('website.view')}}"><i
+                                                                    class="fi flaticon-view"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="product-info">
-                                            <h4>
-                                                <a href="{{route('front.advertise.show', $val2->uuid)}}">{{lang() == 'ar' ? $val2->title_ar : $val2->title_en}}</a>
-                                            </h4>
-                                        </div>
-                                    </li>
-                                @endforeach
-                            </ul>
+                                            <div class="product-info">
+                                                <h4>
+                                                    <a href="{{route('front.advertise.show', $val2->uuid)}}">{{lang() == 'ar' ? $val2->title_ar : $val2->title_en}}</a>
+                                                </h4>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -165,17 +169,18 @@
 
     @if($random_adv && !$random_adv->isEmpty())
         <!-- start trendy-product-section -->
-        <section class="trendy-product-section section-padding" style="padding: 80px 0 80px 0;">
+        <section class="trendy-product-section section-padding" style="padding: 80px 0 80px 0">
             <div class="container-1410">
-                <div class="row">
-                    <div class="col col-xs-12">
-                        <div class="section-title-s2">
-                            <h2>{{trans('website.random_ads')}}</h2>
+                <div class="cm-card-box">
+                    <div class="row">
+                        <div class="col col-xs-12">
+                            <div class="section-title-s2">
+                                <h2>{{trans('website.random_ads')}}</h2>
+                            </div>
+                            {{--                    <a href="#" class="more-products">{{trans('website.see_all')}}</a>--}}
                         </div>
-                        {{--                    <a href="#" class="more-products">{{trans('website.see_all')}}</a>--}}
                     </div>
-                </div>
-                <div class="row">
+                    <div class="row">
                     <div class="col col-xs-12">
                         <div class="products-wrapper">
                             <ul class="products product-row-slider">
@@ -214,6 +219,7 @@
                             </ul>
                         </div>
                     </div>
+                </div>
                 </div>
             </div> <!-- end container-1410 -->
         </section>

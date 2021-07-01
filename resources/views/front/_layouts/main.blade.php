@@ -90,11 +90,20 @@
         {{--    color: white !important;--}}
         {{--}--}}
 
+        .cm-card-box{
+            background-color: #ffffff;
+            padding: 40px;
+        }
+
+        .trendy-product-section .product-info h4 a, .best-seller-section .product-info h4 a,.section-title-s2 h2 {
+            color: #333 !important;
+        }
+
     </style>
     @yield('header')
 </head>
 
-<body>
+<body style="background: url('{{ url('assets/stars_pattern3.png') }}') repeat center;">
 
 <!-- start page-wrapper -->
 <div class="page-wrapper">
@@ -269,7 +278,7 @@
 @yield('content')
 
 <!-- start site-footer -->
-    <footer class="site-footer">
+    <footer class="site-footer" style="margin-top: 40px;">
         <div class="container-1410">
             <div class="row widget-area">
                 {{--                <div class="col-lg-4 col-xs-6  widget-col about-widget-col">--}}

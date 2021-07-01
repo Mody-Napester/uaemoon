@@ -51,7 +51,10 @@ class ApisController extends Controller
     {
         $data['category'] = Category::getOneBy('uuid', $uuid);
         if($data['category']){
-            $data['ads'] = Advertise::where('status', 1)->where('category_id', $data['category']->id)->get();
+            $data['ads'] = Advertise::where('status', 1)
+                ->where('category_id', $data['category']->id)
+                ->where('expired_at', '>=', date('Y-m-d') . ' 23:59:59')
+                ->get();
             foreach ($data['ads'] as $ad){
                 $ad->title_en = ($lang == 'ar')? $ad->title_ar : $ad->title_en;
                 $ad->cover = url($ad->cover);
@@ -77,7 +80,16 @@ class ApisController extends Controller
 
     public function listAds($lang)
     {
-        $data['ads'] = Advertise::where('status', 1)->get();
+//        $data['ads'] = Advertise::where('status', 1)->where('expired_at', '>=', date('Y-m-d') . ' 23:59:59')->get();
+        $data['ads'] = Category::with('advertisesVipAndActive')->where('is_active', 1)->whereHas('advertises', function ($q) {
+            $q->where('status', 1);
+            $q->where('adv_type', 3);
+            $q->where(function ($q2) {
+                $q2->whereNull('expired_at');
+                $q2->orWhere('expired_at', '>=', date('Y-m-d') . ' 23:59:59');
+            });
+        })->get();
+
         foreach ($data['ads'] as $ad){
             $ad->title_en = ($lang == 'ar')? $ad->title_ar : $ad->title_en;
             $ad->cover = url($ad->cover);
@@ -234,8 +246,10 @@ class ApisController extends Controller
         } else {
             $category_id = 0;
         }
-        $resource = Advertise::create([
-            'is_featured' => 0, // $request->is_vip
+
+        $arrayData = [
+            'adv_type' => $request->adv_type,
+//            'is_featured' => 0, // $request->is_vip
             'category_id' => $category_id,
             'slug' => Str::slug($request->title, '-'),
             'title_ar' => $request->title,
@@ -246,7 +260,18 @@ class ApisController extends Controller
             'images' => implode(',', $images),
             'status' => 0,
             'created_by' => $data['user']->id,
-        ]);
+            'url' => $request->youtube_url,
+        ];
+
+        if ($request->adv_type == 1) {
+            $arrayData['expired_at'] = date('Y-m-d', strtotime(date('Y-m-d') . ' +' . config('vars.adv_type_expiration_days')[1] . ' days')) . ' 23:59:59';
+        } elseif ($request->adv_type == 2) {
+            $arrayData['expired_at'] = date('Y-m-d', strtotime(date('Y-m-d') . ' +' . config('vars.adv_type_expiration_days')[2] . ' days')) . ' 23:59:59';
+        } elseif ($request->adv_type == 3) {
+            $arrayData['expired_at'] = date('Y-m-d', strtotime(date('Y-m-d') . ' +' . config('vars.adv_type_expiration_days')[3] . ' days')) . ' 23:59:59';
+        }
+
+        $resource = Advertise::create($arrayData);
 
         if($resource){
             $resource = 1;
