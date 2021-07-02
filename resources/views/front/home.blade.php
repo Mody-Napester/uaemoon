@@ -76,11 +76,13 @@
                                         <li class="product">
                                             <div class="product-holder">
                                                 {{--                                    <div class="product-badge discount">-27%</div>--}}
-                                                <a href="{{route('front.category.show', $val->uuid)}}">
-                                                    <img style="width: 215px;height: 215px;"
-                                                         loading=lazy src="{{ getCategoryImage($val->picture) }}"
-                                                         alt>
-                                                </a>
+                                                <center>
+                                                    <a href="{{route('front.category.show', $val->uuid)}}">
+                                                        <img style="width: 215px;height: 215px;"
+                                                             loading=lazy src="{{ getCategoryImage($val->picture) }}"
+                                                             alt>
+                                                    </a>
+                                                </center>
                                             </div>
                                             <div class="product-info">
                                                 <h4>
@@ -116,54 +118,56 @@
 
     @if(!$categoriesWithVipAdv->isEmpty())
         @foreach($categoriesWithVipAdv as $key => $val)
-        <!-- start trendy-product-section -->
-        <section class="trendy-product-section section-padding" style="padding: 80px 0 0 0;">
-            <div class="container-1410">
-                <div class="cm-card-box">
-                    <div class="row">
-                        <div class="col col-xs-12">
-                            <div class="section-title-s2">
-                                <h2>{{getFromJson($val['name'] , lang())}} ({{trans('website.vip')}})</h2>
+            <!-- start trendy-product-section -->
+            <section class="trendy-product-section section-padding" style="padding: 80px 0 0 0;">
+                <div class="container-1410">
+                    <div class="cm-card-box">
+                        <div class="row">
+                            <div class="col col-xs-12">
+                                <div class="section-title-s2">
+                                    <h2>{{getFromJson($val['name'] , lang())}} ({{trans('website.vip')}})</h2>
+                                </div>
+                                {{--                    <a href="#" class="more-products">{{trans('website.see_all')}}</a>--}}
                             </div>
-                            {{--                    <a href="#" class="more-products">{{trans('website.see_all')}}</a>--}}
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col col-xs-12">
-                            <div class="products-wrapper">
-                                <ul class="products product-row-slider">
-                                    @foreach($val->advertisesVipAndActive as $key2 => $val2)
-                                        <li class="product">
-                                            <div class="product-holder">
-                                                {{--                                    <div class="product-badge discount">-27%</div>--}}
-                                                <a href="{{route('front.advertise.show', $val2->uuid)}}">
-                                                    <img loading=lazy src="{{ url($val2->cover) }}"
-                                                         alt style="width: 275px;height: 340px;"></a>
-                                                <div class="shop-action-wrap">
-                                                    <ul class="shop-action">
-                                                        <li>
-                                                            <a href="{{route('front.advertise.show', $val2->uuid)}}"
-                                                               title="{{trans('website.view')}}"><i
-                                                                    class="fi flaticon-view"></i></a>
-                                                        </li>
-                                                    </ul>
+                        <div class="row">
+                            <div class="col col-xs-12">
+                                <div class="products-wrapper">
+                                    <ul class="products product-row-slider">
+                                        @foreach($val->advertisesVipAndActive as $key2 => $val2)
+                                            <li class="product">
+                                                <div class="product-holder">
+                                                    {{--                                    <div class="product-badge discount">-27%</div>--}}
+                                                    <center>
+                                                        <a href="{{route('front.advertise.show', $val2->uuid)}}">
+                                                            <img loading=lazy src="{{ url($val2->cover) }}"
+                                                                 alt style="width: 275px;height: 340px;"></a>
+                                                        <div class="shop-action-wrap">
+                                                            <ul class="shop-action">
+                                                                <li>
+                                                                    <a href="{{route('front.advertise.show', $val2->uuid)}}"
+                                                                       title="{{trans('website.view')}}"><i
+                                                                            class="fi flaticon-view"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </center>
                                                 </div>
-                                            </div>
-                                            <div class="product-info">
-                                                <h4>
-                                                    <a href="{{route('front.advertise.show', $val2->uuid)}}">{{lang() == 'ar' ? $val2->title_ar : $val2->title_en}}</a>
-                                                </h4>
-                                            </div>
-                                        </li>
-                                    @endforeach
-                                </ul>
+                                                <div class="product-info">
+                                                    <h4>
+                                                        <a href="{{route('front.advertise.show', $val2->uuid)}}">{{lang() == 'ar' ? $val2->title_ar : $val2->title_en}}</a>
+                                                    </h4>
+                                                </div>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div> <!-- end container-1410 -->
-        </section>
-        <!-- end trendy-product-section -->
+                </div> <!-- end container-1410 -->
+            </section>
+            <!-- end trendy-product-section -->
         @endforeach
     @endif
 
@@ -181,31 +185,33 @@
                         </div>
                     </div>
                     <div class="row">
-                    <div class="col col-xs-12">
-                        <div class="products-wrapper">
-                            <ul class="products product-row-slider">
-                                @foreach($random_adv as $key => $val)
-                                    <li class="product">
-                                        <div class="product-holder">
-                                            {{--                                    <div class="product-badge discount">-27%</div>--}}
-                                            <a href="{{route('front.advertise.show', $val->uuid)}}">
-                                                <img loading=lazy src="{{ url($val->cover) }}"
-                                                     alt style="width: 275px;height: 340px;"></a>
-                                            <div class="shop-action-wrap">
-                                                <ul class="shop-action">
-                                                    <li>
-                                                        <a href="{{route('front.advertise.show', $val->uuid)}}"
-                                                           title="{{trans('website.view')}}"><i
-                                                                class="fi flaticon-view"></i></a>
-                                                    </li>
-                                                </ul>
+                        <div class="col col-xs-12">
+                            <div class="products-wrapper">
+                                <ul class="products product-row-slider">
+                                    @foreach($random_adv as $key => $val)
+                                        <li class="product">
+                                            <div class="product-holder">
+                                                {{--                                    <div class="product-badge discount">-27%</div>--}}
+                                                <center>
+                                                    <a href="{{route('front.advertise.show', $val->uuid)}}">
+                                                        <img loading=lazy src="{{ url($val->cover) }}"
+                                                             alt style="width: 275px;height: 340px;"></a>
+                                                    <div class="shop-action-wrap">
+                                                        <ul class="shop-action">
+                                                            <li>
+                                                                <a href="{{route('front.advertise.show', $val->uuid)}}"
+                                                                   title="{{trans('website.view')}}"><i
+                                                                        class="fi flaticon-view"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </center>
                                             </div>
-                                        </div>
-                                        <div class="product-info">
-                                            <h4>
-                                                <a href="{{route('front.advertise.show', $val->uuid)}}">{{lang() == 'ar' ? $val->title_ar : $val->title_en}}</a>
-                                            </h4>
-                                            <span class="woocommerce-Price-amount amount">
+                                            <div class="product-info">
+                                                <h4>
+                                                    <a href="{{route('front.advertise.show', $val->uuid)}}">{{lang() == 'ar' ? $val->title_ar : $val->title_en}}</a>
+                                                </h4>
+                                                <span class="woocommerce-Price-amount amount">
                                         <ins>
                                             <span class="woocommerce-Price-amount amount">
                                                 <bdi>{!! getFromJson($val->category->name , lang()) !!}</bdi>
@@ -213,13 +219,13 @@
                                         </ins>
 
                                     </span>
-                                        </div>
-                                    </li>
-                                @endforeach
-                            </ul>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
                 </div>
             </div> <!-- end container-1410 -->
         </section>
