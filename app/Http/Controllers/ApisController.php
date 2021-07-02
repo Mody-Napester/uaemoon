@@ -78,10 +78,9 @@ class ApisController extends Controller
         return response()->json($data['ads']);
     }
 
-    public function listAds($lang)
+    public function listCategoryVIPAds($lang)
     {
-//        $data['ads'] = Advertise::where('status', 1)->where('expired_at', '>=', date('Y-m-d') . ' 23:59:59')->get();
-        $data['ads'] = Category::with('advertisesVipAndActive')->where('is_active', 1)->whereHas('advertises', function ($q) {
+        $data['categories'] = Category::with('advertisesVipAndActive')->where('is_active', 1)->whereHas('advertises', function ($q) {
             $q->where('status', 1);
             $q->where('adv_type', 3);
             $q->where(function ($q2) {
@@ -89,6 +88,42 @@ class ApisController extends Controller
                 $q2->orWhere('expired_at', '>=', date('Y-m-d') . ' 23:59:59');
             });
         })->get();
+
+        foreach ($data['categories'] as $category){
+
+            $category->name = getFromJson($category->name, $lang);
+//            $category->details = getFromJson($category->details, 'en');
+            $icon_full = explode('"', $category->icon);
+            $icon = explode(" ", $icon_full[1]);
+            $category->icon_fa = $icon[0];
+            $category->icon = str_replace('fa-', '', $icon[1]);
+            $category->picture = url('public/images/category/picture/'. $category->picture);
+            $category->inserts = $category->advertisesVipAndActive;
+
+            foreach ($category->inserts as $ad){
+                $ad->title_en = ($lang == 'ar')? $ad->title_ar : $ad->title_en;
+                $ad->cover = url($ad->cover);
+
+                if(strpos($ad->images, ',') !== false){
+                    $images = explode(',', $ad->images);
+                    foreach ($images as $key => $image){
+                        $images[$key] = ['url' => url($image)];
+                    }
+                    $ad->images = $images;
+                }else{
+                    $images = [];
+                    $images[0] = ['url' => url($ad->images)];
+                    $images[1] = ['url' => url($ad->images)];
+                    $ad->images = $images;
+                }
+            }
+        }
+        return response($data['categories']);
+    }
+
+    public function listAds($lang)
+    {
+        $data['ads'] = Advertise::where('status', 1)->where('expired_at', '>=', date('Y-m-d') . ' 23:59:59')->get();
 
         foreach ($data['ads'] as $ad){
             $ad->title_en = ($lang == 'ar')? $ad->title_ar : $ad->title_en;

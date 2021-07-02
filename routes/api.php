@@ -27,5 +27,7 @@ Route::group([
     Route::get('{lang}/pages/privacy', 'ApisController@showPrivacyPage');
     Route::get('{lang}/pages/terms', 'ApisController@showTermsPage');
 
+    Route::get('{lang}/categories-with-ads', 'ApisController@listCategoryVIPAds');
+
 });
 
