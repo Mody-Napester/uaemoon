@@ -56,6 +56,15 @@ class ApisController extends Controller
                 ->where('expired_at', '>=', date('Y-m-d') . ' 23:59:59')
                 ->get();
             foreach ($data['ads'] as $ad){
+
+                $youtubeId = getYoutubeId($ad->url, 'getEmbedUrl');
+
+                if($youtubeId){
+                    $ad->url = $youtubeId;
+                }else{
+                    $ad->url = '';
+                }
+
                 $ad->title_en = ($lang == 'ar')? $ad->title_ar : $ad->title_en;
                 $ad->cover = url($ad->cover);
                 if(strpos($ad->images, ',') !== false){
@@ -101,6 +110,15 @@ class ApisController extends Controller
             $category->inserts = $category->advertisesVipAndActive;
 
             foreach ($category->inserts as $ad){
+
+                $youtubeId = getYoutubeId($ad->url, 'getEmbedUrl');
+
+                if($youtubeId){
+                    $ad->url = $youtubeId;
+                }else{
+                    $ad->url = '';
+                }
+
                 $ad->title_en = ($lang == 'ar')? $ad->title_ar : $ad->title_en;
                 $ad->cover = url($ad->cover);
 
@@ -126,6 +144,15 @@ class ApisController extends Controller
         $data['ads'] = Advertise::where('status', 1)->where('expired_at', '>=', date('Y-m-d') . ' 23:59:59')->get();
 
         foreach ($data['ads'] as $ad){
+
+            $youtubeId = getYoutubeId($ad->url, 'getEmbedUrl');
+
+            if($youtubeId){
+                $ad->url = $youtubeId;
+            }else{
+                $ad->url = '';
+            }
+
             $ad->title_en = ($lang == 'ar')? $ad->title_ar : $ad->title_en;
             $ad->cover = url($ad->cover);
 
@@ -200,6 +227,15 @@ class ApisController extends Controller
         $data['user'] = User::getOneBy('uuid', $uuid);
         $data['ads'] = Advertise::getAllBy('created_by', $data['user']->id);
         foreach ($data['ads'] as $ad){
+
+            $youtubeId = getYoutubeId($ad->url, 'getEmbedUrl');
+
+            if($youtubeId){
+                $ad->url = $youtubeId;
+            }else{
+                $ad->url = '';
+            }
+
             $ad->title_en = ($lang == 'ar')? $ad->title_ar : $ad->title_en;
             if($ad->status == 0){$ad->status_text = 'Pending';$ad->bg = 'primary';}
             elseif ($ad->status == 1){$ad->status_text = 'Approved';$ad->bg = 'success';}
