@@ -9,7 +9,7 @@
 
         <link rel="shortcut icon" href="{{ url('assets/images/favicon.ico') }}">
 
-        <title>{{ config('app.name') }} | @yield('title')</title>
+        <title>Moon Stars | @yield('title')</title>
 
         @yield('pre_css')
 
@@ -96,7 +96,7 @@
                 <div class="topbar-left">
                     <div class="text-center">
                         <a href="{{ url('/dashboard') }}" class="logo">
-                            <i class="icon-magnet icon-c-logo"></i><span>{{ config('app.name') }}</span>
+                            <i class="icon-magnet icon-c-logo"></i><span>Moon Stars</span>
                         </a>
                         <!-- Image Logo here -->
                         <!--<a href="index.html" class="logo">-->
