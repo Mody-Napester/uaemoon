@@ -28,8 +28,11 @@ $categories = \App\Category::getAll([
         'getFirst' => true
     ]);
     $settings = \App\Settings::getById(1);
-    $pageStyleNumber = Input::has('style') ? Input::get('style') : 0;
-    $transparent = Input::has('transparent') && Input::get('transparent') == 'yes' ? 1 : 0;
+    //$pageStyleNumber = Input::has('style') ? Input::get('style') : 0;
+    //$transparent = Input::has('transparent') && Input::get('transparent') == 'yes' ? 1 : 0;
+
+    $pageStyleNumber = 5;
+    $transparent = 1;
 @endphp
     <!DOCTYPE html>
 <html lang="en">
@@ -175,22 +178,27 @@ $categories = \App\Category::getAll([
                                     $twitter = \App\Provider::getByName('twitter');
                                     $instagram = \App\Provider::getByName('instagram');
                                     $pinterest = \App\Provider::getByName('pinterest');
+                                    $snapchat = \App\Provider::getByName('snapchat');
                                 @endphp
                                 @if($facebook && isset($facebook->social[0]->link))
                                     <li><a target="_blank" href="{{$facebook->social[0]->link}}"><i
-                                                class="ti-facebook"></i></a></li>
+                                                class="fa fa-facebook"></i></a></li>
                                 @endif
                                 @if($twitter && isset($twitter->social[0]->link))
                                     <li><a target="_blank" href="{{$twitter->social[0]->link}}"><i
-                                                class="ti-twitter-alt"></i></a></li>
+                                                class="fa fa-twitter"></i></a></li>
                                 @endif
                                 @if($instagram && isset($instagram->social[0]->link))
                                     <li><a target="_blank" href="{{$instagram->social[0]->link}}"><i
-                                                class="ti-instagram"></i></a></li>
+                                                class="fa fa-instagram"></i></a></li>
                                 @endif
                                 @if($pinterest && isset($pinterest->social[0]->link))
                                     <li><a target="_blank" href="{{$pinterest->social[0]->link}}"><i
-                                                class="ti-pinterest"></i></a></li>
+                                                class="fa fa-pinterest"></i>ffffff</a></li>
+                                @endif
+                                @if($snapchat && isset($snapchat->social[0]->link))
+                                    <li><a target="_blank" href="{{$snapchat->social[0]->link}}"><i
+                                                class="fa fa-snapchat-ghost"></i></a></li>
                                 @endif
                             </ul>
                         </div>
@@ -359,6 +367,7 @@ $categories = \App\Category::getAll([
                                         $twitter = \App\Provider::getByName('twitter');
                                         $instagram = \App\Provider::getByName('instagram');
                                         $pinterest = \App\Provider::getByName('pinterest');
+                                        $snapchat = \App\Provider::getByName('snapchat');
                                     @endphp
                                     @if($facebook && isset($facebook->social[0]->link))
                                         <li><a target="_blank" href="{{$facebook->social[0]->link}}"><i
@@ -375,6 +384,10 @@ $categories = \App\Category::getAll([
                                     @if($pinterest && isset($pinterest->social[0]->link))
                                         <li><a target="_blank" href="{{$pinterest->social[0]->link}}"><i
                                                     class="ti-pinterest"></i></a></li>
+                                    @endif
+                                    @if($snapchat && isset($snapchat->social[0]->link))
+                                        <li><a target="_blank" href="{{$snapchat->social[0]->link}}"><i
+                                                    class="fa fa-snapchat-ghost"></i></a></li>
                                     @endif
                                 </ul>
                             </div>
